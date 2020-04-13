@@ -1,0 +1,45 @@
+.add {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #5263FF;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: lightblue;
+}
+
+.form-group label {
+  background-color: lightblue;
+  padding: 4px 11px;
+  font-family: Arial;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submit-button {
+  border-radius: 30px;
+  border: 0;
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  height: 60px;
+  padding: 8px;
+  text-align: center;
+  width: 60px;
+  margin: 10px 20px 10px auto;
+  background-color: lightblue;
+}

@@ -1,0 +1,49 @@
+.update {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #5263FF;
+}
+
+h2 {
+  text-align: center;
+  color: black;
+  margin: 5px;
+}
+
+label {
+  margin: 5px;
+}
+
+.registration__hint {
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+} /* make red */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.registration__control {
+    display: block;
+    font-size: 16px;
+    padding-bottom: 8px;
+    width: 90%;
+}
+
+.submit-button {
+  border-radius: 30px;
+  border: 0;
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  height: 60px;
+  padding: 8px;
+  text-align: center;
+  width: 60px;
+  margin: 10px 20px 10px auto;
+  background-color: grey;
+}
