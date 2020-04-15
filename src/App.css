@@ -1,29 +1,28 @@
 .App {
   display: flex;
   flex-direction: column;
-  background-color: #141940;
+  background-color: #000000;
   padding: 10px;
+  height: 100%;
+  width: 100%;
 }
 
 .App-header {
-  background-color: #5263FF;
+  background-color: #FFFD8F;
   display: flex;
   flex-direction: row;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  padding: 10px;
-  color: white;
 }
 
-h2, h3 {
+h1, h3 {
+  margin: 10px;
   color: white;
-  margin: 5px;
 }
 
 @media screen and (min-width: 460px) {
-  body,
-  input,
-  textarea {
-    font-size: 1.1em;
+  h1, h3 {
+    color: black;
+    text-align: right;
   }
 }

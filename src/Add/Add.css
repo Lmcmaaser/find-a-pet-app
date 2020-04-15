@@ -1,38 +1,61 @@
-.add {
+.add-form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #5263FF;
+  padding: 5px;
+  background-color: #4A93C2;
 }
 
 h2 {
   text-align: center;
-  margin-top: 0;
-  margin-bottom: 10px;
   color: black;
 }
 
-.form-group {
+fieldset {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  margin-bottom: 5px;
+  flex-direction: column;
+  font-size: 18px;
+  padding-top: 0.35em;
+  padding-bottom: 0.35em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  margin-left: 2px;
+  margin-right: 2px;
+  border: 3px solid #FFFD8F;
+  border-radius: 10px;
+}
+
+legend {
+  display: none;
+}
+
+.part {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 5px;
+}
+
+.main-label {
+  font-variant: small-caps;
+  font-weight: bold;
+}
+
+input[type=text] {
+  margin: 5px;
+  padding: 5px;
+  width: 50%;
+  height: 35px;
+}
+
+input[type=radio] {
+  height: 20px;
+  width: 20px;
   margin-left: 10px;
-  margin-right: 10px;
-  background-color: lightblue;
 }
 
-.form-group label {
-  background-color: lightblue;
-  padding: 4px 11px;
-  font-family: Arial;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.submit-button {
+.add-submit-button {
   border-radius: 30px;
-  border: 0;
+  border: 2px solid black;
   display: block;
   font-size: 12px;
   font-weight: bold;
@@ -41,5 +64,5 @@ h2 {
   text-align: center;
   width: 60px;
   margin: 10px 20px 10px auto;
-  background-color: lightblue;
+  background-color: white;
 }

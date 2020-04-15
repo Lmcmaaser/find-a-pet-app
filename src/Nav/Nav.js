@@ -4,6 +4,7 @@ import Content from '../Content';
 import './Nav.css';
 
 class Nav extends React.Component {
+
   render () {
     return (
       <Content className='Nav'>

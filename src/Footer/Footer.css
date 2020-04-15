@@ -1,15 +1,13 @@
 footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
+  margin-top: 10px;
   padding: 15px;
-  background-color: #141940;
+  background-color: #003B61;
   text-align: center;
   color: white;
 }
 
 p {
   display: inline-block;
-  margin: 10px 5px;
+  margin: 5px;
 }
