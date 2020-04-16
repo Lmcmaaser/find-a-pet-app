@@ -1,9 +1,23 @@
 export default {
+  "type" [
+    {
+      "typeid": "01",
+      "animaltype": "dog"
+    },
+    {
+      "typeid": "02",
+      "animaltype": "cat"
+    },
+    {
+      "typeid": "03",
+      "animaltype": "bird"
+    }
+  ]
   "animals" = [
     {
       "id": "1",
+      "typeid": "01",
       "name": "Shadow",
-      "type": "dog"
       "gender": "female",
       "age:": "3",
       "arrived": "01-2020",
@@ -12,8 +26,8 @@ export default {
     },
     {
       "id": "2",
+      "typeid": "01",
       "name": "Rocco",
-      "type": "dog"
       "gender": "male",
       "age:": "5",
       "arrived": "11-2019",
@@ -22,8 +36,8 @@ export default {
     },
     {
       "id": "3",
+      "typeid": "02",
       "name": "Princess",
-      "type": "cat"
       "gender": "female",
       "age:": "2",
       "arrived": "02-2020",
@@ -32,8 +46,8 @@ export default {
     },
     {
       "id": "4",
+      "typeid": "02",
       "name": "Nero",
-      "type": "cat"
       "gender": "male",
       "age:": "4",
       "arrived": "02-2019",
@@ -42,8 +56,8 @@ export default {
     },
     {
       "id": "5",
+      "typeid": "03",
       "name": "Sunny",
-      "type": "bird"
       "gender": "male",
       "age:": "7",
       "arrived": "01-2019",
@@ -52,13 +66,13 @@ export default {
     },
     {
       "id": "6",
+      "typeid": "03",
       "name": "Chia",
-      "type": "bird"
       "gender": "female",
       "age:": "4",
       "arrived": "02-2020",
       "adopted": "no",
       "adoption-year": "00-0000"
-    }  
+    }
   ]
 }

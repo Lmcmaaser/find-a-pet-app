@@ -10,6 +10,17 @@ import Update from './Update/Update';
 import './App.css';
 
 export default class App extends Component {
+  state = {
+      animals: [],
+      types: []
+  };
+
+  handleAddAnimal = animal => {
+    this.setState({
+      animals: this.state.animals.concat(animal)
+    })
+  };
+  
   render () {
     return (
       <div className="App">

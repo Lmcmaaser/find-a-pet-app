@@ -6,11 +6,11 @@ class Add extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: {
+      type: {
         value: '',
         touched: false
       },
-      type: {
+      name: {
         value: '',
         touched: false
       },
@@ -29,6 +29,13 @@ class Add extends React.Component {
     };
   }
 
+  static defaultProps = {
+    match: {
+      params: {}
+    }
+
+  }
+  
   addName(name) {
     this.setState({name: {value: name, touched: true}});
   }
@@ -63,13 +70,6 @@ class Add extends React.Component {
       return "Age must be a number";
     }
   }
-
-  /*validateType() {
-    const name = this.state.name.value.trim();
-    if (name.length === 0) {
-      return "Name is required";
-    }
-  }*/
 
   /*validateGender() {
     const name = this.state.name.value.trim();
@@ -110,20 +110,7 @@ class Add extends React.Component {
         <fieldset>
           <legend>Add Form</legend>
           <div className="part">
-            <label  className="main-label" htmlFor="name">Name *</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Jane"
-              onChange={e => this.addName(e.target.value)}
-            />
-              {this.state.name.touched && (
-                <ValidationError message={nameError} id="nameError"/>
-              )}
-          </div>
-          <div className="part">
-            <label className="main-label" htmlFor="type">Type *</label>
+            <label className="main-label" htmlFor="type">Select a type for your animal. * </label>
             <input
               type="radio"
               name="dog"
@@ -149,12 +136,27 @@ class Add extends React.Component {
             <label htmlFor="bird">Bird</label>
           </div>
           <div className="part">
+            <label  className="main-label" htmlFor="name">Name *</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Jane"
+              required
+              onChange={e => this.addName(e.target.value)}
+            />
+              {this.state.name.touched && (
+                <ValidationError message={nameError} id="nameError"/>
+              )}
+          </div>
+          <div className="part">
             <label className="main-label" htmlFor="gender">Gender *</label>
             <input
               type="radio"
               id="male"
               name="gender"
               value="male"
+              required
               onChange={e => this.addGender(e.target.value)}
             />
             <label htmlFor="male">Male</label>
@@ -174,6 +176,7 @@ class Add extends React.Component {
               type="text"
               name="age"
               id="age"
+              required
               placeholder="5"
             />
             {this.state.age.touched && (
@@ -181,7 +184,7 @@ class Add extends React.Component {
             )}
           </div>
           <div className="part">
-            <label className="main-label" htmlFor="arrived">Arrived (Arrival information must be formatted as MM-YYYY.) *</label>
+            <label className="main-label" htmlFor="arrived">Arrived (Input must be formatted as MM-YYYY.) *</label>
             <input
               type="text"
               name="arrived"
