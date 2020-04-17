@@ -50,10 +50,10 @@ input[type=text] {
 input[type=radio] {
   height: 20px;
   width: 20px;
-  margin-left: 10px;
+  margin-top: 15px;
 }
 
-.add-submit-button {
+.submit-button {
   border-radius: 30px;
   border: 2px solid black;
   display: block;

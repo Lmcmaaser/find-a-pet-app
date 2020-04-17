@@ -4,37 +4,63 @@ import './Update.css';
 class Update extends React.Component {
   render () {
     return(
-      <form className="update">
+      <form className="update-form">
         <h2>Update an animal's information</h2>
-        <div className="form-group">
-          <label htmlFor="name">Name *</label>
-          <input type="text" className="registration__control"
-              name="name" id="name"/>
-        </div>
-        <div className="form-group">
-            <label htmlFor="type">Type * (make this a drop down?)</label>
-            <input type="type" className="registration__control"
-              name="type" id="type" />
-        </div>
-        <div className="form-group">
-            <label htmlFor="age">Age (Must be a number, leave blank if age is unknown.)</label>
-            <input type="age" className="registration__control"
-              name="age" id="age" />
-        </div>
-        <div className="form-group">
-          <label htmlFor="adoption">Adoption status</label>
-          <input type="radio" id="yes" name="yes" value="yes" />
-          <label htmlFor="yes">Yes</label>
-          <input type="radio" id="no" name="no" value="no" />
-          <label htmlFor="no">No</label>
-        </div>
-        <div>
-          <button
-            type="submit"
-            className="submit-button">
-              Submit
-          </button>
-        </div>
+        <fieldset>
+          <legend>Update Form</legend>
+          <div className="part">
+            <label  className="main-label" htmlFor="name">Name *</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Jane"
+            />
+          </div>
+          <div className="part">
+              <label className="main-label" htmlFor="age">Age *</label>
+              <input
+                type="text"
+                name="age"
+                id="age"
+                placeholder="5"
+              />
+            </div>
+          <div className="part">
+            <label className="main-label" htmlFor="adopted">Adoption status</label>
+            <input
+              type="radio"
+              id="yes"
+              name="yes"
+              value="yes"
+            />
+            <label htmlFor="yes">Yes</label>
+
+            <input
+              type="radio"
+              id="no"
+              name="no"
+              value="no"
+            />
+            <label htmlFor="no">No</label>
+          </div>
+          <div className="part">
+              <label className="main-label" htmlFor="adoption-date">Date of adoption (input must be formatted as MM-YYYY)</label>
+              <input
+                type="text"
+                name="adoption-date"
+                id="adoption-date"
+                placeholder="01-2020"
+              />
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="submit-button">
+                Submit
+            </button>
+          </div>
+        </fieldset>
       </form>
     )
   }

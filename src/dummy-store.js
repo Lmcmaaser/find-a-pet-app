@@ -12,7 +12,7 @@ export default {
       "typeid": "03",
       "animaltype": "bird"
     }
-  ]
+  ],
   "animals" = [
     {
       "id": "1",

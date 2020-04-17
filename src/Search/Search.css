@@ -1,13 +1,14 @@
-.search {
+.search-db {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #5263FF;
+  padding: 5px;
+  background-color: #4A93C2;
 }
 
-h3 {
-  color: white;
-  margin: 15px;
+h2 {
+  text-align: center;
+  color: black;
 }
 
 .search-button {
@@ -24,17 +25,16 @@ h3 {
   background-color: lightgrey;
 }
 
-.search-group {
+fieldset {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  border: 3px;
-  border-radius: 5px;
-  margin: 20px 10px;
-}
-
-label {
-  font-size: 16px;
-  text-align: left;
-  margin: 15px 10px;
+  font-size: 18px;
+  padding-top: 0.35em;
+  padding-bottom: 0.35em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  margin-left: 2px;
+  margin-right: 2px;
+  border: 3px solid #FFFD8F;
+  border-radius: 10px;
 }

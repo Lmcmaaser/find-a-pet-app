@@ -20,7 +20,40 @@ export default class App extends Component {
       animals: this.state.animals.concat(animal)
     })
   };
-  
+
+  /*componentDidMount() {
+      Promise.all([
+          fetch(`${config.API_ENDPOINT}/notes`, {
+            method: 'GET',
+            headers: {
+              'content-type': 'application/json',
+              'authorization': `bearer ${config.API_KEY}`
+            }
+          }),
+          fetch(`${config.API_ENDPOINT}/folders`, {
+            method: 'GET',
+            headers: {
+              'content-type': 'application/json',
+              'authorization': `bearer ${config.API_KEY}`
+          }
+        })
+          //need to submit the name of the new folder/new note
+      ])
+          .then(([notesRes, foldersRes]) => {
+              if (!notesRes.ok)
+                  return notesRes.json().then(e => Promise.reject(e));
+              if (!foldersRes.ok)
+                  return foldersRes.json().then(e => Promise.reject(e));
+
+              return Promise.all([notesRes.json(), foldersRes.json()]);
+          })
+          .then(([notes, folders]) => {
+              this.setState({notes, folders});
+          })
+          .catch(error => {
+              console.error({error});
+          });
+  }*/
   render () {
     return (
       <div className="App">

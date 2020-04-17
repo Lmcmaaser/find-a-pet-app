@@ -35,12 +35,12 @@ class Add extends React.Component {
     }
 
   }
-  
-  addName(name) {
-    this.setState({name: {value: name, touched: true}});
-  }
+
   addType(type) {
     this.setState({type: {value: type, touched: true}});
+  }
+  addName(name) {
+    this.setState({name: {value: name, touched: true}});
   }
   addGender(gender) {
     this.setState({gender: {value: gender, touched: true}});
@@ -67,7 +67,7 @@ class Add extends React.Component {
     if (name.length === 0) {
       return "Name is required";
     } else if (!name.match(/[A-z]/)) {
-      return "Age must be a number";
+      return "Name must include characters from the modern English alphabet";
     }
   }
 
@@ -85,7 +85,7 @@ class Add extends React.Component {
     } else if (age.length < 0 || age.length > 2) {
       return "Age must be between 1 and 2 characters long.";
     } else if (!age.match(/[0-9]/)) {
-      return "Age must be a number";
+      return "Age must contain at least one number";
     }
   }
 
@@ -110,7 +110,7 @@ class Add extends React.Component {
         <fieldset>
           <legend>Add Form</legend>
           <div className="part">
-            <label className="main-label" htmlFor="type">Select a type for your animal. * </label>
+            <label className="main-label" htmlFor="type">Select a type for your animal * </label>
             <input
               type="radio"
               name="dog"
@@ -184,7 +184,7 @@ class Add extends React.Component {
             )}
           </div>
           <div className="part">
-            <label className="main-label" htmlFor="arrived">Arrived (Input must be formatted as MM-YYYY.) *</label>
+            <label className="main-label" htmlFor="arrived">Arrived (input must be formatted as MM-YYYY) *</label>
             <input
               type="text"
               name="arrived"
@@ -200,7 +200,7 @@ class Add extends React.Component {
           <div>
             <button
               type="submit"
-              className="add-submit-button"
+              className="submit-button"
               disabled={
               this.validateName() ||
               this.validateAge() ||
@@ -215,5 +215,7 @@ class Add extends React.Component {
     )
   }
 }
+
+
 
 export default Add;

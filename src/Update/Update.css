@@ -1,42 +1,61 @@
-.update {
-  display: flex;
+.update-form {
+  ddisplay: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #5263FF;
+  padding: 5px;
+  background-color: #4A93C2;
 }
 
 h2 {
   text-align: center;
   color: black;
-  margin: 5px;
 }
 
-label {
-  margin: 5px;
-}
-
-.registration__hint {
-  font-size: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-} /* make red */
-
-.form-group {
+fieldset {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  font-size: 18px;
+  padding-top: 0.35em;
+  padding-bottom: 0.35em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  margin-left: 2px;
+  margin-right: 2px;
+  border: 3px solid #FFFD8F;
+  border-radius: 10px;
 }
 
-.registration__control {
-    display: block;
-    font-size: 16px;
-    padding-bottom: 8px;
-    width: 90%;
+legend {
+  display: none;
+}
+
+.part {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 5px;
+}
+
+.main-label {
+  font-variant: small-caps;
+  font-weight: bold;
+}
+
+input[type=text] {
+  margin: 5px;
+  padding: 5px;
+  width: 50%;
+  height: 35px;
+}
+
+input[type=radio] {
+  height: 20px;
+  width: 20px;
+  margin-left: 10px;
 }
 
 .submit-button {
   border-radius: 30px;
-  border: 0;
+  border: 2px solid black;
   display: block;
   font-size: 12px;
   font-weight: bold;
@@ -45,5 +64,4 @@ label {
   text-align: center;
   width: 60px;
   margin: 10px 20px 10px auto;
-  background-color: grey;
 }
