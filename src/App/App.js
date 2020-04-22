@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-// import ReactDOM from 'react-dom';
-import Nav from './Nav/Nav';
-import Footer from './Footer/Footer';
-import Home from './Home/Home';
-import Search from './Search/Search';
-import Add from './Add/Add';
-import Update from './Update/Update';
+import Nav from '../Nav/Nav';
+import Footer from '../Footer/Footer';
+import Home from '../Home/Home';
+import Search from '../Search/Search';
+import Add from '../Add/Add';
+import Update from '../Update/Update';
 import './App.css';
 
 export default class App extends Component {
   static defaultProps = {
     data: {
-      animals: [],
+      pets: [],
       types: [],
     }
   };
@@ -21,26 +20,20 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      animals: this.props.data.animals,
+      pets: this.props.data.pets,
       types: this.props.data.types
     }
   };
-  updateSearchTerm(term) {
+
+  handleUpdate = pet => {
     this.setState({
-      searchTerm: term
+      pets: this.state.pets.concat(pet)
     })
-  }
+  };
 
-  updateFilterOption(option) {
+  handleAddPet = pet => {
     this.setState({
-      filterOption: option
-    })
-  }
-
-
-  handleAddAnimal = animal => {
-    this.setState({
-      animals: this.state.animals.concat(animal)
+      pets: this.state.pets.concat(pet)
     })
   };
 
@@ -50,17 +43,10 @@ export default class App extends Component {
             method: 'GET',
             headers: {
               'content-type': 'application/json',
-              'authorization': `bearer ${config.API_KEY}`
+
             }
           }),
-          fetch(`${config.API_ENDPOINT}/folders`, {
-            method: 'GET',
-            headers: {
-              'content-type': 'application/json',
-              'authorization': `bearer ${config.API_KEY}`
-          }
         })
-          //need to submit the name of the new folder/new note
       ])
           .then(([notesRes, foldersRes]) => {
               if (!notesRes.ok)
@@ -90,7 +76,7 @@ export default class App extends Component {
         <main>
           <Route exact path='/' component={Home} />
           <Route path='/search' component={Search} />
-          <Route path='/add' component={Add} />
+          <Route path='/add'componenet={Add}/>
           <Route path='/update' component={Update} />
         </main>
         <footer>

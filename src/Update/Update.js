@@ -2,6 +2,22 @@ import React from 'react'
 import './Update.css';
 
 class Update extends React.Component {
+  updateName(name) {
+    this.setState({name: {value: name, touched: true}});
+  }
+
+  updateName(age) {
+    this.setState({age: {value: age, touched: true}});
+  }
+
+  /* updateAdoptionStatus(adopted) {
+    this.setState({adopted: value: , touched: true}});
+  }*/
+
+  updateDateAdopted(date_adopted) {
+    this.setState({date_adopted: {value: date_adopted, touched: true}});
+  }
+  
   render () {
     return(
       <form className="update-form">
@@ -45,11 +61,11 @@ class Update extends React.Component {
             <label htmlFor="no">No</label>
           </div>
           <div className="part">
-              <label className="main-label" htmlFor="adoption-date">Date of adoption (input must be formatted as MM-YYYY)</label>
+              <label className="main-label" htmlFor="date_adopted">Date of adoption (input must be formatted as MM-YYYY)</label>
               <input
                 type="text"
-                name="adoption-date"
-                id="adoption-date"
+                name="date_adopted"
+                id="date_adopted"
                 placeholder="01-2020"
               />
           </div>

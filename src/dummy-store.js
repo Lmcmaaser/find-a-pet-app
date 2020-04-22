@@ -18,7 +18,7 @@ export default {
       "id": "1",
       "typeid": "01",
       "name": "Shadow",
-      "gender": "female",
+      "sex": "female",
       "age:": "3",
       "date_arrived": "01-2020",
       "adopted": "yes",
@@ -28,7 +28,7 @@ export default {
       "id": "2",
       "typeid": "01",
       "name": "Rocco",
-      "gender": "male",
+      "sex": "male",
       "age:": "5",
       "date_arrived": "11-2019",
       "adopted": "no",
@@ -38,7 +38,7 @@ export default {
       "id": "3",
       "typeid": "02",
       "name": "Princess",
-      "gender": "female",
+      "sex": "female",
       "age:": "2",
       "date_arrived": "02-2020",
       "adopted": "yes",
@@ -48,7 +48,7 @@ export default {
       "id": "4",
       "typeid": "02",
       "name": "Nero",
-      "gender": "male",
+      "sex": "male",
       "age:": "4",
       "date_arrived": "02-2019",
       "adopted": "no",
@@ -58,7 +58,7 @@ export default {
       "id": "5",
       "typeid": "03",
       "name": "Sunny",
-      "gender": "male",
+      "sex": "male",
       "age:": "7",
       "date_arrived": "01-2019",
       "adopted": "yes",
@@ -68,7 +68,7 @@ export default {
       "id": "6",
       "typeid": "03",
       "name": "Chia",
-      "gender": "female",
+      "sex": "female",
       "age:": "4",
       "date_arrived": "02-2020",
       "adopted": "no",
@@ -76,4 +76,3 @@ export default {
     }
   ]
 }
-pet

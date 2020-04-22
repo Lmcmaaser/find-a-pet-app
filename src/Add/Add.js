@@ -1,4 +1,4 @@
-Seximport React from 'react'
+import React from 'react'
 import ValidationError from '../ValidationError.js'
 import './Add.css';
 
@@ -22,7 +22,7 @@ class Add extends React.Component {
         value: '',
         touched: false
       },
-      arrived: {
+      date_arrived: {
         value: '',
         touched: false
       }
@@ -48,7 +48,7 @@ class Add extends React.Component {
   addAge(age) {
     this.setState({age: {value: age, touched: true}});
   }
-  addArrived(date_arrived) {
+  addDateArrived(date_arrived) {
     this.setState({date_arrived: {value: date_arrived, touched: true}});
   }
 
@@ -68,30 +68,7 @@ class Add extends React.Component {
       typeid: event.target.typeid.value
     }
     console.log(pet)
-    fetch(`${config.API_ENDPOINT}/notes`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(pet)
-    })
-      .then(res => {
-        if (!res.ok)
-          return res.json().then(event => Promise.reject(event))
-        return res.json()
-      })
-      .then((pet) => {
-        this.context.Add(pry)
-        console.log(pet)
-        this.props.history.goBack()
-      // allow parent to perform extra behaviour
-      })
-      .catch(error => {
-        console.error({ error })
-      })
-    }
   }
-
   //validation message
   validateName() {
     const name = this.state.name.value.trim();
@@ -175,7 +152,7 @@ class Add extends React.Component {
               type="text"
               name="name"
               id="name"
-              placeholder="Jane"
+              placeholder="Fluffy"
               aria-label="add-name"
               aria-required="true"
               aria-invalid={ this.state.name.touched && !!nameError }
@@ -232,7 +209,6 @@ class Add extends React.Component {
               placeholder="01-2020"
               aria-label="add-arrival-date"
               aria-required="true"
-              aria-invalid={ this.state.date_arrived.touched && !!date_arrivedError }
               onChange={e => this.addDateArrived(e.target.value)}
             />
             {this.state.date_arrived.touched && (
