@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
-import Home from '../Home/Home';
-import Search from '../Search/Search';
-import Add from '../Add/Add';
-import Update from '../Update/Update';
+// import ReactDOM from 'react-dom';
+import Nav from './Nav/Nav';
+import Footer from './Footer/Footer';
+import Home from './Home/Home';
+import Search from './Search/Search';
+import Add from './Add/Add';
+import Update from './Update/Update';
 import './App.css';
 
 export default class App extends Component {
   static defaultProps = {
     data: {
-      pets: [],
+      animals: [],
       types: [],
     }
   };
@@ -20,28 +21,28 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pets: this.props.data.pets,
+      animals: this.props.data.animals,
       types: this.props.data.types
     }
   };
-
-  handleUpdate = pet => {
+  updateSearchTerm(term) {
     this.setState({
-      pets: this.state.pets.concat(pet)
+      searchTerm: term
+    })
+  }
+
+  updateFilterOption(option) {
+    this.setState({
+      filterOption: option
+    })
+  }
+
+
+  handleAddAnimal = animal => {
+    this.setState({
+      animals: this.state.animals.concat(animal)
     })
   };
-
-  handleAddPet = pet => {
-    this.setState({
-      pets: this.state.pets.concat(pet)
-    })
-  };
-
-  componentDidMount() {
-        // fake date loading from API call
-      setTimeout(() => this.setState(data), 600);
-    }
-
 
   /*componentDidMount() {
       Promise.all([

@@ -1,28 +1,28 @@
 export default {
-  "type" [
+  "types": [
     {
       "typeid": "01",
-      "animaltype": "dog"
+      "pettype": "dog"
     },
     {
       "typeid": "02",
-      "animaltype": "cat"
+      "pettype": "cat"
     },
     {
       "typeid": "03",
-      "animaltype": "bird"
+      "pettype": "bird"
     }
   ],
-  "animals" = [
+  "pets": [
     {
       "id": "1",
       "typeid": "01",
       "name": "Shadow",
       "gender": "female",
       "age:": "3",
-      "arrived": "01-2020",
+      "date_arrived": "01-2020",
       "adopted": "yes",
-      "adoption-date": "02-2020"
+      "date_adopted": "02-2020"
     },
     {
       "id": "2",
@@ -30,9 +30,9 @@ export default {
       "name": "Rocco",
       "gender": "male",
       "age:": "5",
-      "arrived": "11-2019",
+      "date_arrived": "11-2019",
       "adopted": "no",
-      "adoption-date": "00-0000"
+      "date_adopted": "00-0000"
     },
     {
       "id": "3",
@@ -40,9 +40,9 @@ export default {
       "name": "Princess",
       "gender": "female",
       "age:": "2",
-      "arrived": "02-2020",
+      "date_arrived": "02-2020",
       "adopted": "yes",
-      "adoption-date": "02-2020"
+      "date_adopted": "02-2020"
     },
     {
       "id": "4",
@@ -50,9 +50,9 @@ export default {
       "name": "Nero",
       "gender": "male",
       "age:": "4",
-      "arrived": "02-2019",
+      "date_arrived": "02-2019",
       "adopted": "no",
-      "adoption-date": "00-0000"
+      "date_adopted": "00-0000"
     },
     {
       "id": "5",
@@ -60,9 +60,9 @@ export default {
       "name": "Sunny",
       "gender": "male",
       "age:": "7",
-      "arrived": "01-2019",
+      "date_arrived": "01-2019",
       "adopted": "yes",
-      "adoption-date": "03-2019"
+      "date_adopted": "03-2019"
     },
     {
       "id": "6",
@@ -70,9 +70,10 @@ export default {
       "name": "Chia",
       "gender": "female",
       "age:": "4",
-      "arrived": "02-2020",
+      "date_arrived": "02-2020",
       "adopted": "no",
       "adoption-year": "00-0000"
     }
   ]
 }
+pet
