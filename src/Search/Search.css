@@ -38,3 +38,7 @@ fieldset {
   border: 3px solid #FFFD8F;
   border-radius: 10px;
 }
+
+legend {
+  display: none;
+}

@@ -12,7 +12,7 @@ export default class App extends Component {
   static defaultProps = {
     data: {
       pets: [],
-      types: [],
+      types: []
     }
   };
 
@@ -21,7 +21,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       pets: this.props.data.pets,
-      types: this.props.data.types
+      types: this.props.data.pettypes
     }
   };
 
@@ -37,32 +37,31 @@ export default class App extends Component {
     })
   };
 
-  /*componentDidMount() {
+  componentDidMount() {
       Promise.all([
-          fetch(`${config.API_ENDPOINT}/notes`, {
-            method: 'GET',
-            headers: {
-              'content-type': 'application/json',
-
-            }
+          fetch(`${'/..dummy-store'}/pets`, {
+            method: 'GET'
           }),
+          fetch(`${'/..dummy-store'}/types`, {
+            method: 'GET'
         })
+          //need to submit the name of the new folder/new note
       ])
-          .then(([notesRes, foldersRes]) => {
-              if (!notesRes.ok)
-                  return notesRes.json().then(e => Promise.reject(e));
-              if (!foldersRes.ok)
-                  return foldersRes.json().then(e => Promise.reject(e));
+          .then(([petsRes, typesRes]) => {
+              if (!petsRes.ok)
+                  return petsRes.json().then(e => Promise.reject(e));
+              if (!typesRes.ok)
+                  return typesRes.json().then(e => Promise.reject(e));
 
-              return Promise.all([notesRes.json(), foldersRes.json()]);
+              return Promise.all([petsRes.json(), typesRes.json()]);
           })
-          .then(([notes, folders]) => {
-              this.setState({notes, folders});
+          .then(([pets, types]) => {
+              this.setState({pets, types});
           })
           .catch(error => {
               console.error({error});
           });
-  }*/
+
   render () {
     return (
       <div className="App">
@@ -76,7 +75,7 @@ export default class App extends Component {
         <main>
           <Route exact path='/' component={Home} />
           <Route path='/search' component={Search} />
-          <Route path='/add'componenet={Add}/>
+          <Route path='/add' componenet={Add} />
           <Route path='/update' component={Update} />
         </main>
         <footer>

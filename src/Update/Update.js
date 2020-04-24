@@ -1,4 +1,5 @@
 import React from 'react'
+// import ValidationError from '../ValidationError.js'
 import './Update.css';
 
 class Update extends React.Component {
@@ -6,7 +7,7 @@ class Update extends React.Component {
     this.setState({name: {value: name, touched: true}});
   }
 
-  updateName(age) {
+  updateAge(age) {
     this.setState({age: {value: age, touched: true}});
   }
 
@@ -17,9 +18,9 @@ class Update extends React.Component {
   updateDateAdopted(date_adopted) {
     this.setState({date_adopted: {value: date_adopted, touched: true}});
   }
-  
-  render () {
-    return(
+
+  render() {
+    return (
       <form className="update-form">
         <h2>Update an animal's information</h2>
         <fieldset>

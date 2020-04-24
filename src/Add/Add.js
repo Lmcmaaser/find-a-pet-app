@@ -1,150 +1,90 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import ValidationError from '../ValidationError.js'
+import PetContext from '../PetContext';
 import './Add.css';
 
 class Add extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      type: {
-        value: '',
-        touched: false
-      },
-      name: {
-        value: '',
-        touched: false
-      },
-      sex: {
-        value: '',
-        touched: false
-      },
-      age: {
-        value: '',
-        touched: false
-      },
-      date_arrived: {
-        value: '',
-        touched: false
-      }
-    };
+  state = {
+    name: {
+      value: ''
+    }
   }
-
   static defaultProps = {
     match: {
       params: {}
     }
+  }
 
+  static contextType = PetContext
+  constructor(props) {
+    super(props)
+    this.name = React.createRef();
   }
-  //handlers to update state properties
-  addType(type) {
-    this.setState({type: {value: type, touched: true}});
-  }
-  addName(name) {
-    this.setState({name: {value: name, touched: true}});
-  }
-  addSex(sex) {
-    this.setState({sex: {value: sex, touched: true}});
-  }
-  addAge(age) {
-    this.setState({age: {value: age, touched: true}});
-  }
-  addDateArrived(date_arrived) {
-    this.setState({date_arrived: {value: date_arrived, touched: true}});
+
+  updatePetName(name) {
+    this.setState({petName: {value: name, touched: true}});
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    const { name, type, sex, age, date_arrived } = this.state;
-    console.log('Name: ', name.value);
-    console.log('Type: ', type.value);
-    console.log('Sex: ', sex.value);
-    console.log('Age: ', age.value);
-    console.log('Date_Arrived: ', date_arrived.value)
+    const { name } = this.state;
     const pet = {
       name: name.value,
-      age: event.target.age.value,
-      folderid: event.target.folderid.value,
-      date_arrived: event.target.date_arrived.value,
-      typeid: event.target.typeid.value
+      pet_type: event.target.pet_type.value,
+      sex: event.target.sex.value,
+      age: event.target.age.value
     }
     console.log(pet)
-  }
-  //validation message
-  validateName() {
-    const name = this.state.name.value.trim();
-    if (name.length === 0) {
-      return "Name is required";
-    } else if (!name.match(/[A-z]/)) {
-      return "Name must include characters from the modern English alphabet";
+    fetch(`${data}`, {
+      method: 'POST',
+      body: JSON.stringify(pet)
+    })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(event => Promise.reject(event))
+        return res.json()
+      })
+      .then((pet) => {
+        this.context.Add(pet)
+        console.log(pet)
+        this.props.history.goBack()
+      })
+      .catch(error => {
+        console.error({ error })
+      })
     }
-  }
 
-  /*validateSex() {
-    const sex = this.state.sex.value.trim();
-    if () {
-      return "";
+    validateName() {
+      const name = this.state.name.value.trim();
+      if (!this.state.name.touched) {
+        return
+      }
+      if (name.length === 0) {
+        this.name.current.focus();
+        return "Name is required";
+      } else if (!name.match(/[A-z]/)) {
+        this.name.current.focus();
+        return "Name must include characters from the modern English alphabet";
+      }
     }
-  }*/
-
-  validateAge() {
-    const age = this.state.age.value.trim();
-    if (age.length === 0) {
-      return "Age is required";
-    } else if (age.length < 0 || age.length > 2) {
-      return "Age must be between 1 and 2 characters long.";
-    } else if (!age.match(/[0-9]/)) {
-      return "Age must contain at least one number";
-    }
-  }
-
-  validateDateArrived() {
-    const arrived = this.state.age.value.trim();
-    if (arrived.length === 0) {
-      return "Arrival month and year is required";
-    } else if (arrived.length < 7 || arrived.length > 7) {
-      return "Arrival information must be formatted as MM-YYYY.";
-    }
-  }
 
   render () {
     const nameError = this.validateName();
-    // const typeError = this.validateType();
-    // const sexError = this.validateSex();
-    const ageError = this.validateAge();
-    const date_arrivedError = this.validateDateArrived();
-    return(
+    return (
       <form className="add-form" onSubmit={event =>       this.handleSubmit(event)}>
         <h2>Add an animal to the database (*  indicates a required field)</h2>
         <fieldset>
           <legend>Add Form</legend>
-          <div className="part">
-            <label className="main-label" htmlFor="type">Select a type for your animal * </label>
-            <input
-              type="radio"
-              name="dog"
-              id="dog"
-              aria-label="dog-type"
-              onChange={e => this.addType(e.target.value)}
-            />
-            <label htmlFor="dog">Dog</label>
-
-            <input
-              type="radio"
-              name="cat"
-              id="cat"
-              aria-label="cat-type"
-              onChange={e => this.addType(e.target.value)}
-            />
-            <label htmlFor="cat">Cat</label>
-
-            <input
-              type="radio"
-              name="bird"
-              id="bird"
-              aria-label="bird-type"
-              onChange={e => this.addType(e.target.value)}
-            />
-            <label htmlFor="bird">Bird</label>
+          <label className="main-label" htmlFor="type">Select a type for your no * </label>
+          <select
+            name="typeid"
+            aria-label="select pet type"
+          >
+            {this.context.types.map(type =>
+              <option key={type.typeid} value={type.typeid}>{type.pet_type}</option>
+            )}
+          </select>
           </div>
           <div className="part">
             <label  className="main-label" htmlFor="name">Name *</label>
@@ -153,11 +93,12 @@ class Add extends React.Component {
               name="name"
               id="name"
               placeholder="Fluffy"
+              ref={this.name}
               aria-label="add-name"
               aria-required="true"
               aria-invalid={ this.state.name.touched && !!nameError }
-              required
-              onChange={e => this.addName(e.target.value)}
+              aria-describedby="nameError"
+              onChange={event => this.updateName(event.target.value)}
             />
               {this.state.name.touched && (
                 <ValidationError message={nameError} id="nameError"/>
@@ -172,7 +113,7 @@ class Add extends React.Component {
               value="male"
               aria-label="add-male-sex"
               required
-              onChange={e => this.addSex(e.target.value)}
+              onChange={e => this.updateSex(e.target.value)}
             />
             <label htmlFor="male">Male</label>
 
@@ -182,7 +123,7 @@ class Add extends React.Component {
               name="sex"
               value="female"
               aria-label="add-female-sex"
-              onChange={e => this.addSex(e.target.value)}
+              onChange={e => this.updateSex(e.target.value)}
             />
             <label htmlFor="female">Female</label>
           </div>
@@ -207,13 +148,12 @@ class Add extends React.Component {
               name="date_arrived"
               id="date_arrived"
               placeholder="01-2020"
-              aria-label="add-arrival-date"
+              aria-label="update-arrival-date"
               aria-required="true"
-              onChange={e => this.addDateArrived(e.target.value)}
+              onChange={e => this.updateDateArrived(e.target.value)}
             />
             {this.state.date_arrived.touched && (
-                <ValidationError message={date_arrivedError}
-                id="date_arrivedError" />
+                <ValidationError message={date_arrivedError}/>
             )}
           </div>
           <div>
@@ -235,7 +175,4 @@ class Add extends React.Component {
     )
   }
 }
-
-
-
 export default Add;

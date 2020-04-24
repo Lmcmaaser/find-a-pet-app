@@ -2,21 +2,21 @@ export default {
   "types": [
     {
       "typeid": "01",
-      "pettype": "dog"
+      "pet_type": "dog"
     },
     {
       "typeid": "02",
-      "pettype": "cat"
+      "pet_type": "cat"
     },
     {
       "typeid": "03",
-      "pettype": "bird"
+      "pet_type": "bird"
     }
   ],
   "pets": [
     {
       "id": "1",
-      "typeid": "01",
+      "pet_type": "dog",
       "name": "Shadow",
       "sex": "female",
       "age:": "3",
@@ -26,7 +26,7 @@ export default {
     },
     {
       "id": "2",
-      "typeid": "01",
+      "pet_type": "dog",
       "name": "Rocco",
       "sex": "male",
       "age:": "5",
@@ -36,7 +36,7 @@ export default {
     },
     {
       "id": "3",
-      "typeid": "02",
+      "pet_type": "cat",
       "name": "Princess",
       "sex": "female",
       "age:": "2",
@@ -46,7 +46,7 @@ export default {
     },
     {
       "id": "4",
-      "typeid": "02",
+      "pet_type": "cat",
       "name": "Nero",
       "sex": "male",
       "age:": "4",
@@ -56,7 +56,7 @@ export default {
     },
     {
       "id": "5",
-      "typeid": "03",
+      "pet_type": "bird",
       "name": "Sunny",
       "sex": "male",
       "age:": "7",
@@ -66,7 +66,7 @@ export default {
     },
     {
       "id": "6",
-      "typeid": "03",
+      "pet_type": "bird",
       "name": "Chia",
       "sex": "female",
       "age:": "4",
