@@ -38,29 +38,29 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-      Promise.all([
-          fetch(`${'/..dummy-store'}/pets`, {
-            method: 'GET'
-          }),
-          fetch(`${'/..dummy-store'}/types`, {
-            method: 'GET'
-        })
+    Promise.all([
+      fetch(`${'/..dummy-store'}/pets`, {
+        method: 'GET'
+      }),
+      fetch(`${'/..dummy-store'}/types`, {
+        method: 'GET'
+      })
           //need to submit the name of the new folder/new note
-      ])
-          .then(([petsRes, typesRes]) => {
-              if (!petsRes.ok)
-                  return petsRes.json().then(e => Promise.reject(e));
-              if (!typesRes.ok)
-                  return typesRes.json().then(e => Promise.reject(e));
+    ])
+      .then(([petsRes, typesRes]) => {
+        if (!petsRes.ok)
+            return petsRes.json().then(e => Promise.reject(e));
+        if (!typesRes.ok)
+            return typesRes.json().then(e => Promise.reject(e));
 
-              return Promise.all([petsRes.json(), typesRes.json()]);
-          })
-          .then(([pets, types]) => {
-              this.setState({pets, types});
-          })
-          .catch(error => {
-              console.error({error});
-          });
+        return Promise.all([petsRes.json(), typesRes.json()]);
+      })
+      .then(([pets, types]) => {
+        this.setState({pets, types});
+      })
+      .catch(error => {
+        console.error({error});
+      })  
   }
   render () {
     return (
