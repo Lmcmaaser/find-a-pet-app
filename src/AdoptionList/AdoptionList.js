@@ -23,7 +23,14 @@ class AdoptionList extends React.Component {
           <ul className='list'>
             {pets.map(pet =>
               <li key={pet.adopted}>
-                {pet.adopted}
+                <HasError>
+                  <NavLink
+                    className='petadopted-link'
+                    to={`/pet/${pet.adopted}`}
+                  >
+                    {pet.name}
+                  </NavLink>
+                </HasError>
               </li>
             )}
           </ul>
