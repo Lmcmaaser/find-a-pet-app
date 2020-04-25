@@ -36,7 +36,8 @@ class Add extends React.Component {
       age: event.target.age.value
     }
     console.log(pet)
-    fetch(`${data}`, {
+  }
+    /*fetch(`${data}`, {
       method: 'POST',
       body: JSON.stringify(pet)
     })
@@ -53,7 +54,7 @@ class Add extends React.Component {
       .catch(error => {
         console.error({ error })
       })
-    }
+    }*/
 
     validateName() {
       const name = this.state.name.value.trim();
@@ -69,8 +70,30 @@ class Add extends React.Component {
       }
     }
 
+    validateAge() {
+      const age = this.state.age.value.trim();
+      if (age.length === 0) {
+        return "Age is required";
+      } else if (age.length < 0 || age.length > 2) {
+        return "Age must be between 1 and 2 characters long.";
+      } else if (!age.match(/[0-9]/)) {
+        return "Age must contain at least one number";
+      }
+    }
+
+    validateDateArrived() {
+      const date_arrived = this.state.age.value.trim();
+      if (date_arrived.length === 0) {
+        return "Arrival month and year is required";
+      } else if (date_arrived.length < 7 || date_arrived.length > 7) {
+        return "Arrival information must be formatted as MM-YYYY.";
+      }
+    }
+
   render () {
     const nameError = this.validateName();
+    const ageError = this.validateAge();
+    const date_arrivedError = this.validateDateArrived();
     return (
       <form className="add-form" onSubmit={event =>       this.handleSubmit(event)}>
         <h2>Add an animal to the database (*  indicates a required field)</h2>
@@ -85,7 +108,6 @@ class Add extends React.Component {
               <option key={type.typeid} value={type.typeid}>{type.pet_type}</option>
             )}
           </select>
-          </div>
           <div className="part">
             <label  className="main-label" htmlFor="name">Name *</label>
             <input

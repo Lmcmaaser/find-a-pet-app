@@ -1,12 +1,12 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import ApiContext from '../ApiContext';
+import PetContext from '../PetContext';
 import HasError from '../HasError';
 import { countPetsInType } from '../pets-helpers';
 import './TypeList.css';
 
 class TypeList extends React.Component {
-  static contextType = ApiContext;
+  static contextType = PetContext;
   render () {
     const { types=[], pets=[] } = this.context  //an object containing 2 arrays are assiged the value of this.context
     return (
@@ -33,6 +33,5 @@ class TypeList extends React.Component {
     )
   }
 }
-// NoteListNav__folder-link contains a link to the folders added to the app
-// NoteListNav__num-notes displays the # of notes in each folder
-export default NoteListNav;
+
+export default TypeList;

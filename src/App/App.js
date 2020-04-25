@@ -21,7 +21,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       pets: this.props.data.pets,
-      types: this.props.data.pettypes
+      types: this.props.data.types
     }
   };
 
@@ -29,13 +29,13 @@ export default class App extends Component {
     this.setState({
       pets: this.state.pets.concat(pet)
     })
-  };
+  }
 
   handleAddPet = pet => {
     this.setState({
       pets: this.state.pets.concat(pet)
     })
-  };
+  }
 
   componentDidMount() {
       Promise.all([
@@ -61,7 +61,7 @@ export default class App extends Component {
           .catch(error => {
               console.error({error});
           });
-
+  }
   render () {
     return (
       <div className="App">

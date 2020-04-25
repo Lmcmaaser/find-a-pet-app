@@ -1,13 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Note from '../Note/Note'
-import CircleButton from '../CircleButton/CircleButton'
-import ApiContext from '../ApiContext'
-import { getAdoptedinPets } from '../pets-helpers'
-import './NoteListMain.css'
-import HasError from '../HasError'
-import PropTypes from 'prop-types'
+import PetContext from '../PetContext'
+import './AdoptionList.css'
 
 //renders list of notes
 class AdoptionList extends React.Component {
@@ -19,34 +13,24 @@ class AdoptionList extends React.Component {
     }
   }
 
-  static contextType = ApiContext
+  static contextType = PetContext
   render () {
-    const { petdopted } = this.props.match.params
     const { pets=[] } = this.context
     console.log(pets) //returns all pets
-    const adoptedInPets = getAdoptedinPets(pets, petadopted)
-    console.log(adoptedInPets)
     return (
       <div className='AdoptedList'>
         <h3>All Pets that Have Been Adopted</h3>
-        <HasError>
           <ul className='list'>
-            {adoptedInPets.map((pet) =>
-              <li key={pet.adopted} id={pet.adopted}>
-                <Link to={`/pet/${adopted}`}>
-                  {name, pet_type, sex, age, date_arrived}
-                </Link>
+            {pets.map(pet =>
+              <li key={pet.adopted}>
+                {pet.adopted}
               </li>
             )}
           </ul>
-        </HasError>
       </div>
     )
   }
 }
 
-NoteListMain.propTypes = {
-  match: PropTypes.object
-}
 
-export default NoteListMain;
+export default AdoptionList;
