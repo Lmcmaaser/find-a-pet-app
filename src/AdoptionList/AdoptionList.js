@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import PetContext from '../PetContext'
-import './AdoptionList.css'
+import { NavLink } from 'react-router-dom';
+import PetContext from '../PetContext';
+import HasError from '../HasError';import './AdoptionList.css'
 
 //renders list of notes
 class AdoptionList extends React.Component {

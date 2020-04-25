@@ -10,11 +10,10 @@ import './Search.css';
 class Search extends React.Component {
   static contextType = PetContext;
   render () {
-    const { pets=[], types=[] } = this.context;
     return (
       <div className="search-db">
         <h2>Search the Pet DataBase</h2>
-        <Route exact path='/search' component={Search} />
+        <Route path='/search' component={Search} />
         <Route path='/search/type' component={TypeList} />
         <Route path='/search/adopted' component={AdoptionList} />
       </div>
