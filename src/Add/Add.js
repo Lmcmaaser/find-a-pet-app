@@ -8,24 +8,34 @@ class Add extends React.Component {
   static contextType = PetContext;
   state = {
     error: null,
-
+  }
   constructor(props) {
     super(props)
     this.name = React.createRef();
   }
 
-  updatePetName(name) {
+  updateName(name) {
     this.setState({name: {value: name, touched: true}});
   }
 
+  updateAge(age) {
+    this.setState({age: {value: age, touched: true}});
+  }
+
+  updateDateArrived(date_arrived) {
+    this.setState({date_arrived: {value: date_arrived, touched: true}});
+  }
+
+  update
+
   handleSubmit(event) {
     event.preventDefault();
-    const { name, pet_type, sex, age } = this.state;
+    const { name, pet_type, sex, age } = event.target;
     const pet = {
       name: name.value,
-      pet_type: event.target.pet_type.value,
-      sex: event.target.sex.value,
-      age: event.target.age.value
+      pet_type: pet_type.value,
+      sex: sex.value,
+      age: age.value
     }
     console.log(pet)
   }
@@ -44,7 +54,7 @@ class Add extends React.Component {
     }
   }
 
-  /*validateAge() {
+  validateAge() {
     const age = this.state.age.value.trim();
     if (age.length === 0) {
       return "Age is required";
@@ -62,13 +72,13 @@ class Add extends React.Component {
     } else if (date_arrived.length < 7 || date_arrived.length > 7) {
       return "Arrival information must be formatted as MM-YYYY.";
     }
-  }*/
+  }
 
   render () {
     const { types=[], pets=[] } = this.context;
     const nameError = this.validateName();
-    // const ageError = this.validateAge();
-    // const date_arrivedError = this.validateDateArrived();
+    const ageError = this.validateAge();
+    const date_arrivedError = this.validateDateArrived();
     return (
       <form className="add-form" onSubmit={event =>       this.handleSubmit(event)}>
         <h2>Add an animal to the database (*  indicates a required field)</h2>
@@ -160,9 +170,9 @@ class Add extends React.Component {
               aria-label="submit-button"
               disabled={
               this.validateName() ||
-              // this.validateAge() ||
-              // this.validateDateArrived()
-             }
+              this.validateAge() ||
+              this.validateDateArrived()
+              }
             >
               Submit
             </button>

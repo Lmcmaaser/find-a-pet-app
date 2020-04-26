@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import PetContext from '../PetContext';
 // import HasError from '../HasError';
 import TypeList from '../TypeList/TypeList';
@@ -13,8 +13,20 @@ class Search extends React.Component {
     return (
       <div className="search-db">
         <h2>Search the Pet DataBase</h2>
-        <Route path='/search/type' component={TypeList} />
-        <Route path='/search/adopted' component={AdoptionList} />
+        <div>
+          <ul>
+              <li>
+                  <Link to="/search/type">Type</Link>
+              </li>
+              <li>
+                  <Link to="/search/adopted">HelloUser</Link>
+              </li>
+          </ul>
+        </div>
+        <div>
+          <Route path='/search/type' component={TypeList} />
+          <Route path='/search/adopted' component={AdoptionList} />
+        </div>
       </div>
     )
   }
