@@ -3,6 +3,7 @@ import React from 'react'
 import './Update.css';
 
 class Update extends React.Component {
+  static contextType = PetContext;
   updateName(name) {
     this.setState({name: {value: name, touched: true}});
   }
@@ -20,6 +21,7 @@ class Update extends React.Component {
   }
 
   render() {
+    const { types=[], pets=[] } = this.context
     return (
       <form className="update-form">
         <h2>Update an animal's information</h2>

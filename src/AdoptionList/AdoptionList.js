@@ -5,14 +5,6 @@ import HasError from '../HasError';import './AdoptionList.css'
 
 //renders list of notes
 class AdoptionList extends React.Component {
-  // defaultProps is a property in React component used to set default values for the props argument.
-  // It will be changed if the prop property is passed.
-  static defaultProps = {
-    match: {
-      params: {}
-    }
-  }
-
   static contextType = PetContext
   render () {
     const { pets=[] } = this.context

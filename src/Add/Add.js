@@ -5,30 +5,22 @@ import PetContext from '../PetContext';
 import './Add.css';
 
 class Add extends React.Component {
+  static contextType = PetContext;
   state = {
-    name: {
-      value: ''
-    }
-  }
-  static defaultProps = {
-    match: {
-      params: {}
-    }
-  }
+    error: null,
 
-  static contextType = PetContext
   constructor(props) {
     super(props)
     this.name = React.createRef();
   }
 
   updatePetName(name) {
-    this.setState({petName: {value: name, touched: true}});
+    this.setState({name: {value: name, touched: true}});
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    const { name } = this.state;
+    const { name, pet_type, sex, age } = this.state;
     const pet = {
       name: name.value,
       pet_type: event.target.pet_type.value,
@@ -38,44 +30,45 @@ class Add extends React.Component {
     console.log(pet)
   }
 
-    validateName() {
-      const name = this.state.name.value.trim();
-      if (!this.state.name.touched) {
-        return
-      }
-      if (name.length === 0) {
-        this.name.current.focus();
-        return "Name is required";
-      } else if (!name.match(/[A-z]/)) {
-        this.name.current.focus();
-        return "Name must include characters from the modern English alphabet";
-      }
+  validateName() {
+    const name = this.state.name.value.trim();
+    if (!this.state.name.touched) {
+      return
     }
+    if (name.length === 0) {
+      this.name.current.focus();
+      return "Name is required";
+    } else if (!name.match(/[A-z]/)) {
+      this.name.current.focus();
+      return "Name must include characters from the modern English alphabet";
+    }
+  }
 
-    validateAge() {
-      const age = this.state.age.value.trim();
-      if (age.length === 0) {
-        return "Age is required";
-      } else if (age.length < 0 || age.length > 2) {
-        return "Age must be between 1 and 2 characters long.";
-      } else if (!age.match(/[0-9]/)) {
-        return "Age must contain at least one number";
-      }
+  /*validateAge() {
+    const age = this.state.age.value.trim();
+    if (age.length === 0) {
+      return "Age is required";
+    } else if (age.length < 0 || age.length > 2) {
+      return "Age must be between 1 and 2 characters long.";
+    } else if (!age.match(/[0-9]/)) {
+      return "Age must contain at least one number";
     }
+  }
 
-    validateDateArrived() {
-      const date_arrived = this.state.age.value.trim();
-      if (date_arrived.length === 0) {
-        return "Arrival month and year is required";
-      } else if (date_arrived.length < 7 || date_arrived.length > 7) {
-        return "Arrival information must be formatted as MM-YYYY.";
-      }
+  validateDateArrived() {
+    const date_arrived = this.state.age.value.trim();
+    if (date_arrived.length === 0) {
+      return "Arrival month and year is required";
+    } else if (date_arrived.length < 7 || date_arrived.length > 7) {
+      return "Arrival information must be formatted as MM-YYYY.";
     }
+  }*/
 
   render () {
+    const { types=[], pets=[] } = this.context;
     const nameError = this.validateName();
-    const ageError = this.validateAge();
-    const date_arrivedError = this.validateDateArrived();
+    // const ageError = this.validateAge();
+    // const date_arrivedError = this.validateDateArrived();
     return (
       <form className="add-form" onSubmit={event =>       this.handleSubmit(event)}>
         <h2>Add an animal to the database (*  indicates a required field)</h2>
@@ -167,8 +160,8 @@ class Add extends React.Component {
               aria-label="submit-button"
               disabled={
               this.validateName() ||
-              this.validateAge() ||
-              this.validateDateArrived()
+              // this.validateAge() ||
+              // this.validateDateArrived()
              }
             >
               Submit

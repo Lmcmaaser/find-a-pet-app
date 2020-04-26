@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import PetContext from '../PetContext';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 import Home from '../Home/Home';
@@ -9,13 +10,15 @@ import Update from '../Update/Update';
 import './App.css';
 
 export default class App extends Component {
+  // good, app gets data from it's props
   static defaultProps = {
     data: {
       pets: [],
       types: []
     }
   };
-  
+
+  // good, data is added to App's state in its constructor
   constructor(props) {
     super(props);
     this.state = {
@@ -35,48 +38,31 @@ export default class App extends Component {
       pets: this.state.pets.concat(pet)
     })
   }
-
-  componentDidMount() {
-    Promise.all([
-      fetch(`${'/..dummy-store'}/pets`, {
-        method: 'GET'
-      }),
-      fetch(`${'/..dummy-store'}/types`, {
-        method: 'GET'
-      })
-          //need to submit the name of the new folder/new note
-    ])
-      .then(([petsRes, typesRes]) => {
-        if (!petsRes.ok)
-            return petsRes.json().then(e => Promise.reject(e));
-        if (!typesRes.ok)
-            return typesRes.json().then(e => Promise.reject(e));
-
-        return Promise.all([petsRes.json(), typesRes.json()]);
-      })
-      .then(([pets, types]) => {
-        this.setState({pets, types});
-      })
-      .catch(error => {
-        console.error({error});
-      })
-  }
+  // The render method inside App is using the render prop on each Route so that props can be specified on the component instances.
   render () {
+    const contextValue = {
+      pets: this.state.pets,
+      types: this.state.types,
+      addPet: this.addPet,
+      updatePet: this.updatePet
+    }
     return (
       <div className="App">
         <header className="App-header">
           <h1>FindAPet</h1>
           <h3>The app that makes managing your animal shelter easier!</h3>
         </header>
-        <nav>
-          <Nav />
-        </nav>
-        <main>
-          <Route exact path='/' component={Home} />
-          <Route path='/search' component={Search} />
-          <Route path='/add' componenet={Add} />
-          <Route path='/update' component={Update} />
-        </main>
+        <PetContext.Provider value={contextValue}>
+          <nav>
+            <Nav />
+          </nav>
+          <main>
+            <Route exact path='/' component={Home} />
+            <Route path='/search' component={Search} />
+            <Route path='/add' component={Add} />
+            <Route path='/update' component={Update} />
+          </main>
+        </PetContext.Provider>
         <footer>
           <Footer />
         </footer>
