@@ -13,7 +13,6 @@ class Search extends React.Component {
     return (
       <div className="search-db">
         <h2>Search the Pet DataBase</h2>
-        <Route path='/search' component={Search} />
         <Route path='/search/type' component={TypeList} />
         <Route path='/search/adopted' component={AdoptionList} />
       </div>

@@ -37,24 +37,6 @@ class Add extends React.Component {
     }
     console.log(pet)
   }
-    /*fetch(`${data}`, {
-      method: 'POST',
-      body: JSON.stringify(pet)
-    })
-      .then(res => {
-        if (!res.ok)
-          return res.json().then(event => Promise.reject(event))
-        return res.json()
-      })
-      .then((pet) => {
-        this.context.Add(pet)
-        console.log(pet)
-        this.props.history.goBack()
-      })
-      .catch(error => {
-        console.error({ error })
-      })
-    }*/
 
     validateName() {
       const name = this.state.name.value.trim();

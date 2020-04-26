@@ -15,8 +15,7 @@ export default class App extends Component {
       types: []
     }
   };
-
-
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -60,7 +59,7 @@ export default class App extends Component {
       })
       .catch(error => {
         console.error({error});
-      })  
+      })
   }
   render () {
     return (
