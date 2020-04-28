@@ -88,10 +88,11 @@ class Add extends React.Component {
         <h2>Add an animal to the database (*  indicates a required field)</h2>
         <fieldset>
           <legend>Add Form</legend>
-          <label className="main-label" htmlFor="type">Select a type for your no * </label>
+          <label className="main-label" htmlFor="pet_type">Select a type for your no * </label>
           <select
             name="typeid"
             aria-label="select pet type"
+            onChange={e => this.updatePetType(e.target.value)}
           >
             {this.context.types.map(type =>
               <option key={type.typeid} value={type.typeid}>{type.pet_type}</option>

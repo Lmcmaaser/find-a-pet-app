@@ -1,10 +1,28 @@
 import React from 'react'
 import PetContext from '../PetContext'
-// import ValidationError from '../ValidationError.js'
+import ValidationError from '../ValidationError.js'
 import './Update.css';
 
 class Update extends React.Component {
   static contextType = PetContext;
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: {
+        value: '',
+        touched: false
+      },
+      age: {
+        value: '',
+        touched: false
+      },
+      adopted: {
+        value: '',
+        touched: false
+      }
+    };
+  }
+
   updateName(name) {
     this.setState({name: {value: name, touched: true}});
   }
@@ -13,16 +31,44 @@ class Update extends React.Component {
     this.setState({age: {value: age, touched: true}});
   }
 
-  /* updateAdoptionStatus(adopted) {
-    this.setState({adopted: value: , touched: true}});
-  }*/
+  updateAdoptionStatus(adopted) {
+    this.setState({adopted: {value: adopted, touched: true}});
+  }
 
-  updateDateAdopted(date_adopted) {
-    this.setState({date_adopted: {value: date_adopted, touched: true}});
+  handleSubmit(event) {
+    event.preventDefault();
+    const { name, age, adopted } = this.state;
+    console.log('Name: ', name.value);
+    console.log('Age: ', age.value);
+    console.log('Adopted: ', adopted.value);
+  }
+
+// validation functions work!
+
+  validateName() {
+    const name = this.state.name.value.trim();
+    if (name.length === 0) {
+      return "Name is required";
+    } else if (!name.match(/[A-z]/)) {
+      return "Name must include characters from the modern English alphabet";
+    }
+  }
+
+  validateAge() {
+    const age = this.state.age.value.trim();
+    if (age.length === 0) {
+      return "Age is required";
+    } else if (age.length < 0 || age.length > 2) {
+      return "Age must be between 1 and 2 characters long.";
+    } else if (!age.match(/[0-9]/)) {
+      return "Age must contain at least one number";
+    }
   }
 
   render() {
     // const { types=[], pets=[] } = this.context
+    const nameError = this.validateName();
+    const ageError = this.validateAge();
     return (
       <form className="update-form">
         <h2>Update an animal's information</h2>
@@ -34,8 +80,12 @@ class Update extends React.Component {
               type="text"
               name="name"
               id="name"
-              placeholder="Jane"
+              placeholder="Rocco"
+              onChange={event => this.updateName(event.target.value)}
             />
+            {this.state.name.touched && (
+              <ValidationError message={nameError} />
+            )}
           </div>
           <div className="part">
               <label className="main-label" htmlFor="age">Age *</label>
@@ -44,40 +94,31 @@ class Update extends React.Component {
                 name="age"
                 id="age"
                 placeholder="5"
+                onChange={event => this.updateAge(event.target.value)}
               />
+              {this.state.age.touched && (
+                <ValidationError message={ageError} />
+              )}
             </div>
           <div className="part">
-            <label className="main-label" htmlFor="adopted">Adoption status</label>
+            <label className="main-label" htmlFor="adoption">Adoption status</label>
             <input
               type="radio"
               id="yes"
               name="yes"
               value="yes"
+              onChange={event => this.updateAdoptionStatus(event.target.value)}
             />
             <label htmlFor="yes">Yes</label>
-
-            <input
-              type="radio"
-              id="no"
-              name="no"
-              value="no"
-            />
-            <label htmlFor="no">No</label>
-          </div>
-          <div className="part">
-              <label className="main-label" htmlFor="date_adopted">Date of adoption (input must be formatted as MM-YYYY)</label>
-              <input
-                type="text"
-                name="date_adopted"
-                id="date_adopted"
-                placeholder="01-2020"
-              />
           </div>
           <div>
             <button
               type="submit"
-              className="submit-button">
-                Submit
+              className="submit-button"
+              disabled={
+              this.validateName() ||
+              this.validateAge()}>
+              Submit
             </button>
           </div>
         </fieldset>
