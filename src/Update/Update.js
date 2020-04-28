@@ -22,7 +22,7 @@ class Update extends React.Component {
   }
 
   render() {
-    const { types=[], pets=[] } = this.context
+    // const { types=[], pets=[] } = this.context
     return (
       <form className="update-form">
         <h2>Update an animal's information</h2>

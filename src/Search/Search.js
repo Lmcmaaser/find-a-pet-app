@@ -16,10 +16,10 @@ class Search extends React.Component {
         <div>
           <ul>
               <li>
-                  <Link to="/search/type">Type</Link>
+                  <Link to="/search/type">Pets by Type</Link>
               </li>
               <li>
-                  <Link to="/search/adopted">HelloUser</Link>
+                  <Link to="/search/adopted">Adopted Pets</Link>
               </li>
           </ul>
         </div>

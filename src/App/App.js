@@ -27,7 +27,7 @@ export default class App extends Component {
     }
   };
 
-  handleUpdate = pet => {
+  handleUpdatePet = pet => {
     this.setState({
       pets: this.state.pets.concat(pet)
     })

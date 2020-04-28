@@ -6,31 +6,45 @@ import './Add.css';
 
 class Add extends React.Component {
   static contextType = PetContext;
-  state = {
-    error: null,
-  }
+
   constructor(props) {
     super(props)
-    this.name = React.createRef();
+    this.state = {
+      name: {
+        value: '',
+        touched: false
+      },
+      type: {
+        value: '',
+        touched: false
+      },
+      sex: {
+        value: '',
+        touched: false
+      },
+      age: {
+        value: '',
+        touched: false
+      }
+    };
   }
 
+  updatePetType(pet_type) {
+    this.setState({pet_type: {value: pet_type, touched: true}});
+  }
   updateName(name) {
     this.setState({name: {value: name, touched: true}});
   }
-
+  updateSex(sex) {
+    this.setState({sex: {value: sex, touched: true}});
+  }
   updateAge(age) {
     this.setState({age: {value: age, touched: true}});
   }
 
-  updateDateArrived(date_arrived) {
-    this.setState({date_arrived: {value: date_arrived, touched: true}});
-  }
-
-  update
-
   handleSubmit(event) {
     event.preventDefault();
-    const { name, pet_type, sex, age } = event.target;
+    const { name, pet_type, sex, age } = this.state;
     const pet = {
       name: name.value,
       pet_type: pet_type.value,
@@ -65,22 +79,12 @@ class Add extends React.Component {
     }
   }
 
-  validateDateArrived() {
-    const date_arrived = this.state.age.value.trim();
-    if (date_arrived.length === 0) {
-      return "Arrival month and year is required";
-    } else if (date_arrived.length < 7 || date_arrived.length > 7) {
-      return "Arrival information must be formatted as MM-YYYY.";
-    }
-  }
-
   render () {
-    const { types=[], pets=[] } = this.context;
+    // const { types=[], pets=[] } = this.context;
     const nameError = this.validateName();
     const ageError = this.validateAge();
-    const date_arrivedError = this.validateDateArrived();
     return (
-      <form className="add-form" onSubmit={event =>       this.handleSubmit(event)}>
+      <form className="add-form">
         <h2>Add an animal to the database (*  indicates a required field)</h2>
         <fieldset>
           <legend>Add Form</legend>
@@ -100,12 +104,10 @@ class Add extends React.Component {
               name="name"
               id="name"
               placeholder="Fluffy"
-              ref={this.name}
               aria-label="add-name"
               aria-required="true"
               aria-invalid={ this.state.name.touched && !!nameError }
               aria-describedby="nameError"
-              onChange={event => this.updateName(event.target.value)}
             />
               {this.state.name.touched && (
                 <ValidationError message={nameError} id="nameError"/>
@@ -120,7 +122,6 @@ class Add extends React.Component {
               value="male"
               aria-label="add-male-sex"
               required
-              onChange={e => this.updateSex(e.target.value)}
             />
             <label htmlFor="male">Male</label>
 
@@ -130,7 +131,6 @@ class Add extends React.Component {
               name="sex"
               value="female"
               aria-label="add-female-sex"
-              onChange={e => this.updateSex(e.target.value)}
             />
             <label htmlFor="female">Female</label>
           </div>
@@ -148,21 +148,6 @@ class Add extends React.Component {
               <ValidationError message={ageError} />
             )}
           </div>
-          <div className="part">
-            <label className="main-label" htmlFor="date_arrived">Arrived (input must be formatted as MM-YYYY) *</label>
-            <input
-              type="text"
-              name="date_arrived"
-              id="date_arrived"
-              placeholder="01-2020"
-              aria-label="update-arrival-date"
-              aria-required="true"
-              onChange={e => this.updateDateArrived(e.target.value)}
-            />
-            {this.state.date_arrived.touched && (
-                <ValidationError message={date_arrivedError}/>
-            )}
-          </div>
           <div>
             <button
               type="submit"
@@ -170,8 +155,7 @@ class Add extends React.Component {
               aria-label="submit-button"
               disabled={
               this.validateName() ||
-              this.validateAge() ||
-              this.validateDateArrived()
+              this.validateAge()
               }
             >
               Submit

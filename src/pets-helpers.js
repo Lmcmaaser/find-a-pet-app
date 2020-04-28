@@ -11,11 +11,11 @@ export const getPetsInType = (pets=[], typeid) => (
     : pets.filter(pet => pet.typeid === parseInt(typeid))
 )
 
-/*export const getAdoptedInPets = (pets=[], petadopted) => (
-  (!petadopted)
+export const getAdoptedPets = (pets=[], adopted) => (
+  (!adopted)
     ? pets
-    : pets.filter(pet => pet.petadopted === petadopted)
-)*/
+    : pets.filter(pet => pet.adopted === adopted)
+)
 
 export const countPetsInType = (pets=[], typeid) =>
   pets.filter(pet => pet.typeid === typeid).length

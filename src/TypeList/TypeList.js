@@ -9,6 +9,7 @@ class TypeList extends React.Component {
   static contextType = PetContext;
   render () {
     const { types=[], pets=[] } = this.context  //an object containing 2 arrays are assiged the value of this.context
+    console.log('types', types);
     return (
       <div className='TypeList'>
         <h3>Click a Pet Type to Sort Pets by Type</h3>
