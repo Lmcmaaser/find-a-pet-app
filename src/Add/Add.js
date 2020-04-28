@@ -53,7 +53,7 @@ class Add extends React.Component {
     }
     console.log(pet)
   }
-
+  // validations work
   validateName() {
     const name = this.state.name.value.trim();
     if (!this.state.name.touched) {
@@ -92,7 +92,7 @@ class Add extends React.Component {
           <select
             name="typeid"
             aria-label="select pet type"
-            onChange={e => this.updatePetType(e.target.value)}
+            onChange={event => this.updatePetType(event.target.value)}
           >
             {this.context.types.map(type =>
               <option key={type.typeid} value={type.typeid}>{type.pet_type}</option>
@@ -109,6 +109,7 @@ class Add extends React.Component {
               aria-required="true"
               aria-invalid={ this.state.name.touched && !!nameError }
               aria-describedby="nameError"
+              onChange={event => this.updateName(event.target.value)}
             />
               {this.state.name.touched && (
                 <ValidationError message={nameError} id="nameError"/>
@@ -123,6 +124,7 @@ class Add extends React.Component {
               value="male"
               aria-label="add-male-sex"
               required
+              onChange={event => this.updateSex(event.target.value)}
             />
             <label htmlFor="male">Male</label>
 
@@ -132,6 +134,7 @@ class Add extends React.Component {
               name="sex"
               value="female"
               aria-label="add-female-sex"
+              onChange={event => this.updateSex(event.target.value)}
             />
             <label htmlFor="female">Female</label>
           </div>
@@ -144,6 +147,7 @@ class Add extends React.Component {
               required
               placeholder="5"
               aria-label="add-age"
+              onChange={event => this.updateAge(event.target.value)}
             />
             {this.state.age.touched && (
               <ValidationError message={ageError} />
