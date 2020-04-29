@@ -53,6 +53,7 @@ class Add extends React.Component {
     }
     console.log(pet)
   }
+
   // validations work
   validateName() {
     const name = this.state.name.value.trim();
@@ -80,11 +81,10 @@ class Add extends React.Component {
   }
 
   render () {
-    // const { types=[], pets=[] } = this.context;
     const nameError = this.validateName();
     const ageError = this.validateAge();
     return (
-      <form className="add-form">
+      <form className="add-form" onSubmit={event => this.handleSubmit(event)}>
         <h2>Add an animal to the database (*  indicates a required field)</h2>
         <fieldset>
           <legend>Add Form</legend>

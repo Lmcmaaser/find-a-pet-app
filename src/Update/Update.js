@@ -70,7 +70,7 @@ class Update extends React.Component {
     const nameError = this.validateName();
     const ageError = this.validateAge();
     return (
-      <form className="update-form">
+      <form className="update-form" onSubmit={event => this.handleSubmit(event)}>
         <h2>Update an animal's information</h2>
         <fieldset>
           <legend>Update Form</legend>

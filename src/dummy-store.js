@@ -2,14 +2,18 @@ export default {
   "types": [
     {
       "typeid": "01",
-      "pet_type": "dog"
+      "pet_type": "select type"
     },
     {
       "typeid": "02",
-      "pet_type": "cat"
+      "pet_type": "dog"
     },
     {
       "typeid": "03",
+      "pet_type": "cat"
+    },
+    {
+      "typeid": "04",
       "pet_type": "bird"
     }
   ],
