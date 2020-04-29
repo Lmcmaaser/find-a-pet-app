@@ -43,7 +43,7 @@ export default class App extends Component {
     const contextValue = {
       pets: this.state.pets,
       types: this.state.types,
-      addPet: this.addPet,
+      addPet: this.handleAddPet,
       updatePet: this.updatePet
     }
     return (

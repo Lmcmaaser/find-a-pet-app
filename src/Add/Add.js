@@ -52,6 +52,7 @@ class Add extends React.Component {
       age: age.value
     }
     console.log(pet)
+    this.context.addPet(pet)
   }
 
   // validations work
@@ -90,12 +91,12 @@ class Add extends React.Component {
           <legend>Add Form</legend>
           <label className="main-label" htmlFor="pet_type">Select a type for your no * </label>
           <select
-            name="typeid"
+            name="pet_type"
             aria-label="select pet type"
             onChange={event => this.updatePetType(event.target.value)}
           >
             {this.context.types.map(type =>
-              <option key={type.typeid} value={type.typeid}>{type.pet_type}</option>
+              <option key={type.pet_type} value={type.pet_type}>{type.pet_type}</option>
             )}
           </select>
           <div className="part">
