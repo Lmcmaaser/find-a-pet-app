@@ -1,8 +1,10 @@
-import React from 'react'
+import React from 'react';
 // import PropTypes from 'prop-types';
-import ValidationError from '../ValidationError.js'
+import { v4 as uuidv4 } from 'uuid';
+import ValidationError from '../ValidationError.js';
 import PetContext from '../PetContext';
 import './Add.css';
+
 
 class Add extends React.Component {
   static contextType = PetContext;
@@ -41,11 +43,13 @@ class Add extends React.Component {
   updateAge(age) {
     this.setState({age: {value: age, touched: true}});
   }
-
+  // uuid library works
   handleSubmit(event) {
     event.preventDefault();
     const { name, pet_type, sex, age } = this.state;
+    const uuid = uuidv4();
     const pet = {
+      id: uuid,
       name: name.value,
       pet_type: pet_type.value,
       sex: sex.value,
