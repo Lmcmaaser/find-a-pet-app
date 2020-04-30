@@ -14,11 +14,12 @@ export default class Search extends React.Component {
   }
 
   static contextType = PetContext;
+  /*The contextType property on a class can be assigned a Context object created by React.createContext(). This lets you consume the nearest current value of that Context type using this.context*/
 
   componentDidMount() {
     this.context.setPets(Store.pets)
   }
-  
+
   updateAdopted(filter) {
     let newFilteredPets = findAdopted(this.state.filteredPets, filter);
     this.setState({
@@ -56,6 +57,10 @@ export default class Search extends React.Component {
     event.preventDefault();
     const { filteredPets } = this.state ;
     console.log("search results:", filteredPets);
+    const pet = {
+      Pet: filteredPets.value
+    }
+    this.context.setPets(pet)
   }
 
   render () {
