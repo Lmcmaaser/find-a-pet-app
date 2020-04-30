@@ -167,6 +167,12 @@ export default class Search extends React.Component {
             </div>
           </fieldset>
         </form>
+        <div className="results-section">
+          <h4>Results:</h4>
+          <ul className="results-list">
+            <li>list of retrieved search items</li>
+          </ul>
+        </div>
       </div>
     )
   }
