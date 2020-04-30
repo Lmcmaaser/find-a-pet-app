@@ -1,6 +1,7 @@
 import React from 'react';
 import PetContext from '../PetContext';
 import { findAdopted, findPetType, findSex, findName, findAge } from '../pets-helpers'
+import Store from '../dummy-store';
 import './Search.css';
 //add a show results component?
 
@@ -14,6 +15,9 @@ export default class Search extends React.Component {
 
   static contextType = PetContext;
 
+  componentDidMount() {
+    this.context.setPets(Store.pets)
+  }
   updateAdopted(filter) {
     let newFilteredPets = findAdopted(this.state.filteredPets, filter);
     this.setState({
@@ -170,7 +174,8 @@ export default class Search extends React.Component {
         <div className="results-section">
           <h4>Results:</h4>
           <ul className="results-list">
-            <li>list of retrieved search items</li>
+            <li>list of retrieved search items
+            </li>
           </ul>
         </div>
       </div>

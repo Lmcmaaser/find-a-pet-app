@@ -8,6 +8,10 @@ class Update extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: {
+        value: '',
+        touched: false
+      },
       name: {
         value: '',
         touched: false
@@ -21,6 +25,10 @@ class Update extends React.Component {
         touched: false
       }
     };
+  }
+
+  addId(id) {
+    this.setState({id: {value: id, touched: true}})
   }
 
   updateName(name) {
@@ -75,7 +83,17 @@ class Update extends React.Component {
         <fieldset>
           <legend>Update Form</legend>
           <div className="part">
-            <label  className="main-label" htmlFor="name">Name *</label>
+            <label className="main-label" htmlFor="id"> Id *</label>
+            <input
+              type="text"
+              name="id"
+              id="id"
+              placeholder="34996177-5809-4d03-a4d1-ce0d4309a84d"
+              onChange={event => this.addId(event.target.value)}
+            />
+          </div>
+          <div className="part">
+            <label  className="main-label" htmlFor="name">Name</label>
             <input
               type="text"
               name="name"
@@ -88,7 +106,7 @@ class Update extends React.Component {
             )}
           </div>
           <div className="part">
-              <label className="main-label" htmlFor="age">Age *</label>
+              <label className="main-label" htmlFor="age">Age</label>
               <input
                 type="text"
                 name="age"
