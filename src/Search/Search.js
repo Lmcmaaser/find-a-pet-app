@@ -47,13 +47,13 @@ export default class Search extends React.Component {
     })
   }
 
-  /*handleSubmit(event) {
+  handleSubmit(event) {
     event.preventDefault();
-  }*/
-
-  render () {
     const { filteredPets } = this.state ;
     console.log("search results:", filteredPets);
+  }
+
+  render () {
     return(
       <div>
         <form className="search-form" onSubmit={event => this.handleSubmit(event)}>
@@ -140,6 +140,9 @@ export default class Search extends React.Component {
                 aria-label=" input name"
                 onChange={event => this.updateName(event.target.value)}
               />
+              <p>
+                * Name must include characters from the modern English alphabet.
+              </p>
 
               <label className="main-label" htmlFor="age">Age *</label>
               <input
@@ -150,7 +153,9 @@ export default class Search extends React.Component {
                 aria-label="input age"
                 onChange={event => this.updateAge(event.target.value)}
               />
-
+              <p>
+                * Age must contain at least one number and be between 1 and 2 characters long.
+              </p>
             <div>
               <button
                 type="submit"
