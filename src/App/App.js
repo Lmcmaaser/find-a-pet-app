@@ -41,7 +41,7 @@ export default class App extends Component {
 
   handleSetPets = pet => {
     this.setState({
-      filteredPets: this.state.newFilteredPets.concat(pet)
+      filteredPets: this.state.pets.concat(pet)
     })
   }
   // The render method inside App is using the render prop on each Route so that props can be specified on the component instances.
@@ -51,7 +51,7 @@ export default class App extends Component {
       types: this.state.types,
       addPet: this.handleAddPet,
       updatePet: this.updatePet,
-      setPets: this.
+      setPets: this.handleSetPets
     }
     return (
       <div className="App">
