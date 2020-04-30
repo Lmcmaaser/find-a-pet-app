@@ -29,17 +29,6 @@ legend {
   display: none;
 }
 
-/* .part {
-  display: flex;
-  flex-flow: row wrap;
-  margin: 5px;
-}*/
-
-/* .main-label {
-  font-variant: small-caps;
-  font-weight: bold;
-}*/
-
 .container {
   display: block;
   position: relative;
