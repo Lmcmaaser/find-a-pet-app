@@ -18,6 +18,7 @@ export default class Search extends React.Component {
   componentDidMount() {
     this.context.setPets(Store.pets)
   }
+  
   updateAdopted(filter) {
     let newFilteredPets = findAdopted(this.state.filteredPets, filter);
     this.setState({
