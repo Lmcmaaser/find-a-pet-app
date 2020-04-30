@@ -66,7 +66,7 @@ class Add extends React.Component {
       return
     }
     if (name.length === 0) {
-      this.name.current.focus();
+      // this.name.current.focus();
       return "Name is required";
     } else if (!name.match(/[A-z]/)) {
       this.name.current.focus();
