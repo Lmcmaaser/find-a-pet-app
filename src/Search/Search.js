@@ -53,7 +53,7 @@ export default class Search extends React.Component {
     })
   }
 
-  handleSubmit(event) {
+  /*handleSubmit(event) {
     event.preventDefault();
     const { filteredPets } = this.state ;
     console.log("search results:", filteredPets);
@@ -61,12 +61,14 @@ export default class Search extends React.Component {
       Pet: filteredPets.value
     }
     this.context.setPets(pet)
-  }
+  }*/
 
   render () {
+    const { filteredPets=[] } = this.context;
+    console.log(filteredPets);
     return(
       <div>
-        <form className="search-form" onSubmit={event => this.handleSubmit(event)}>
+        <form className="search-form">
           <h2>Search the Database</h2>
           <fieldset>
             <legend>Search Form</legend>
