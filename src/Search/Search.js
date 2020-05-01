@@ -49,30 +49,30 @@ export default class Search extends React.Component {
 
   updateAdopted(filter) {
     this.setState({
-      adopted: filter,
+      adopted: filter
     })
 
   }
   updatePetType(filter) {
     this.setState({
-      petType: filter,
+      pet_type: filter
     })
   }
   updateSex(filter) {
     this.setState({
-      sex: filter,
+      sex: filter
     })
   }
 
   updateName(filter) {
     this.setState({
-      name: filter,
+      name: filter
     })
   }
 
   updateAge(filter) {
     this.setState({
-      age: filter,
+      age: filter
     })
   }
 
@@ -188,12 +188,14 @@ export default class Search extends React.Component {
           <h4>Results:</h4>
           <div className="results-list">
             <ul>list of retrieved search items
-              {filteredPets.map((filter) =>
-                <li key={filter.id}>
-                  Id: {filter.id}
-                  Name: {filter.name}
-                  Sex: {filter.sex}
-                  Age: {filter.age}
+              {filteredPets.map((pet) =>
+                <li key={pet.id}>
+                  Id: {pet.id}
+                  Name: {pet.name}
+                  Type: {pet.pet_type}
+                  Sex: {pet.sex}
+                  Age: {pet.age}
+                  Adopted: {pet.adopted}
                 </li>
               )}
             </ul>
