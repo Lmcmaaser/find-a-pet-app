@@ -49,30 +49,30 @@ export default class Search extends React.Component {
 
   updateAdopted(filter) {
     this.setState({
-      adopted: filter
+      adoptedFilter: filter
     })
 
   }
   updatePetType(filter) {
     this.setState({
-      pet_type: filter
+      petTypeFilter: filter
     })
   }
   updateSex(filter) {
     this.setState({
-      sex: filter
+      sexFilter: filter
     })
   }
 
   updateName(filter) {
     this.setState({
-      name: filter
+      nameFilter: filter
     })
   }
 
   updateAge(filter) {
     this.setState({
-      age: filter
+      ageFilter: filter
     })
   }
 
