@@ -15,7 +15,7 @@ export default {
   ],
   "pets": [
     {
-      "id": "1",
+      "id": "50b51a24-7234-40b7-9a4d-c23147361d1f",
       "pet_type": "dog",
       "name": "Shadow",
       "sex": "female",
@@ -23,7 +23,7 @@ export default {
       "adopted": "yes",
     },
     {
-      "id": "2",
+      "id": "b58c8d48-797d-4e44-9c8e-857be43b6d29",
       "pet_type": "dog",
       "name": "Rocco",
       "sex": "male",
@@ -31,7 +31,7 @@ export default {
       // "adopted": "no",
     },
     {
-      "id": "3",
+      "id": "e89c68cd-6a9e-4a1d-a77f-a5913468b528",
       "pet_type": "cat",
       "name": "Princess",
       "sex": "female",
@@ -39,7 +39,7 @@ export default {
       "adopted": "yes",
     },
     {
-      "id": "4",
+      "id": "a5c816c6-f00b-49ea-a782-e5c1df02ef73",
       "pet_type": "cat",
       "name": "Nero",
       "sex": "male",
@@ -47,7 +47,7 @@ export default {
       // "adopted": "no",
     },
     {
-      "id": "5",
+      "id": "69c01bf4-042d-4a89-be3f-2eeb31aa2a4c",
       "pet_type": "bird",
       "name": "Sunny",
       "sex": "male",
@@ -55,7 +55,7 @@ export default {
       "adopted": "yes",
     },
     {
-      "id": "6",
+      "id": "264e2db5-cc76-4816-80fc-66ccac3ba491",
       "pet_type": "bird",
       "name": "Chia",
       "sex": "female",
