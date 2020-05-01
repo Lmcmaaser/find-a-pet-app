@@ -48,12 +48,14 @@ class Add extends React.Component {
     event.preventDefault();
     const { name, pet_type, sex, age } = this.state;
     const uuid = uuidv4();
+    const no = "no";
     const pet = {
       id: uuid,
       name: name.value,
       pet_type: pet_type.value,
       sex: sex.value,
-      age: age.value
+      age: age.value,
+      adopted: no
     }
     console.log(pet)
     this.context.addPet(pet)

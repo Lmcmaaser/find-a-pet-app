@@ -56,14 +56,6 @@ legend {
   width: 0;
 }
 
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-}
 
 .container:hover input ~ .checkmark {
   background-color: #ccc;

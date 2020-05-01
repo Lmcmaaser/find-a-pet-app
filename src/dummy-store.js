@@ -28,7 +28,7 @@ export default {
       "name": "Rocco",
       "sex": "male",
       "age": "5",
-      // "adopted": "no",
+      "adopted": "no",
     },
     {
       "id": "e89c68cd-6a9e-4a1d-a77f-a5913468b528",
@@ -44,7 +44,7 @@ export default {
       "name": "Nero",
       "sex": "male",
       "age:": "4",
-      // "adopted": "no",
+      "adopted": "no",
     },
     {
       "id": "69c01bf4-042d-4a89-be3f-2eeb31aa2a4c",
@@ -60,7 +60,7 @@ export default {
       "name": "Chia",
       "sex": "female",
       "age": "4",
-      // "adopted": "no",
+      "adopted": "no",
     }
   ]
 }

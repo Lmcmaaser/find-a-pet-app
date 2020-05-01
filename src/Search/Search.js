@@ -150,12 +150,24 @@ export default class Search extends React.Component {
                   type="checkbox"
                   id="adopted"
                   name="adopted"
-                  value="adopted"
+                  value="yes"
                   aria-label="select adopted"
                   onChange={event => this.updateAdopted(event.target.value)}
                 />
                 <span className="checkmark"></span>
               Adopted</label>
+
+              <label htmlFor="container">
+                <input
+                  type="checkbox"
+                  id="adopted"
+                  name="adopted"
+                  value="no"
+                  aria-label="select adopted"
+                  onChange={event => this.updateAdopted(event.target.value)}
+                />
+                <span className="checkmark"></span>
+              Unadopted</label>
 
               <label  className="main-label" htmlFor="name">Name *</label>
               <input

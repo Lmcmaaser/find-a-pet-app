@@ -133,6 +133,15 @@ class Update extends React.Component {
               onChange={event => this.updateAdoptionStatus(event.target.value)}
             />
             <label htmlFor="yes">Yes</label>
+
+            <input
+              type="radio"
+              id="no"
+              name="no"
+              value="no"
+              onChange={event => this.updateAdoptionStatus(event.target.value)}
+            />
+            <label htmlFor="no">No</label>
           </div>
           <div>
             <button
