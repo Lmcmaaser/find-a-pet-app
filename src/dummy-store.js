@@ -19,7 +19,7 @@ export default {
       "pet_type": "dog",
       "name": "Shadow",
       "sex": "female",
-      "age:": "3",
+      "age": "3",
       "adopted": "yes",
     },
     {
@@ -27,7 +27,7 @@ export default {
       "pet_type": "dog",
       "name": "Rocco",
       "sex": "male",
-      "age:": "5",
+      "age": "5",
       // "adopted": "no",
     },
     {
@@ -35,7 +35,7 @@ export default {
       "pet_type": "cat",
       "name": "Princess",
       "sex": "female",
-      "age:": "2",
+      "age": "2",
       "adopted": "yes",
     },
     {
@@ -51,7 +51,7 @@ export default {
       "pet_type": "bird",
       "name": "Sunny",
       "sex": "male",
-      "age:": "7",
+      "age": "7",
       "adopted": "yes",
     },
     {
@@ -59,7 +59,7 @@ export default {
       "pet_type": "bird",
       "name": "Chia",
       "sex": "female",
-      "age:": "4",
+      "age": "4",
       // "adopted": "no",
     }
   ]

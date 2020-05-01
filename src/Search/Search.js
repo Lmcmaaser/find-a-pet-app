@@ -21,7 +21,6 @@ export default class Search extends React.Component {
   }
 
    getFilteredPets() {
-    // Make a copy of the
     let filteredPets = this.context.pets
 
     if (this.state.nameFilter) {
@@ -43,6 +42,8 @@ export default class Search extends React.Component {
     if (this.state.ageFilter) {
       filteredPets = findAge(filteredPets, this.state.ageFilter)
     }
+
+    return filteredPets;
 
   }
 
@@ -186,8 +187,16 @@ export default class Search extends React.Component {
         <div className="results-section">
           <h4>Results:</h4>
           <div className="results-list">
-            list of retrieved search items
-              <div>Pets:{filteredPets}</div>
+            <ul>list of retrieved search items
+              {filteredPets.map((pet) =>
+                <li key={pet.id}>
+                  Id: {pet.id}
+                  Name: {pet.name}
+                  Sex: {pet.sex}
+                  Age: {pet.age}
+                </li>
+              )}
+            </ul>
           </div>
         </div>
       </div>
