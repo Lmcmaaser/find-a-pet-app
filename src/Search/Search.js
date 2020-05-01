@@ -22,7 +22,7 @@ export default class Search extends React.Component {
 
    getFilteredPets() {
     // Make a copy of the
-    const filteredPets = this.context.pets
+    let filteredPets = this.context.pets
 
     if (this.state.nameFilter) {
       filteredPets = findName(filteredPets , this.state.nameFilter)
@@ -181,15 +181,6 @@ export default class Search extends React.Component {
               <p>
                 * Age must contain at least one number and be between 1 and 2 characters long.
               </p>
-            <div>
-              <button
-                type="submit"
-                className="submit-button"
-                aria-label="submit-button"
-              >
-                Search
-              </button>
-            </div>
           </fieldset>
         </form>
         <div className="results-section">
