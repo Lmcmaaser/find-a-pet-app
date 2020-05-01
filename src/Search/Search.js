@@ -10,7 +10,6 @@ export default class Search extends React.Component {
     super(props)
     this.state = {
         filteredPets: [],
-
       }
   }
 
@@ -23,17 +22,16 @@ export default class Search extends React.Component {
 
   getFilteredPets() {
     let filteredPets = this.context.pets
-    let multipleTypes = this.context.pets
-    let finalFilteredPets = filteredPets.concat(multipleTypes)
+    console.log("First, line 26:", filteredPets)
 
     if (this.state.nameFilter) {
       filteredPets = findName(filteredPets , this.state.nameFilter)
      }
 
     if (this.state.petTypeFilter) {
-      multipleTypes = findPetType(multipleTypes, this.state.petTypeFilter)
-    }
-    console.log(multipleTypes)
+      filteredPets = findPetType(filteredPets, this.state.petTypeFilter)
+    } //petTypeFilter currently shows one type, needs to show multiple types
+
 
     if (this.state.sexFilter) {
       filteredPets = findSex(filteredPets, this.state.sexFilter)
@@ -47,7 +45,7 @@ export default class Search extends React.Component {
       filteredPets = findAge(filteredPets, this.state.ageFilter)
     }
 
-    return finalFilteredPets;
+    return filteredPets;
 
   }
 
@@ -57,7 +55,24 @@ export default class Search extends React.Component {
     })
 
   }
-  updatePetType(filter) {
+  /*updatePetType(filter) {
+    this.setState({
+      petTypeFilter: filter
+    })
+  }*/
+  updateDog(filter) {
+    this.setState({
+      petTypeFilter: filter
+    })
+  }
+
+  updateCat(filter) {
+    this.setState({
+      petTypeFilter: filter
+    })
+  }
+
+  updateBird(filter) {
     this.setState({
       petTypeFilter: filter
     })
@@ -82,8 +97,8 @@ export default class Search extends React.Component {
 
 
   render () {
-    let finalFilteredPets = this.getFilteredPets()
-    console.log(finalFilteredPets);
+    let filteredPets = this.getFilteredPets()
+    console.log("final:", filteredPets);
     return(
       <div>
         <form className="search-form">
@@ -97,7 +112,7 @@ export default class Search extends React.Component {
                   name="pet_type"
                   value="dog"
                   aria-label="select pet type"
-                  onChange={event => this.updatePetType(event.target.value)}
+                  onChange={event => this.updateDog(event.target.value)}
                 />
                 <span className="checkmark"></span>
               Dog</label>
@@ -109,7 +124,7 @@ export default class Search extends React.Component {
                   name="pet_type"
                   value="cat"
                   aria-label="select pet type"
-                  onChange={event => this.updatePetType(event.target.value)}
+                  onChange={event => this.updateCat(event.target.value)}
                 />
                 <span className="checkmark"></span>
               Cat</label>
@@ -121,7 +136,7 @@ export default class Search extends React.Component {
                   name="bird"
                   value="bird"
                   aria-label="select pet type"
-                  onChange={event => this.updatePetType(event.target.value)}
+                  onChange={event => this.updateBird(event.target.value)}
                 />
                 <span className="checkmark"></span>
               Bird</label>
@@ -204,7 +219,7 @@ export default class Search extends React.Component {
           <h4>Results:</h4>
           <div className="results-list">
             <ul>list of retrieved search items
-              {finalFilteredPets.map((pet) =>
+              {filteredPets.map((pet) =>
                 <li key={pet.id}>
                   Id: {pet.id}
                   Name: {pet.name}
