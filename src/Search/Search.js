@@ -9,7 +9,8 @@ export default class Search extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        filteredPets: []
+        filteredPets: [],
+
       }
   }
 
@@ -20,16 +21,19 @@ export default class Search extends React.Component {
     this.context.setPets(Store.pets)
   }
 
-   getFilteredPets() {
+  getFilteredPets() {
     let filteredPets = this.context.pets
+    let multipleTypes = this.context.pets
+    let finalFilteredPets = filteredPets.concat(multipleTypes)
 
     if (this.state.nameFilter) {
       filteredPets = findName(filteredPets , this.state.nameFilter)
      }
 
     if (this.state.petTypeFilter) {
-      filteredPets = findPetType(filteredPets, this.state.petTypeFilter)
+      multipleTypes = findPetType(multipleTypes, this.state.petTypeFilter)
     }
+    console.log(multipleTypes)
 
     if (this.state.sexFilter) {
       filteredPets = findSex(filteredPets, this.state.sexFilter)
@@ -43,7 +47,7 @@ export default class Search extends React.Component {
       filteredPets = findAge(filteredPets, this.state.ageFilter)
     }
 
-    return filteredPets;
+    return finalFilteredPets;
 
   }
 
@@ -78,8 +82,8 @@ export default class Search extends React.Component {
 
 
   render () {
-    let filteredPets = this.getFilteredPets()
-    console.log(filteredPets);
+    let finalFilteredPets = this.getFilteredPets()
+    console.log(finalFilteredPets);
     return(
       <div>
         <form className="search-form">
@@ -200,7 +204,7 @@ export default class Search extends React.Component {
           <h4>Results:</h4>
           <div className="results-list">
             <ul>list of retrieved search items
-              {filteredPets.map((pet) =>
+              {finalFilteredPets.map((pet) =>
                 <li key={pet.id}>
                   Id: {pet.id}
                   Name: {pet.name}
