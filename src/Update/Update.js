@@ -4,6 +4,11 @@ import ValidationError from '../ValidationError.js'
 import './Update.css';
 
 class Update extends React.Component {
+  // need an if statement for my id value:
+  // if id value === pet.
+    // return
+    // if else
+      // return error message
   static contextType = PetContext;
   constructor(props) {
     super(props);

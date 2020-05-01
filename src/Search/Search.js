@@ -20,51 +20,64 @@ export default class Search extends React.Component {
     this.context.setPets(Store.pets)
   }
 
+   getFilteredPets() {
+    // Make a copy of the
+    const filteredPets = this.context.pets
+
+    if (this.state.nameFilter) {
+      filteredPets = findName(filteredPets , this.state.nameFilter)
+     }
+
+    if (this.state.petTypeFilter) {
+      filteredPets = findPetType(filteredPets, this.state.petTypeFilter)
+    }
+
+    if (this.state.sexFilter) {
+      filteredPets = findSex(filteredPets, this.state.sexFilter)
+    }
+
+    if (this.state.adoptedFilter) {
+      filteredPets = findAdopted(filteredPets, this.state.adoptedFilter)
+    }
+
+    if (this.state.ageFilter) {
+      filteredPets = findAge(filteredPets, this.state.ageFilter)
+    }
+
+  }
+
   updateAdopted(filter) {
-    let newFilteredPets = findAdopted(this.state.filteredPets, filter);
     this.setState({
-      filteredPets: newFilteredPets
+      adopted: filter,
     })
+
   }
   updatePetType(filter) {
-    let newFilteredPets = findPetType(this.state.filteredPets, filter);
     this.setState({
-      filteredPets: newFilteredPets
+      petType: filter,
     })
   }
   updateSex(filter) {
-    let newFilteredPets = findSex(this.state.filteredPets, filter);
     this.setState({
-      filteredPets: newFilteredPets
+      sex: filter,
     })
   }
 
   updateName(filter) {
-    let newFilteredPets = findName(this.state.filteredPets, filter);
     this.setState({
-      filteredPets: newFilteredPets
+      name: filter,
     })
   }
 
   updateAge(filter) {
-    let newFilteredPets = findAge(this.state.filteredPets, filter);
     this.setState({
-      filteredPets: newFilteredPets
+      age: filter,
     })
   }
 
-  /*handleSubmit(event) {
-    event.preventDefault();
-    const { filteredPets } = this.state ;
-    console.log("search results:", filteredPets);
-    const pet = {
-      Pet: filteredPets.value
-    }
-    this.context.setPets(pet)
-  }*/
 
   render () {
-    const { filteredPets=[] } = this.context;
+    let filteredPets = this.getFilteredPets()
     console.log(filteredPets);
     return(
       <div>
