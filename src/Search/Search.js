@@ -188,12 +188,12 @@ export default class Search extends React.Component {
           <h4>Results:</h4>
           <div className="results-list">
             <ul>list of retrieved search items
-              {filteredPets.map((pet) =>
-                <li key={pet.id}>
-                  Id: {pet.id}
-                  Name: {pet.name}
-                  Sex: {pet.sex}
-                  Age: {pet.age}
+              {filteredPets.map((filter) =>
+                <li key={filter.id}>
+                  Id: {filter.id}
+                  Name: {filter.name}
+                  Sex: {filter.sex}
+                  Age: {filter.age}
                 </li>
               )}
             </ul>
