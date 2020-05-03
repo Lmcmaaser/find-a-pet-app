@@ -20,59 +20,25 @@ export default class Search extends React.Component {
     this.context.setPets(Store.pets)
   }
 
-  getFilteredPets() {
-    let filteredPets = this.context.pets
-    console.log("First, line 26:", filteredPets)
+  getFilteredPets(pets) => {
 
-    if (this.state.nameFilter) {
-      filteredPets = findName(filteredPets , this.state.nameFilter)
-     }
+    return pets.filter((pet) => {
+        if (this.state.nameFilter && pet.name !== this.state.nameFilter) return false;
+        if (this.state.petTypeFilter && pet.type !== this.state.petTypeFilter) return false;
+        if (this.state.sexFilter && pet.sex !== this.state.sexFilter) return false;
+        if (this.state.adoptedFilter && pet.adopted !== this.state.adoptedFilter) return false;
+        if (this.state.ageFilter && pet.age !== this.state.ageFilter) return false;
+        return true;
+    });
 
-    if (this.state.petTypeFilter) {
-      filteredPets = findPetType(filteredPets, this.state.petTypeFilter)
-    } //petTypeFilter currently shows one type, needs to show multiple types
-
-
-    if (this.state.sexFilter) {
-      filteredPets = findSex(filteredPets, this.state.sexFilter)
-    }
-
-    if (this.state.adoptedFilter) {
-      filteredPets = findAdopted(filteredPets, this.state.adoptedFilter)
-    }
-
-    if (this.state.ageFilter) {
-      filteredPets = findAge(filteredPets, this.state.ageFilter)
-    }
-
-    return filteredPets;
-
-  }
 
   updateAdopted(filter) {
     this.setState({
       adoptedFilter: filter
     })
-
-  }
-  /*updatePetType(filter) {
-    this.setState({
-      petTypeFilter: filter
-    })
-  }*/
-  updateDog(filter) {
-    this.setState({
-      petTypeFilter: filter
-    })
   }
 
-  updateCat(filter) {
-    this.setState({
-      petTypeFilter: filter
-    })
-  }
-
-  updateBird(filter) {
+  updatePetType(filter) {
     this.setState({
       petTypeFilter: filter
     })
@@ -95,13 +61,26 @@ export default class Search extends React.Component {
     })
   }
 
-
+  // resetForm(event) {
+  resetForm = () => {
+    this.setState({
+      name: '',
+      dog: '',
+      cat: '',
+      bird: '',
+      male: '',
+      female: '',
+      age: ''
+    });
+  }
+  // document.getElementById("search-form").reset();
+  // onSubmit={event => this.handleSubmit(event)}
   render () {
     let filteredPets = this.getFilteredPets()
     console.log("final:", filteredPets);
     return(
       <div>
-        <form className="search-form">
+        <form className="search-form" id="search-form">
           <h2>Search the Database</h2>
           <fieldset>
             <legend>Search Form</legend>
@@ -112,7 +91,7 @@ export default class Search extends React.Component {
                   name="pet_type"
                   value="dog"
                   aria-label="select pet type"
-                  onChange={event => this.updateDog(event.target.value)}
+                  onChange={event => this.updatePetType(event.target.value)}
                 />
                 <span className="checkmark"></span>
               Dog</label>
@@ -124,7 +103,7 @@ export default class Search extends React.Component {
                   name="pet_type"
                   value="cat"
                   aria-label="select pet type"
-                  onChange={event => this.updateCat(event.target.value)}
+                  onChange={event => this.updatePetType(event.target.value)}
                 />
                 <span className="checkmark"></span>
               Cat</label>
@@ -136,7 +115,7 @@ export default class Search extends React.Component {
                   name="bird"
                   value="bird"
                   aria-label="select pet type"
-                  onChange={event => this.updateBird(event.target.value)}
+                  onChange={event => this.updatePetType(event.target.value)}
                 />
                 <span className="checkmark"></span>
               Bird</label>
@@ -213,6 +192,17 @@ export default class Search extends React.Component {
               <p>
                 * Age must contain at least one number and be between 1 and 2 characters long.
               </p>
+            <div>
+              <button
+                type="reset"
+                value="Reset"
+                className="reset-button"
+                aria-label="reset button"
+                onClick={this.resetForm}
+              >
+                Reset
+              </button>
+            </div>
           </fieldset>
         </form>
         <div className="results-section">
