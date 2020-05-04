@@ -46,13 +46,13 @@ class Update extends React.Component {
 
 
   // function to find selected pet to be updated
-  selectedPet() {
+  /*selectedPet() {
     let foundPet = this.context.pets
     if (this.state.idFilter) {
         foundPet = findpet(foundPet, this.state.idFilter)
     }
     return foundPet
-  }
+  }*/
 
   handleSubmit(event) {
     event.preventDefault();
@@ -76,7 +76,7 @@ class Update extends React.Component {
   // return error message
 
 // not sure if this works....
-  validateId() {
+  /*validateId() {
     const id = this.state.id.value.trim();
     if (id !== findPet()) {
       return "Id not found";
@@ -84,7 +84,7 @@ class Update extends React.Component {
     /*if (id !== this.state.pet.id) {
       return "Id not found";
     }*/
-  }
+
 // validation functions work!
   validateName() {
     const name = this.state.name.value.trim();
@@ -108,7 +108,7 @@ class Update extends React.Component {
 
   render() {
     // const { types=[], pets=[] } = this.context
-    const idError = this.validateId();
+    // const idError = this.validateId();
     const nameError = this.validateName();
     const ageError = this.validateAge();
     return (
@@ -125,9 +125,7 @@ class Update extends React.Component {
               placeholder="34996177-5809-4d03-a4d1-ce0d4309a84d"
               onChange={event => this.updateId(event.target.value)}
             />
-            {this.state.id.touched && (
-              <ValidationError message={idError} />
-            )}
+
           </div>
           <div className="part">
             <label  className="main-label" htmlFor="name">Name</label>

@@ -44,7 +44,7 @@ export default class Search extends React.Component {
   // checking for equality
   // In the filter callback, check each filter to see if it was applied. If it has a value and that value does not match the pet's value, return false (leave the pet out of the results). If the filter callback checks all the filters and still hasn't returned false, return true (keep the pet in the results).*/
   // getFilteredPets(filteredPets) {
-  getFilteredPets (pets) => {
+  getFilteredPets = (pets) => {
     return pets.filter((pet) => {
         if (this.state.nameFilter && pet.name !== this.state.nameFilter)
           return false;
@@ -90,33 +90,32 @@ export default class Search extends React.Component {
 
   }*/
 
-  updatePetType(pet_type) {
-    this.setState({pet_type: {value: pet_type, touched: true}});
-  }
-  updateName(name) {
-    this.setState({name: {value: name, touched: true}});
-  }
-  updateSex(sex) {
-    this.setState({sex: {value: sex, touched: true}});
-  }
-  updateAge(age) {
-    this.setState({age: {value: age, touched: true}});
-  }
-  updateAdopted(adopted) {
-    this.setState({adopted: {value: adopted, touched: true}})
-  }
-  /*updateAdopted(filter) {
+  updateAdopted(filter) {
     this.setState({
       adoptedFilter: filter
     })
   }
 
-  updatePetType(filter) {
+  updateDog(filter) {
     this.setState({
-      petTypeFilter: filter
+      dogFilter: filter
     })
   }
+
+  updateCat(filter) {
+    this.setState({
+      catFilter: filter
+    })
+  }
+
+  updateBird(filter) {
+    this.setState({
+      birdFilter:filter
+    })
+  }
+
   updateSex(filter) {
+    console.log(filter)
     this.setState({
       sexFilter: filter
     })
@@ -132,7 +131,7 @@ export default class Search extends React.Component {
     this.setState({
       ageFilter: filter
     })
-  }*/
+  }
 
   // resetForm(event) {
   resetForm = () => {
@@ -150,7 +149,8 @@ export default class Search extends React.Component {
   // document.getElementById("search-form").reset();
   // onSubmit={event => this.handleSubmit(event)}
   render () {
-    let filteredPets = this.getFilteredPets()
+    const { pets=[] } = this.context
+    let filteredPets = this.getFilteredPets(pets)
     console.log("final:", filteredPets);
     return(
       <div>
@@ -165,7 +165,7 @@ export default class Search extends React.Component {
                   name="pet_type"
                   value="dog"
                   aria-label="select pet type"
-                  onChange={event => this.updatePetType(event.target.value)}
+                  onChange={event => this.updateDog(event.target.value)}
                 />
                 <span className="checkmark"></span>
               Dog</label>
@@ -177,7 +177,7 @@ export default class Search extends React.Component {
                   name="pet_type"
                   value="cat"
                   aria-label="select pet type"
-                  onChange={event => this.updatePetType(event.target.value)}
+                  onChange={event => this.updateCat(event.target.value)}
                 />
                 <span className="checkmark"></span>
               Cat</label>
@@ -189,14 +189,14 @@ export default class Search extends React.Component {
                   name="bird"
                   value="bird"
                   aria-label="select pet type"
-                  onChange={event => this.updatePetType(event.target.value)}
+                  onChange={event => this.updateBird(event.target.value)}
                 />
                 <span className="checkmark"></span>
               Bird</label>
 
               <label htmlFor="container">
                 <input
-                  type="checkbox"
+                  type="radio"
                   id="male"
                   name="sex"
                   value="male"
@@ -207,7 +207,7 @@ export default class Search extends React.Component {
               Male</label>
               <label htmlFor="container">
                 <input
-                  type="checkbox"
+                  type="radio"
                   id="female"
                   name="sex"
                   value="female"
@@ -219,8 +219,8 @@ export default class Search extends React.Component {
 
               <label htmlFor="container">
                 <input
-                  type="checkbox"
-                  id="adopted"
+                  type="radio"
+                  id="yes"
                   name="adopted"
                   value="yes"
                   aria-label="select adopted"
@@ -231,8 +231,8 @@ export default class Search extends React.Component {
 
               <label htmlFor="container">
                 <input
-                  type="checkbox"
-                  id="adopted"
+                  type="radio"
+                  id="no"
                   name="adopted"
                   value="no"
                   aria-label="select adopted"
