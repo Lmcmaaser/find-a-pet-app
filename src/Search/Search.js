@@ -1,6 +1,6 @@
 import React from 'react';
 import PetContext from '../PetContext';
-import { findAdopted, findPetType, findSex, findName, findAge } from '../pets-helpers'
+// import { findAdopted, findPetType, findSex, findName, findAge } from '../pets-helpers'
 import Store from '../dummy-store';
 import './Search.css';
 //add a show results component?
@@ -9,7 +9,27 @@ export default class Search extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        filteredPets: [],
+        filteredPets: []
+        /*name: {
+          value: '',
+          touched: false
+        },
+        type: {
+          value: '',
+          touched: false
+        },
+        sex: {
+          value: '',
+          touched: false
+        },
+        age: {
+          value: '',
+          touched: false
+        },
+        adopted: {
+          value: '',
+          touched: false
+        }*/
       }
   }
 
@@ -19,20 +39,73 @@ export default class Search extends React.Component {
   componentDidMount() {
     this.context.setPets(Store.pets)
   }
-
-  getFilteredPets(pets) => {
-
+  /*a function that takes in an array of pets and returns a filtered array based on the filter values on the state
+  // store the pet type, name, etc in state, and then have one filter in your render method
+  // checking for equality
+  // In the filter callback, check each filter to see if it was applied. If it has a value and that value does not match the pet's value, return false (leave the pet out of the results). If the filter callback checks all the filters and still hasn't returned false, return true (keep the pet in the results).*/
+  // getFilteredPets(filteredPets) {
+  getFilteredPets (pets) => {
     return pets.filter((pet) => {
-        if (this.state.nameFilter && pet.name !== this.state.nameFilter) return false;
-        if (this.state.petTypeFilter && pet.type !== this.state.petTypeFilter) return false;
-        if (this.state.sexFilter && pet.sex !== this.state.sexFilter) return false;
-        if (this.state.adoptedFilter && pet.adopted !== this.state.adoptedFilter) return false;
-        if (this.state.ageFilter && pet.age !== this.state.ageFilter) return false;
+        if (this.state.nameFilter && pet.name !== this.state.nameFilter)
+          return false;
+        if (this.state.petTypeFilter && pet.pet_type !== this.state.petTypeFilter)
+          return false;
+        if (this.state.sexFilter && pet.sex !== this.state.sexFilter)
+          return false;
+        if (this.state.adoptedFilter && pet.adopted !== this.state.adoptedFilter)
+          return false;
+        if (this.state.ageFilter && pet.age !== this.state.ageFilter)
+          return false;
         return true;
     });
+  }
+
+  /*getFilteredPets() {
+
+    let filteredPets = this.context.pets
+    console.log("First, line 26:", filteredPets)
+
+    if (this.state.nameFilter) {
+      filteredPets = findName(filteredPets , this.state.nameFilter)
+     }
+
+    if (this.state.petTypeFilter) {
+      filteredPets = findPetType(filteredPets, this.state.petTypeFilter)
+    } //petTypeFilter currently shows one type, needs to show multiple types
 
 
-  updateAdopted(filter) {
+    if (this.state.sexFilter) {
+      filteredPets = findSex(filteredPets, this.state.sexFilter)
+    }
+
+    if (this.state.adoptedFilter) {
+      filteredPets = findAdopted(filteredPets, this.state.adoptedFilter)
+    }
+
+    if (this.state.ageFilter) {
+      filteredPets = findAge(filteredPets, this.state.ageFilter)
+    }
+
+    return filteredPets;
+
+  }*/
+
+  updatePetType(pet_type) {
+    this.setState({pet_type: {value: pet_type, touched: true}});
+  }
+  updateName(name) {
+    this.setState({name: {value: name, touched: true}});
+  }
+  updateSex(sex) {
+    this.setState({sex: {value: sex, touched: true}});
+  }
+  updateAge(age) {
+    this.setState({age: {value: age, touched: true}});
+  }
+  updateAdopted(adopted) {
+    this.setState({adopted: {value: adopted, touched: true}})
+  }
+  /*updateAdopted(filter) {
     this.setState({
       adoptedFilter: filter
     })
@@ -59,7 +132,7 @@ export default class Search extends React.Component {
     this.setState({
       ageFilter: filter
     })
-  }
+  }*/
 
   // resetForm(event) {
   resetForm = () => {
@@ -73,6 +146,7 @@ export default class Search extends React.Component {
       age: ''
     });
   }
+
   // document.getElementById("search-form").reset();
   // onSubmit={event => this.handleSubmit(event)}
   render () {
@@ -80,7 +154,7 @@ export default class Search extends React.Component {
     console.log("final:", filteredPets);
     return(
       <div>
-        <form className="search-form" id="search-form">
+        <form className="search-form" id="search-form" >
           <h2>Search the Database</h2>
           <fieldset>
             <legend>Search Form</legend>

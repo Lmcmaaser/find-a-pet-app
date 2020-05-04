@@ -4,12 +4,6 @@ import ValidationError from '../ValidationError.js'
 import './Update.css';
 
 class Update extends React.Component {
-  // need an if statement for my id value:
-  // if id value === pet.
-    // return
-    // if else
-      // return error message
-  static contextType = PetContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -32,7 +26,9 @@ class Update extends React.Component {
     };
   }
 
-  addId(id) {
+  static contextType = PetContext;
+
+  updateId(id) {
     this.setState({id: {value: id, touched: true}})
   }
 
@@ -48,25 +44,57 @@ class Update extends React.Component {
     this.setState({adopted: {value: adopted, touched: true}});
   }
 
+
+  // function to find selected pet to be updated
+  selectedPet() {
+    let foundPet = this.context.pets
+    if (this.state.idFilter) {
+        foundPet = findpet(foundPet, this.state.idFilter)
+    }
+    return foundPet
+  }
+
   handleSubmit(event) {
     event.preventDefault();
-    const { name, age, adopted } = this.state;
+    id = this.selectedPet();
+    const { id, name, age, adopted } = this.state;
     console.log('Name: ', name.value);
     console.log('Age: ', age.value);
     console.log('Adopted: ', adopted.value);
+    const pet = {
+      id: id.value,
+      name: name.value,
+      age: age.value,
+      adopted: adopted.value
+    }
+    this.context.updatePet(pet);
+    console.log(pet)
   }
 
-// validation functions work!
+// need an if statement for my id value:
+// if id value !=== pet.id.
+  // return error message
 
+// not sure if this works....
+  validateId() {
+    const id = this.state.id.value.trim();
+    if (id !== findPet()) {
+      return "Id not found";
+     }
+    /*if (id !== this.state.pet.id) {
+      return "Id not found";
+    }*/
+  }
+// validation functions work!
   validateName() {
     const name = this.state.name.value.trim();
     if (name.length === 0) {
       return "Name is required";
     } else if (!name.match(/[A-z]/)) {
+      this.name.current.focus();
       return "Name must include characters from the modern English alphabet";
     }
   }
-
   validateAge() {
     const age = this.state.age.value.trim();
     if (age.length === 0) {
@@ -80,6 +108,7 @@ class Update extends React.Component {
 
   render() {
     // const { types=[], pets=[] } = this.context
+    const idError = this.validateId();
     const nameError = this.validateName();
     const ageError = this.validateAge();
     return (
@@ -94,8 +123,11 @@ class Update extends React.Component {
               name="id"
               id="id"
               placeholder="34996177-5809-4d03-a4d1-ce0d4309a84d"
-              onChange={event => this.addId(event.target.value)}
+              onChange={event => this.updateId(event.target.value)}
             />
+            {this.state.id.touched && (
+              <ValidationError message={idError} />
+            )}
           </div>
           <div className="part">
             <label  className="main-label" htmlFor="name">Name</label>

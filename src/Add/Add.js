@@ -64,9 +64,6 @@ class Add extends React.Component {
   // validations work
   validateName() {
     const name = this.state.name.value.trim();
-    if (!this.state.name.touched) {
-      return
-    }
     if (name.length === 0) {
       // this.name.current.focus();
       return "Name is required";
