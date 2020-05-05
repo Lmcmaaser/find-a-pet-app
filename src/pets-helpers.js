@@ -21,19 +21,6 @@ export const findAge = (pets=[], petage) =>
   pets.filter(pet => pet.age === parseInt(petage))
 
 
-/*export const getPetsInType = (pets=[], pet_type) => (
-  // (!pet_type)
-    // ? pets
-    pets.filter(pet => pet.pet_type === pet_type)
-)
-
-
-export const getAdoptedPets = (pets=[], adopted) => (
-  (!adopted)
-    ? pets
-    : pets.filter(pet => pet.adopted === adopted)
-)
-
-export const countPetsInType = (pets=[], typeid) =>
+/*export const countPetsInType = (pets=[], typeid) =>
   pets.filter(pet => pet.typeid === typeid).length
 */

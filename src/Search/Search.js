@@ -9,8 +9,8 @@ export default class Search extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        filteredPets: []
-        /*name: {
+        // filteredPets: []
+        name: {
           value: '',
           touched: false
         },
@@ -29,75 +29,24 @@ export default class Search extends React.Component {
         adopted: {
           value: '',
           touched: false
-        }*/
+        }
       }
   }
 
   static contextType = PetContext;
   /*The contextType property on a class can be assigned a Context object created by React.createContext(). This lets you consume the nearest current value of that Context type using this.context*/
 
+  // occurs after render
   componentDidMount() {
     this.context.setPets(Store.pets)
   }
-  /*a function that takes in an array of pets and returns a filtered array based on the filter values on the state
-  // store the pet type, name, etc in state, and then have one filter in your render method
-  // checking for equality
-  // In the filter callback, check each filter to see if it was applied. If it has a value and that value does not match the pet's value, return false (leave the pet out of the results). If the filter callback checks all the filters and still hasn't returned false, return true (keep the pet in the results).*/
-  // getFilteredPets(filteredPets) {
-  getFilteredPets = (pets) => {
-    return pets.filter((pet) => {
-        if (this.state.nameFilter && pet.name !== this.state.nameFilter)
-          return false;
-        if (this.state.dogFilter && pet.pet_type !== this.state.dogFilter)
-          return false;
-        if (this.state.catFilter && pet.pet_type !== this.state.catFilter)
-          return false;
-        if (this.state.birdFilter && pet.pet_type !== this.state.birdFilter)
-          return false;
-        if (this.state.sexFilter && pet.sex !== this.state.sexFilter)
-          return false;
-        if (this.state.adoptedFilter && pet.adopted !== this.state.adoptedFilter)
-          return false;
-        if (this.state.ageFilter && pet.age !== this.state.ageFilter)
-          return false;
-        return true;
-    });
-  }
 
-  /*getFilteredPets() {
-
-    let filteredPets = this.context.pets
-    console.log("First, line 26:", filteredPets)
-
-    if (this.state.nameFilter) {
-      filteredPets = findName(filteredPets , this.state.nameFilter)
-     }
-
-    if (this.state.petTypeFilter) {
-      filteredPets = findPetType(filteredPets, this.state.petTypeFilter)
-    } //petTypeFilter currently shows one type, needs to show multiple types
-
-
-    if (this.state.sexFilter) {
-      filteredPets = findSex(filteredPets, this.state.sexFilter)
-    }
-
-    if (this.state.adoptedFilter) {
-      filteredPets = findAdopted(filteredPets, this.state.adoptedFilter)
-    }
-
-    if (this.state.ageFilter) {
-      filteredPets = findAge(filteredPets, this.state.ageFilter)
-    }
-
-    return filteredPets;
-
-  }*/
-
-  updateAdopted(filter) {
+  // "filter" is the value of the selected input
+  updateAdopted(event) {
     this.setState({
       adoptedFilter: filter
     })
+    console.log("adopted", filter)
   }
 
   updateDog(filter) {
@@ -119,7 +68,6 @@ export default class Search extends React.Component {
   }
 
   updateSex(filter) {
-    console.log(filter)
     this.setState({
       sexFilter: filter
     })
@@ -136,6 +84,41 @@ export default class Search extends React.Component {
       ageFilter: filter
     })
   }
+
+  handleCheck() {
+	  this.setState({
+      checked: !this.state.checked
+    });
+  }
+  /*a function that takes in an array of pets and returns a filtered array based on the filter values on the state
+  // checking for equality
+  // In the filter callback, check each filter to see if it was applied. If it has a value and that value does not match the pet's value, return false (leave the pet out of the results). If the filter callback checks all the filters and still hasn't returned false, return true (keep the pet in the results).*/
+  getFilteredPets = (pets) => {
+    return pets.filter((pet) => {
+        if (this.state.nameFilter && pet.name !== this.state.nameFilter)
+          return false;
+        if (this.state.dogFilter && pet.pet_type !== this.state.dogFilter)
+          return false;
+        if (this.state.catFilter && pet.pet_type !== this.state.catFilter)
+          return false;
+        if (this.state.birdFilter && pet.pet_type !== this.state.birdFilter)
+          return false;
+        if (this.state.sexFilter && pet.sex !== this.state.sexFilter)
+          return false;
+        if (this.state.adoptedFilter && pet.adopted !== this.state.adoptedFilter)
+          return false;
+        if (this.state.ageFilter && pet.age !== this.state.ageFilter)
+          return false;
+        return true;
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const filteredPets = this.getFilteredPets()
+    console.log("handleSubmit():", filteredPets)
+  }
+
 
   // resetForm(event) {
   resetForm = () => {
@@ -155,10 +138,10 @@ export default class Search extends React.Component {
   render () {
     const { pets=[] } = this.context
     let filteredPets = this.getFilteredPets(pets)
-    console.log("final:", filteredPets);
+    console.log("render-section:", filteredPets); //displays twice in console??
     return(
       <div>
-        <form className="search-form" id="search-form" >
+        <form className="search-form" id="search-form" onSubmit={event => this.handleSubmit(event)}>
           <h2>Search the Database</h2>
           <fieldset>
             <legend>Search Form</legend>
@@ -193,7 +176,7 @@ export default class Search extends React.Component {
                   name="bird"
                   value="bird"
                   aria-label="select pet type"
-                  onChange={event => this.updateBird(event.target.value)}
+                  onClick={event => this.updateBird(event.target.value)}
                 />
                 <span className="checkmark"></span>
               Bird</label>
@@ -272,13 +255,20 @@ export default class Search extends React.Component {
               </p>
             <div>
               <button
+                type="submit"
+                className="reset-button"
+                aria-label="reset button"
+              >
+                Submit
+              </button>
+              <button
                 type="reset"
                 value="Reset"
                 className="reset-button"
                 aria-label="reset button"
                 onClick={this.resetForm}
               >
-                Reset
+                Reset Search
               </button>
             </div>
           </fieldset>
@@ -299,6 +289,7 @@ export default class Search extends React.Component {
               )}
             </ul>
           </div>
+
         </div>
       </div>
     )
