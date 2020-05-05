@@ -257,13 +257,6 @@ export default class Search extends React.Component {
               </p>
             <div>
               <button
-                type="submit"
-                className="reset-button"
-                aria-label="reset button"
-              >
-                Submit
-              </button>
-              <button
                 type="reset"
                 value="Reset"
                 className="reset-button"
@@ -276,9 +269,9 @@ export default class Search extends React.Component {
           </fieldset>
         </form>
         <div className="results-section">
-          <h4>Results:</h4>
+          <h4>Search Results:</h4>
           <div className="results-list">
-            <ul>list of retrieved search items
+            <ul>List of pets:
               {filteredPets.map((pet) =>
                 <li key={pet.id}>
                   Id: {pet.id}
