@@ -48,7 +48,11 @@ export default class Search extends React.Component {
     return pets.filter((pet) => {
         if (this.state.nameFilter && pet.name !== this.state.nameFilter)
           return false;
-        if (this.state.petTypeFilter && pet.pet_type !== this.state.petTypeFilter)
+        if (this.state.dogFilter && pet.pet_type !== this.state.dogFilter)
+          return false;
+        if (this.state.catFilter && pet.pet_type !== this.state.catFilter)
+          return false;
+        if (this.state.birdFilter && pet.pet_type !== this.state.birdFilter)
           return false;
         if (this.state.sexFilter && pet.sex !== this.state.sexFilter)
           return false;
