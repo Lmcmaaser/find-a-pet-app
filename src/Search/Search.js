@@ -114,13 +114,14 @@ export default class Search extends React.Component {
     });
   }
 
+  //does nothing currently
   handleSubmit(event) {
     event.preventDefault();
     const filteredPets = this.getFilteredPets()
     console.log("handleSubmit():", filteredPets)
   }
 
-
+  // does not reset the state, just unselects everything
   // resetForm(event) {
   resetForm = () => {
     this.setState({

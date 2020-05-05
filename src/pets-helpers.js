@@ -20,6 +20,12 @@ export const findName = (pets=[], petname) =>
 export const findAge = (pets=[], petage) =>
   pets.filter(pet => pet.age === parseInt(petage))
 
+// maybe use getPetsForSearch?
+/*export const getPetsForSearch = (pets=[], pet) => (
+  (!folderid)
+    ? notes
+    : notes.filter(note => note.folderid === parseInt(folderid))
+)*/
 
 /*export const countPetsInType = (pets=[], typeid) =>
   pets.filter(pet => pet.typeid === typeid).length
