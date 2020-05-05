@@ -42,7 +42,7 @@ export default class Search extends React.Component {
   }
 
   // "filter" is the value of the selected input
-  updateAdopted(event) {
+  updateAdopted(filter) {
     this.setState({
       adoptedFilter: filter
     })
@@ -85,11 +85,12 @@ export default class Search extends React.Component {
     })
   }
 
-  handleCheck() {
+  // event listener for when a pet_type checkbox is unchecked and the filter is removed
+  /*handleCheck() {
 	  this.setState({
       checked: !this.state.checked
     });
-  }
+  }*/
   /*a function that takes in an array of pets and returns a filtered array based on the filter values on the state
   // checking for equality
   // In the filter callback, check each filter to see if it was applied. If it has a value and that value does not match the pet's value, return false (leave the pet out of the results). If the filter callback checks all the filters and still hasn't returned false, return true (keep the pet in the results).*/
