@@ -31,6 +31,14 @@ export default {
       "adopted": "no",
     },
     {
+      "id": "352553a4-8f23-11ea-bc55-0242ac130003",
+      "pet_type": "dog",
+      "name": "King",
+      "sex": "male",
+      "age": "8",
+      "adopted": "no",
+    },
+    {
       "id": "e89c68cd-6a9e-4a1d-a77f-a5913468b528",
       "pet_type": "cat",
       "name": "Princess",
@@ -47,11 +55,27 @@ export default {
       "adopted": "no",
     },
     {
+      "id": "c45b9b46-8f23-11ea-bc55-0242ac130003",
+      "pet_type": "cat",
+      "name": "Fluffy",
+      "sex": "female",
+      "age:": "1",
+      "adopted": "yes",
+    },
+    {
       "id": "69c01bf4-042d-4a89-be3f-2eeb31aa2a4c",
       "pet_type": "bird",
       "name": "Sunny",
       "sex": "male",
       "age": "7",
+      "adopted": "yes",
+    },
+    {
+      "id": "58919af8-8f25-11ea-bc55-0242ac130003",
+      "pet_type": "bird",
+      "name": "Cheerio",
+      "sex": "male",
+      "age": "2",
       "adopted": "yes",
     },
     {

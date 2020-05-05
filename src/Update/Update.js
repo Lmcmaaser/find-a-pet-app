@@ -56,7 +56,7 @@ class Update extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    id = this.selectedPet();
+    // id = this.selectedPet();
     const { id, name, age, adopted } = this.state;
     console.log('Name: ', name.value);
     console.log('Age: ', age.value);

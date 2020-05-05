@@ -96,30 +96,30 @@ export default class Search extends React.Component {
   // In the filter callback, check each filter to see if it was applied. If it has a value and that value does not match the pet's value, return false (leave the pet out of the results). If the filter callback checks all the filters and still hasn't returned false, return true (keep the pet in the results).*/
   getFilteredPets = (pets) => {
     return pets.filter((pet) => {
-        if (this.state.nameFilter && pet.name !== this.state.nameFilter)
-          return false;
-        if (this.state.dogFilter && pet.pet_type !== this.state.dogFilter)
-          return false;
-        if (this.state.catFilter && pet.pet_type !== this.state.catFilter)
-          return false;
-        if (this.state.birdFilter && pet.pet_type !== this.state.birdFilter)
-          return false;
-        if (this.state.sexFilter && pet.sex !== this.state.sexFilter)
-          return false;
-        if (this.state.adoptedFilter && pet.adopted !== this.state.adoptedFilter)
-          return false;
-        if (this.state.ageFilter && pet.age !== this.state.ageFilter)
-          return false;
-        return true;
+        if (this.state.nameFilter && pet.name === this.state.nameFilter)
+          return true; //works
+        if (this.state.dogFilter && pet.pet_type === this.state.dogFilter)
+          return true; //works
+        if (this.state.catFilter && pet.pet_type === this.state.catFilter)
+          return true; //works
+        if (this.state.birdFilter && pet.pet_type === this.state.birdFilter)
+          return true; //works
+        if (this.state.sexFilter && pet.sex === this.state.sexFilter)
+          return true;
+        if (this.state.adoptedFilter && pet.adopted === this.state.adoptedFilter)
+          return true;
+        if (this.state.ageFilter && pet.age === this.state.ageFilter)
+          return true; //works
+        return false;
     });
   }
 
   //does nothing currently
-  handleSubmit(event) {
+  /*handleSubmit(event) {
     event.preventDefault();
     const filteredPets = this.getFilteredPets()
     console.log("handleSubmit():", filteredPets)
-  }
+  }*/
 
   // does not reset the state, just unselects everything
   // resetForm(event) {
@@ -143,7 +143,7 @@ export default class Search extends React.Component {
     console.log("render-section:", filteredPets); //displays twice in console??
     return(
       <div>
-        <form className="search-form" id="search-form" onSubmit={event => this.handleSubmit(event)}>
+        <form className="search-form" id="search-form" >
           <h2>Search the Database</h2>
           <fieldset>
             <legend>Search Form</legend>
