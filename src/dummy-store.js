@@ -51,7 +51,7 @@ export default {
       "pet_type": "cat",
       "name": "Nero",
       "sex": "male",
-      "age:": "4",
+      "age": "4",
       "adopted": "no",
     },
     {
@@ -59,7 +59,7 @@ export default {
       "pet_type": "cat",
       "name": "Shadow",
       "sex": "female",
-      "age:": "1",
+      "age": "1",
       "adopted": "yes",
     },
     {

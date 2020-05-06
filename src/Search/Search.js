@@ -14,7 +14,7 @@ export default class Search extends React.Component {
           value: '',
           touched: false
         },
-        type: {
+        pet_type: {
           value: '',
           touched: false
         },
@@ -75,7 +75,7 @@ export default class Search extends React.Component {
     } else {
       selectedValues = selectedValues.filter(item => item !== event.target.value);
     }
-    // console.log(selectedValues);
+    console.log(selectedValues);
     this.setState({
       pet_typeFilter: selectedValues
     }, ()=>{console.log(this.state.pet_typeFilter)})
@@ -144,8 +144,9 @@ export default class Search extends React.Component {
 
   render () {
     const { pets=[] } = this.context
+    console.log("pets:", pets)
     let filteredPets = this.getFilteredPets(pets)
-    console.log("render-section:", filteredPets); //displays twice in console??
+    console.log("filteredPets:", filteredPets); //displays twice in console??
     return(
       <div>
         <form className="search-form" id="search-form" >
@@ -289,7 +290,6 @@ export default class Search extends React.Component {
               )}
             </ul>
           </div>
-
         </div>
       </div>
     )
