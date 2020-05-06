@@ -44,8 +44,9 @@ export default class Search extends React.Component {
   // "filter" is the value of the selected input
   updateAdopted(filter) {
     this.setState({
-      adoptedFilter: filter
+      adoptedFilter: filter //= ["yes", "no"]
     })
+    console.log(typeof adoptedFilter)
   }
 
   /*updateDog(filter) {
@@ -74,7 +75,7 @@ export default class Search extends React.Component {
 
   updateSex(filter) {
     this.setState({
-      sexFilter: filter
+      sexFilter: filter //= ["male", "female"]
     })
   }
 
@@ -101,17 +102,25 @@ export default class Search extends React.Component {
   //logical operator (&&) returns the boolean value TRUE if both operands are TRUE and returns FALSE otherwise//
   getFilteredPets = (pets) => {
     return pets.filter((pet) => {
-        if (this.state.pet_typeFilter &&  this.state.adoptedFilter.indexOf(pet.pet_type) > -1)
+        if (this.state.pet_typeFilter && this.state.pet_typeFilter.indexOf(pet.pet_type) > -1)
           return true;
-        if (this.state.pet_typeFilter && this.state.sexFilter.indexOf(pet.pet_type) > -1)
+        if (this.state.sexFilter && this.state.sexFilter.indexOf(pet.sex) > -1)
           return true;
-        /*if (this.state.pet_typeFilter && this.state.nameFilter === this.state.nameFilter)
+        if (this.state.adoptedFilter && this.state.adoptedFilter.indexOf(pet.adopted) > -1)
           return true;
-        if (this.state.pet_typeFilter && this.state.ageFilter === (pet.pet_type) > -1)
-          return true;*/
+        if (!this.state.nameFilter && pet.name === this.state.nameFilter)
+          return true;
+        if (!this.state.ageFilter && pet.age === this.state.ageFilter)
+          return true;
         return false;
     });
   }
+
+
+  /*if (this.state.pet_typeFilter && this.state.nameFilter === this.state.nameFilter)
+    return true;
+  if (this.state.pet_typeFilter && this.state.ageFilter === (pet.pet_type) > -1)
+    return true;*/
 
 
 
@@ -141,7 +150,7 @@ export default class Search extends React.Component {
               <label htmlFor="container">
                 <input
                   type="checkbox"
-                  id="dog"
+                  id="pet_type"
                   name="pet_type"
                   value="dog"
                   aria-label="select pet type"
@@ -153,7 +162,7 @@ export default class Search extends React.Component {
               <label htmlFor="container">
                 <input
                   type="checkbox"
-                  id="cat"
+                  id="pet_type"
                   name="pet_type"
                   value="cat"
                   aria-label="select pet type"
