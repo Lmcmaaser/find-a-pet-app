@@ -64,12 +64,12 @@ export default class Search extends React.Component {
       birdFilter:filter
     })
   }*/
-  
+
   // this.state.pet_typeFilter will contain an array of the selected animals to be filtered
   updatePetType(event) {
     let selectedValues = [...this.state.pet_typeFilter];
     if (event.target.checked) {
-      if (selectedValues.indexOf(event.target.value) == -1) {
+      if (selectedValues.indexOf(event.target.value) === -1) {
         selectedValues.push(event.target.value);
       }
     } else {
@@ -85,26 +85,23 @@ export default class Search extends React.Component {
     this.setState({
       sexFilter: filter //= ["male", "female"]
     })
+    console.log(filter);
   }
 
   updateName(filter) {
     this.setState({
       nameFilter: filter
     })
+    console.log(filter);
   }
 
   updateAge(filter) {
     this.setState({
       ageFilter: filter
     })
+    console.log(filter);
   }
 
-  // event listener for when a pet_type checkbox is unchecked and the filter is removed
-  /*handleCheck() {
-	  this.setState({
-      checked: !this.state.checked
-    });
-  }*/
   /*a function that takes in an array of pets and returns a filtered array based on the filter values on the state*/
   // checking for equality
   //logical operator (&&) returns the boolean value TRUE if both operands are TRUE and returns FALSE otherwise//
