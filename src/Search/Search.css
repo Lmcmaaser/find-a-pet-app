@@ -71,7 +71,7 @@ legend {
   display: none;
 }
 
-.container input:checked ~ .checkmark:after {
+/*.container input:checked ~ .checkmark:after {
   display: block;
 }
 
@@ -85,7 +85,7 @@ legend {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
-}
+}*/
 
 input[type=text] {
   margin: 5px;
@@ -94,7 +94,7 @@ input[type=text] {
   height: 35px;
 }
 
-.submit-button {
+.reset-button {
   border-radius: 30px;
   border: 2px solid black;
   display: block;

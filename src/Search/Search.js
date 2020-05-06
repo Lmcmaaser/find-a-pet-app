@@ -46,10 +46,9 @@ export default class Search extends React.Component {
     this.setState({
       adoptedFilter: filter
     })
-    console.log("adopted", filter)
   }
 
-  updateDog(filter) {
+  /*updateDog(filter) {
     this.setState({
       dogFilter: filter
     })
@@ -64,6 +63,12 @@ export default class Search extends React.Component {
   updateBird(filter) {
     this.setState({
       birdFilter:filter
+    })
+  }*/
+
+  updatePetType(filter) {
+    this.setState({
+      petTypeFilter: filter = ["dog", "cat", "bird"]
     })
   }
 
@@ -91,38 +96,27 @@ export default class Search extends React.Component {
       checked: !this.state.checked
     });
   }*/
-  /*a function that takes in an array of pets and returns a filtered array based on the filter values on the state
+  /*a function that takes in an array of pets and returns a filtered array based on the filter values on the state*/
   // checking for equality
-  // In the filter callback, check each filter to see if it was applied. If it has a value and that value does not match the pet's value, return false (leave the pet out of the results). If the filter callback checks all the filters and still hasn't returned false, return true (keep the pet in the results).*/
+  //logical operator (&&) returns the boolean value TRUE if both operands are TRUE and returns FALSE otherwise//
   getFilteredPets = (pets) => {
     return pets.filter((pet) => {
-        if (this.state.nameFilter && pet.name === this.state.nameFilter)
-          return true; //works
-        if (this.state.dogFilter && pet.pet_type === this.state.dogFilter)
-          return true; //works
-        if (this.state.catFilter && pet.pet_type === this.state.catFilter)
-          return true; //works
-        if (this.state.birdFilter && pet.pet_type === this.state.birdFilter)
-          return true; //works
-        if (this.state.sexFilter && pet.sex === this.state.sexFilter)
-          return true;
-        if (this.state.adoptedFilter && pet.adopted === this.state.adoptedFilter)
-          return true;
-        if (this.state.ageFilter && pet.age === this.state.ageFilter)
-          return true; //works
-        return false;
-    });
+        if ((!this.state.nameFilter || (this.state.nameFilter && pet.name === this.state.nameFilter))
+         && (!this.state.petTypeFilter || (this.state.petTypeFilter && pet.pet_type === this.state.petTypeFilter))
+         && (!this.state.sexFilter || (this.state.sexFilter && pet.sex === this.state.sexFilter))
+         && (!this.state.adoptedFilter || (this.state.adoptedFilter && pet.adopted === this.state.adoptedFilter))
+         && (!this.state.ageFilter || (this.state.ageFilter && pet.age === this.state.ageFilter))){
+         return true;
+       }
+       else {
+         return false;
+       }
+    })
   }
 
-  //does nothing currently
-  /*handleSubmit(event) {
-    event.preventDefault();
-    const filteredPets = this.getFilteredPets()
-    console.log("handleSubmit():", filteredPets)
-  }*/
 
-  // does not reset the state, just unselects everything
-  // resetForm(event) {
+
+  // unselects everything
   resetForm = () => {
     this.setState({
       name: '',
@@ -135,8 +129,6 @@ export default class Search extends React.Component {
     });
   }
 
-  // document.getElementById("search-form").reset();
-  // onSubmit={event => this.handleSubmit(event)}
   render () {
     const { pets=[] } = this.context
     let filteredPets = this.getFilteredPets(pets)
@@ -154,7 +146,7 @@ export default class Search extends React.Component {
                   name="pet_type"
                   value="dog"
                   aria-label="select pet type"
-                  onChange={event => this.updateDog(event.target.value)}
+                  onChange={event => this.updatePetType(event.target.value)}
                 />
                 <span className="checkmark"></span>
               Dog</label>
@@ -166,7 +158,7 @@ export default class Search extends React.Component {
                   name="pet_type"
                   value="cat"
                   aria-label="select pet type"
-                  onChange={event => this.updateCat(event.target.value)}
+                  onChange={event => this.updatePetType(event.target.value)}
                 />
                 <span className="checkmark"></span>
               Cat</label>
@@ -178,7 +170,7 @@ export default class Search extends React.Component {
                   name="bird"
                   value="bird"
                   aria-label="select pet type"
-                  onClick={event => this.updateBird(event.target.value)}
+                  onClick={event => this.updatePetType(event.target.value)}
                 />
                 <span className="checkmark"></span>
               Bird</label>
