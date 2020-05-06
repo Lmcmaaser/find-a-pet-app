@@ -9,7 +9,7 @@ export default class Search extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        // filteredPets: []
+        pet_typeFilter  : [],
         name: {
           value: '',
           touched: false
@@ -46,7 +46,7 @@ export default class Search extends React.Component {
     this.setState({
       adoptedFilter: filter //= ["yes", "no"]
     })
-    console.log(typeof adoptedFilter)
+    console.log(filter)
   }
 
   /*updateDog(filter) {
@@ -64,11 +64,21 @@ export default class Search extends React.Component {
       birdFilter:filter
     })
   }*/
-
-  updatePetType(filter) {
+  
+  // this.state.pet_typeFilter will contain an array of the selected animals to be filtered
+  updatePetType(event) {
+    let selectedValues = [...this.state.pet_typeFilter];
+    if (event.target.checked) {
+      if (selectedValues.indexOf(event.target.value) == -1) {
+        selectedValues.push(event.target.value);
+      }
+    } else {
+      selectedValues = selectedValues.filter(item => item !== event.target.value);
+    }
+    // console.log(selectedValues);
     this.setState({
-      pet_typeFilter: filter = ["dog"] || ["cat"] || ["bird"]
-    })
+      pet_typeFilter: selectedValues
+    }, ()=>{console.log(this.state.pet_typeFilter)})
   }
 
   updateSex(filter) {
@@ -152,7 +162,7 @@ export default class Search extends React.Component {
                   name="pet_type"
                   value="dog"
                   aria-label="select pet type"
-                  onChange={event => this.updatePetType(event.target.value)}
+                  onChange={event => this.updatePetType(event)}
                 />
                 <span className="checkmark"></span>
               Dog</label>
@@ -164,7 +174,7 @@ export default class Search extends React.Component {
                   name="pet_type"
                   value="cat"
                   aria-label="select pet type"
-                  onChange={event => this.updatePetType(event.target.value)}
+                  onChange={event => this.updatePetType(event)}
                 />
                 <span className="checkmark"></span>
               Cat</label>
@@ -176,7 +186,7 @@ export default class Search extends React.Component {
                   name="bird"
                   value="bird"
                   aria-label="select pet type"
-                  onClick={event => this.updatePetType(event.target.value)}
+                  onClick={event => this.updatePetType(event)}
                 />
                 <span className="checkmark"></span>
               Bird</label>
