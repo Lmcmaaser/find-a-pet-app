@@ -57,7 +57,7 @@ export default {
     {
       "id": "c45b9b46-8f23-11ea-bc55-0242ac130003",
       "pet_type": "cat",
-      "name": "Fluffy",
+      "name": "Shadow",
       "sex": "female",
       "age:": "1",
       "adopted": "yes",

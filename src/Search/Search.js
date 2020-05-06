@@ -42,25 +42,16 @@ export default class Search extends React.Component {
   }
 
   // "filter" is the value of the selected input
-  updateAdopted(filter) {
-    this.setState({
-      adoptedFilter: filter //= ["yes", "no"]
-    })
-    console.log(typeof adoptedFilter)
-  }
-
   /*updateDog(filter) {
     this.setState({
       dogFilter: filter
     })
   }
-
   updateCat(filter) {
     this.setState({
       catFilter: filter
     })
   }
-
   updateBird(filter) {
     this.setState({
       birdFilter:filter
@@ -69,13 +60,20 @@ export default class Search extends React.Component {
 
   updatePetType(filter) {
     this.setState({
-      pet_typeFilter: filter = ["dog", "cat", "bird"]
+      pet_typeFilter: filter //= ["dog", "cat", "bird"]
     })
+    console.log(filter)
   }
 
   updateSex(filter) {
     this.setState({
       sexFilter: filter //= ["male", "female"]
+    })
+  }
+
+  updateAdopted(filter) {
+    this.setState({
+      adoptedFilter: filter //= ["yes", "no"]
     })
   }
 
@@ -103,15 +101,15 @@ export default class Search extends React.Component {
   getFilteredPets = (pets) => {
     return pets.filter((pet) => {
         if (this.state.pet_typeFilter && this.state.pet_typeFilter.indexOf(pet.pet_type) > -1)
-          return true;
-        if (this.state.sexFilter && this.state.sexFilter.indexOf(pet.sex) > -1)
-          return true;
+          return true; //show whatever was touched last (whether checked or unchecked)
+        if (this.state.sexFilter && pet.sex === this.state.sexFilter)
+          return true; //works if nothing else is selected
         if (this.state.adoptedFilter && this.state.adoptedFilter.indexOf(pet.adopted) > -1)
-          return true;
-        if (!this.state.nameFilter && pet.name === this.state.nameFilter)
-          return true;
-        if (!this.state.ageFilter && pet.age === this.state.ageFilter)
-          return true;
+          return true; //works with no pet selected, does not adjust based on pet filter
+        if (this.state.nameFilter && pet.name === this.state.nameFilter)
+          return true; //works
+        if (this.state.ageFilter && pet.age === this.state.ageFilter)
+          return true; //works
         return false;
     });
   }
@@ -124,7 +122,7 @@ export default class Search extends React.Component {
 
 
 
-  // unselects everything
+  // unselects everything, but does not change state
   resetForm = () => {
     this.setState({
       name: '',
