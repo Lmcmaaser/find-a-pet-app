@@ -67,7 +67,7 @@ export default class Search extends React.Component {
 
   updatePetType(filter) {
     this.setState({
-      pet_typeFilter: filter = ["dog", "cat", "bird"]
+      pet_typeFilter: filter = ["dog"] || ["cat"] || ["bird"]
     })
   }
 
