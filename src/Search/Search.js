@@ -49,22 +49,6 @@ export default class Search extends React.Component {
     console.log(filter)
   }
 
-  /*updateDog(filter) {
-    this.setState({
-      dogFilter: filter
-    })
-  }
-  updateCat(filter) {
-    this.setState({
-      catFilter: filter
-    })
-  }
-  updateBird(filter) {
-    this.setState({
-      birdFilter:filter
-    })
-  }*/
-
   // this.state.pet_typeFilter will contain an array of the selected animals to be filtered
   updatePetType(event) {
     let selectedValues = [...this.state.pet_typeFilter];
@@ -108,12 +92,12 @@ export default class Search extends React.Component {
   getFilteredPets = (pets) => {
     return pets.filter((pet) => {
         if (this.state.pet_typeFilter && this.state.pet_typeFilter.indexOf(pet.pet_type) > -1)
-          return true;
+          return true; //works
         if (this.state.sexFilter && this.state.sexFilter.indexOf(pet.sex) > -1)
           return true;
         if (this.state.adoptedFilter && this.state.adoptedFilter.indexOf(pet.adopted) > -1)
           return true;
-        if (!this.state.nameFilter && pet.name === this.state.nameFilter)
+        if (this.state.nameFilter && pet.name === this.state.nameFilter)
           return true;
         if (!this.state.ageFilter && pet.age === this.state.ageFilter)
           return true;

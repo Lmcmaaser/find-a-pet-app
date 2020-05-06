@@ -33,7 +33,7 @@ export default {
     {
       "id": "352553a4-8f23-11ea-bc55-0242ac130003",
       "pet_type": "dog",
-      "name": "King",
+      "name": "Shadow",
       "sex": "male",
       "age": "8",
       "adopted": "no",
