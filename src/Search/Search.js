@@ -68,7 +68,7 @@ export default class Search extends React.Component {
 
   updatePetType(filter) {
     this.setState({
-      petTypeFilter: filter = ["dog", "cat", "bird"]
+      pet_typeFilter: filter = ["dog", "cat", "bird"]
     })
   }
 
@@ -101,17 +101,16 @@ export default class Search extends React.Component {
   //logical operator (&&) returns the boolean value TRUE if both operands are TRUE and returns FALSE otherwise//
   getFilteredPets = (pets) => {
     return pets.filter((pet) => {
-        if ((!this.state.nameFilter || (this.state.nameFilter && pet.name === this.state.nameFilter))
-         && (!this.state.petTypeFilter || (this.state.petTypeFilter && pet.pet_type === this.state.petTypeFilter))
-         && (!this.state.sexFilter || (this.state.sexFilter && pet.sex === this.state.sexFilter))
-         && (!this.state.adoptedFilter || (this.state.adoptedFilter && pet.adopted === this.state.adoptedFilter))
-         && (!this.state.ageFilter || (this.state.ageFilter && pet.age === this.state.ageFilter))){
-         return true;
-       }
-       else {
-         return false;
-       }
-    })
+        if (this.state.pet_typeFilter &&  this.state.adoptedFilter.indexOf(pet.pet_type) > -1)
+          return true;
+        if (this.state.pet_typeFilter && this.state.sexFilter.indexOf(pet.pet_type) > -1)
+          return true;
+        /*if (this.state.pet_typeFilter && this.state.nameFilter === this.state.nameFilter)
+          return true;
+        if (this.state.pet_typeFilter && this.state.ageFilter === (pet.pet_type) > -1)
+          return true;*/
+        return false;
+    });
   }
 
 
