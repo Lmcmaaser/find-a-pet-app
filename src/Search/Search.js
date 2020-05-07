@@ -16,7 +16,7 @@ export default class Search extends React.Component {
           value: '',
           touched: false
         },
-        sex: {
+         sex: {
           value: '',
           touched: false
         },
@@ -29,6 +29,8 @@ export default class Search extends React.Component {
           touched: false
         }
       }
+    // preserve the initial state in a new object
+    // this.baseState = this.context
   }
 
   static contextType = PetContext;
@@ -101,17 +103,8 @@ export default class Search extends React.Component {
     });
   }
 
-  // unselects everything
-  resetForm = () => {
-    this.setState({
-      name: '',
-      dog: '',
-      cat: '',
-      bird: '',
-      male: '',
-      female: '',
-      age: ''
-    });
+  refreshPage() {
+    window.location.reload(false);
   }
 
   render () {
@@ -237,9 +230,9 @@ export default class Search extends React.Component {
                 value="Reset"
                 className="reset-button"
                 aria-label="reset button"
-                onClick={this.resetForm}
+                onClick={event => this.refreshPage(event.target.value)}
               >
-                Reset Search
+                Click to reset the search!
               </button>
             </div>
           </fieldset>
@@ -250,7 +243,7 @@ export default class Search extends React.Component {
             <ul>List of pets:
               {filteredPets.map((pet) =>
                 <li key={pet.id}>
-                  Id: {pet.id}<br>
+                  Id: {pet.id}
                   Name: {pet.name}
                   Type: {pet.pet_type}
                   Sex: {pet.sex}
