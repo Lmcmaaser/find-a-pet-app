@@ -1,9 +1,7 @@
 import React from 'react';
 import PetContext from '../PetContext';
-// import { findAdopted, findPetType, findSex, findName, findAge } from '../pets-helpers'
 import Store from '../dummy-store';
 import './Search.css';
-//add a show results component?
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -36,19 +34,11 @@ export default class Search extends React.Component {
   static contextType = PetContext;
   /*The contextType property on a class can be assigned a Context object created by React.createContext(). This lets you consume the nearest current value of that Context type using this.context*/
 
-  // occurs after render
   componentDidMount() {
     this.context.setPets(Store.pets)
   }
 
   // "filter" is the value of the selected input
-  updateAdopted(filter) {
-    this.setState({
-      adoptedFilter: filter //= ["yes", "no"]
-    })
-    console.log(filter)
-  }
-
   // this.state.pet_typeFilter will contain an array of the selected animals to be filtered
   updatePetType(event) {
     let selectedValues = [...this.state.pet_typeFilter];
@@ -59,7 +49,6 @@ export default class Search extends React.Component {
     } else {
       selectedValues = selectedValues.filter(item => item !== event.target.value);
     }
-    console.log(selectedValues);
     this.setState({
       pet_typeFilter: selectedValues
     }, ()=>{console.log(this.state.pet_typeFilter)})
@@ -67,23 +56,26 @@ export default class Search extends React.Component {
 
   updateSex(filter) {
     this.setState({
-      sexFilter: filter //= ["male", "female"]
+      sexFilter: filter
     })
-    console.log(filter);
+  }
+
+  updateAdopted(filter) {
+    this.setState({
+      adoptedFilter: filter
+    })
   }
 
   updateName(filter) {
     this.setState({
       nameFilter: filter
     })
-    console.log(filter);
   }
 
   updateAge(filter) {
     this.setState({
       ageFilter: filter
     })
-    console.log(filter);
   }
 
   /*a function that takes in an array of pets and returns a filtered array based on the filter values on the state*/
@@ -91,27 +83,23 @@ export default class Search extends React.Component {
   //logical operator (&&) returns the boolean value TRUE if both operands are TRUE and returns FALSE otherwise//
   getFilteredPets = (pets) => {
     return pets.filter((pet) => {
-        if (this.state.pet_typeFilter && this.state.pet_typeFilter.indexOf(pet.pet_type) > -1)
-          return true; //works
-        if (this.state.sexFilter && this.state.sexFilter.indexOf(pet.sex) > -1)
-          return true;
-        if (this.state.adoptedFilter && this.state.adoptedFilter.indexOf(pet.adopted) > -1)
-          return true;
-        if (this.state.nameFilter && pet.name === this.state.nameFilter)
-          return true;
-        if (!this.state.ageFilter && pet.age === this.state.ageFilter)
-          return true;
-        return false;
+        if (
+          (this.state.pet_typeFilter.length === 0 || this.state.pet_typeFilter.indexOf(pet.pet_type) > -1)
+          &&
+            (!this.state.sexFilter || this.state.sexFilter === pet.sex)
+          &&
+            (!this.state.adoptedFilter || this.state.adoptedFilter === pet.adopted)
+          &&
+            (!this.state.nameFilter || pet.name === this.state.nameFilter)
+          &&
+            (!this.state.ageFilter || pet.age === this.state.ageFilter)
+          ) {
+           return true;
+        } else {
+          return false;
+        }
     });
   }
-
-
-  /*if (this.state.pet_typeFilter && this.state.nameFilter === this.state.nameFilter)
-    return true;
-  if (this.state.pet_typeFilter && this.state.ageFilter === (pet.pet_type) > -1)
-    return true;*/
-
-
 
   // unselects everything
   resetForm = () => {
@@ -128,9 +116,7 @@ export default class Search extends React.Component {
 
   render () {
     const { pets=[] } = this.context
-    console.log("pets:", pets)
     let filteredPets = this.getFilteredPets(pets)
-    console.log("filteredPets:", filteredPets); //displays twice in console??
     return(
       <div>
         <form className="search-form" id="search-form" >
