@@ -29,7 +29,10 @@ class Update extends React.Component {
   static contextType = PetContext;
 
   updateId(id) {
-    this.setState({id: {value: id, touched: true}})
+    this.setState({
+      selected: id
+    })
+    console.log(id) //shows correct id info
   }
 
   updateName(name) {
@@ -40,66 +43,54 @@ class Update extends React.Component {
     this.setState({age: {value: age, touched: true}});
   }
 
-  updateAdoptionStatus(adopted) {
+  updateAdopted(adopted) {
     this.setState({adopted: {value: adopted, touched: true}});
   }
 
+  // finds desired pet by id input
+  findSelectedPet = (pets) => {
+    return pets.filter((pet) => {
+      if (this.state.selected && pet.id === this.state.selected) {
+        return true;
+      } else {
+        return false
+      }
+    })
+    let selectedPet = this.findSelectedPet(pets)
+    console.log(selectedPet);
+  }
 
-  // function to find selected pet to be updated
-  /*selectedPet() {
-    let foundPet = this.context.pets
-    if (this.state.idFilter) {
-        foundPet = findpet(foundPet, this.state.idFilter)
-    }
-    return foundPet
-  }*/
+  // replaces old values with new ones
+  Replace(selectedPet) {
+    selectedPet.name = {this.state.name.value},
+    selectedPet.age = {this.state.age.value},
+    selectedPet.adopted = {this.state.adopted.value}
+    return selectedPet
+    console.log(selectedPet);
+  }
 
   handleSubmit(event) {
     event.preventDefault();
-    // id = this.selectedPet();
-    const { id, name, age, adopted } = this.state;
-    console.log('Name: ', name.value);
-    console.log('Age: ', age.value);
-    console.log('Adopted: ', adopted.value);
-    const pet = {
-      id: id.value,
-      name: name.value,
-      age: age.value,
-      adopted: adopted.value
-    }
-    this.context.updatePet(pet);
-    console.log(pet)
+    this.context.updatePet(selectedPet)
   }
 
-// need an if statement for my id value:
-// if id value !=== pet.id.
-  // return error message
-
-// not sure if this works....
-  /*validateId() {
+// works after s
+  validateId() {
     const id = this.state.id.value.trim();
-    if (id !== findPet()) {
-      return "Id not found";
-     }
-    /*if (id !== this.state.pet.id) {
-      return "Id not found";
-    }*/
-
+    if (id.length === 0) {
+      return "Id is required";
+    }
+  }
 // validation functions work!
   validateName() {
     const name = this.state.name.value.trim();
-    if (name.length === 0) {
-      return "Name is required";
-    } else if (!name.match(/[A-z]/)) {
-      this.name.current.focus();
+    if (!name.match(/[A-z]/)) {
       return "Name must include characters from the modern English alphabet";
     }
   }
   validateAge() {
     const age = this.state.age.value.trim();
-    if (age.length === 0) {
-      return "Age is required";
-    } else if (age.length < 0 || age.length > 2) {
+    if (age.length < 0 || age.length > 2) {
       return "Age must be between 1 and 2 characters long.";
     } else if (!age.match(/[0-9]/)) {
       return "Age must contain at least one number";
@@ -107,8 +98,8 @@ class Update extends React.Component {
   }
 
   render() {
-    // const { types=[], pets=[] } = this.context
-    // const idError = this.validateId();
+    // const { pets=[] } = this.context
+    const idError = this.validateId();
     const nameError = this.validateName();
     const ageError = this.validateAge();
     return (
@@ -116,8 +107,7 @@ class Update extends React.Component {
         <h2>Update an animal's information</h2>
         <fieldset>
           <legend>Update Form</legend>
-          <div className="part">
-            <label className="main-label" htmlFor="id"> Id *</label>
+            <label  className="main-label" htmlFor="id">Id *</label>
             <input
               type="text"
               name="id"
@@ -125,61 +115,67 @@ class Update extends React.Component {
               placeholder="34996177-5809-4d03-a4d1-ce0d4309a84d"
               onChange={event => this.updateId(event.target.value)}
             />
+            {this.state.name.touched && (
+              <ValidationError message={idError} />
+            )}
 
-          </div>
-          <div className="part">
-            <label  className="main-label" htmlFor="name">Name</label>
+            <label  className="main-label" htmlFor="name">Name </label>
             <input
               type="text"
               name="name"
               id="name"
-              placeholder="Rocco"
+              placeholder="Fluffy"
+              aria-label=" input name"
               onChange={event => this.updateName(event.target.value)}
             />
             {this.state.name.touched && (
               <ValidationError message={nameError} />
             )}
-          </div>
-          <div className="part">
-              <label className="main-label" htmlFor="age">Age</label>
-              <input
+
+            <label className="main-label" htmlFor="age">Age *</label>
+            <input
                 type="text"
                 name="age"
                 id="age"
                 placeholder="5"
                 onChange={event => this.updateAge(event.target.value)}
-              />
-              {this.state.age.touched && (
+            />
+            {this.state.age.touched && (
                 <ValidationError message={ageError} />
-              )}
-            </div>
-          <div className="part">
-            <label className="main-label" htmlFor="adoption">Adoption status</label>
-            <input
-              type="radio"
-              id="yes"
-              name="yes"
-              value="yes"
-              onChange={event => this.updateAdoptionStatus(event.target.value)}
-            />
-            <label htmlFor="yes">Yes</label>
+            )}
 
-            <input
-              type="radio"
-              id="no"
-              name="no"
-              value="no"
-              onChange={event => this.updateAdoptionStatus(event.target.value)}
-            />
-            <label htmlFor="no">No</label>
-          </div>
+            <label htmlFor="container">
+              <input
+                type="radio"
+                id="yes"
+                name="adopted"
+                value="yes"
+                aria-label="select adopted"
+                onChange={event => this.updateAdopted(event.target.value)}
+              />
+              <span className="checkmark"></span>
+            Adopted</label>
+
+            <label htmlFor="container">
+              <input
+                type="radio"
+                id="no"
+                name="adopted"
+                value="no"
+                aria-label="select adopted"
+                onChange={event => this.updateAdopted(event.target.value)}
+              />
+              <span className="checkmark"></span>
+            Unadopted</label>
           <div>
             <button
               type="submit"
               className="submit-button"
               disabled={
               this.validateName() ||
-              this.validateAge()}>
+              this.validateAge() ||
+              this.validateId()
+            }>
               Submit
             </button>
           </div>

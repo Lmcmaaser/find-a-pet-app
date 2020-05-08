@@ -16,7 +16,7 @@ class Add extends React.Component {
         value: '',
         touched: false
       },
-      type: {
+      pet_type: {
         value: '',
         touched: false
       },
