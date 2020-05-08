@@ -67,22 +67,21 @@ class Update extends React.Component {
         return false
       }
     })
-    let selectedPet = this.findSelectedPet(pets)
-    console.log(selectedPet);
   }
 
   // replaces old values with new ones
-  Replace(selectedPet) {
-    selectedPet.name = {this.state.name.value},
-    selectedPet.age = {this.state.age.value},
-    selectedPet.adopted = {this.state.adopted.value}
-    return selectedPet
+  Replace() {
+    const { pets=[] } = this.context
+    let selectedPet = this.findSelectedPet(pets)
     console.log(selectedPet);
+    selectedPet.name = this.state.name.value,
+    selectedPet.age = this.state.age.value,
+    selectedPet.adopted = this.state.adopted.value
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.context.updatePet(selectedPet)
+    this.context.updatePet()
   }
 
 // works after s
