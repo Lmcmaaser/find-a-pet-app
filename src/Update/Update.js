@@ -47,6 +47,17 @@ class Update extends React.Component {
     this.setState({adopted: {value: adopted, touched: true}});
   }
 
+  /* Object example
+  {
+    "id": "50b51a24-7234-40b7-9a4d-c23147361d1f",
+    "pet_type": "dog",
+    "name": "Shadow",
+    "sex": "female",
+    "age": "3",
+    "adopted": "yes",
+  },
+  */
+
   // finds desired pet by id input
   findSelectedPet = (pets) => {
     return pets.filter((pet) => {
