@@ -50,7 +50,7 @@ export default class App extends Component {
       pets: this.state.pets,
       types: this.state.types,
       addPet: this.handleAddPet,
-      updatePet: this.updatePet,
+      updatePet: this.handleUpdatePet,
       setPets: this.handleSetPets
     }
     return (

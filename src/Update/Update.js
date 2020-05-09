@@ -4,6 +4,8 @@ import ValidationError from '../ValidationError.js'
 import './Update.css';
 
 class Update extends React.Component {
+  static contextType = PetContext;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -26,8 +28,6 @@ class Update extends React.Component {
     };
   }
 
-  static contextType = PetContext;
-
   updateId(id) {
     this.setState({
       selected: id
@@ -43,82 +43,48 @@ class Update extends React.Component {
   }
 
   updateAge(age) {
-    this.setState({age: {value: age, touched: true}});
+    this.setState({
+      age: {value: age, touched: true}
+    });
+    console.log(age)
   }
 
   updateAdopted(adopted) {
-    this.setState({adopted: {value: adopted, touched: true}});
+    this.setState({
+      adopted: {value: adopted, touched: true}
+    });
+    console.log(adopted)
   }
-
-  /* Object example
-  {
-    "id": "50b51a24-7234-40b7-9a4d-c23147361d1f",
-    "pet_type": "dog",
-    "name": "Shadow",
-    "sex": "female",
-    "age": "3",
-    "adopted": "yes",
-  },
-  */
-
-  // finds desired pet by id input
-  findSelectedPet = (pets) => {
-    return pets.filter((pet) => {
-      if (this.state.selected && pet.id === this.state.selected) {
-        return true;
-      } else {
-        return false
-      }
-    })
-    console.log("pets:", pets)
-  }
-
-  // replaces old values with new ones
-  Replace() {
-    console.log("replace happened")
-    const { pets=[] } = this.context
-    let selectedPet = this.findSelectedPet(pets)
-    console.log(selectedPet);
-    selectedPet.name = this.state.name.value
-    selectedPet.age = this.state.age.value
-    selectedPet.adopted = this.state.adopted.value
-  }
-
+  // map MODIFIES the data inside that array index with the value that is RETURNED by the callback function.
   handleSubmit(event) {
     console.log("submit fired")
     event.preventDefault();
-    let selectedPet = this.state
-    this.context.updatePet(selectedPet)
+    // const { selected, name, age, adopted } = this.state;
+    this.context.updatePet(event)
+    const { pets=[] } = this.context
+    const selectedPet = pets.map((pet) => {
+      if (this.state.selected && pet.id === this.state.selected) {
+        selectedPet.name = this.state.name.value
+        selectedPet.age = this.state.age.value
+        selectedPet.adopted = this.state.adopted.value
+      } else {
+        return "Id not found"
+      }
+    })
+    console.log(selectedPet);
   }
 
-// works after s
+  // works after submit
   validateId() {
     const id = this.state.id.value.trim();
-    if (id.length === 0) {
+    if (id.length < 0) {
       return "Id is required";
-    }
-  }
-// validation functions work!
-  validateName() {
-    const name = this.state.name.value.trim();
-    if (!name.match(/[A-z]/)) {
-      return "Name must include characters from the modern English alphabet";
-    }
-  }
-  validateAge() {
-    const age = this.state.age.value.trim();
-    if (age.length < 0 || age.length > 2) {
-      return "Age must be between 1 and 2 characters long.";
-    } else if (!age.match(/[0-9]/)) {
-      return "Age must contain at least one number";
     }
   }
 
   render() {
     // const { pets=[] } = this.context
     const idError = this.validateId();
-    const nameError = this.validateName();
-    const ageError = this.validateAge();
     return (
       <form className="update-form" onSubmit={event => this.handleSubmit(event)}>
         <h2>Update an animal's information</h2>
@@ -145,9 +111,7 @@ class Update extends React.Component {
               aria-label=" input name"
               onChange={event => this.updateName(event.target.value)}
             />
-            {this.state.name.touched && (
-              <ValidationError message={nameError} />
-            )}
+
 
             <label className="main-label" htmlFor="age">Age *</label>
             <input
@@ -157,9 +121,7 @@ class Update extends React.Component {
                 placeholder="5"
                 onChange={event => this.updateAge(event.target.value)}
             />
-            {this.state.age.touched && (
-                <ValidationError message={ageError} />
-            )}
+
 
             <label htmlFor="container">
               <input
@@ -189,8 +151,6 @@ class Update extends React.Component {
               type="submit"
               className="submit-button"
               disabled={
-              this.validateName() ||
-              this.validateAge() ||
               this.validateId()
             }>
               Submit

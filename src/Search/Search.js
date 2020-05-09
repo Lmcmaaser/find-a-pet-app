@@ -243,12 +243,12 @@ export default class Search extends React.Component {
             <ul>List of pets:
               {filteredPets.map((pet) =>
                 <li key={pet.id}>
-                  Id: {pet.id}
-                  Name: {pet.name}
-                  Type: {pet.pet_type}
-                  Sex: {pet.sex}
-                  Age: {pet.age}
-                  Adopted: {pet.adopted}
+                  <div>Id: {pet.id}<br /></div>
+                  <div>Name: {pet.name}<br /></div>
+                  <div>Type: {pet.pet_type}<br /></div>
+                  <div>Sex: {pet.sex}<br /></div>
+                  <div>Age: {pet.age}<br /></div>
+                  <div>Adopted: {pet.adopted}<br /></div>
                 </li>
               )}
             </ul>
