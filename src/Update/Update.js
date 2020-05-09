@@ -36,7 +36,10 @@ class Update extends React.Component {
   }
 
   updateName(name) {
-    this.setState({name: {value: name, touched: true}});
+    this.setState({
+      name: {value: name, touched: true}
+    });
+    console.log(name)
   }
 
   updateAge(age) {
@@ -67,21 +70,25 @@ class Update extends React.Component {
         return false
       }
     })
+    console.log("pets:", pets)
   }
 
   // replaces old values with new ones
   Replace() {
+    console.log("replace happened")
     const { pets=[] } = this.context
     let selectedPet = this.findSelectedPet(pets)
     console.log(selectedPet);
-    selectedPet.name = this.state.name.value,
-    selectedPet.age = this.state.age.value,
+    selectedPet.name = this.state.name.value
+    selectedPet.age = this.state.age.value
     selectedPet.adopted = this.state.adopted.value
   }
 
   handleSubmit(event) {
+    console.log("submit fired")
     event.preventDefault();
-    this.context.updatePet()
+    let selectedPet = this.state
+    this.context.updatePet(selectedPet)
   }
 
 // works after s
