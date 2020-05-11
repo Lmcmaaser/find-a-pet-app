@@ -54,21 +54,42 @@ class Update extends React.Component {
       selectedId: id
     })
     console.log(id) //shows correct id info
-    // if the selected id matches an id in the pets array
-    if (this.state.selectedId && pet.id === this.state.selectedId) {
-      //put the selected pet in the obj variable
-      let obj = {pets.map((pet) => pet.id)
-    }
-    console.log(obj)
   }
 
-  // map MODIFIES the data inside that array index with the value that is RETURNED by the callback function.
+  findObj(pets, selectedId) {
+    const { pets=[] } = this.context
+      // if the selected id matches an id in the pets array
+    if (this.state.selectedId && pet.id === this.state.selectedId) {
+        //should return desired object
+        return pets.find(pet => pet.id === selectedId);
+      }
+    console.log(pets)
+    pets.modifyObj(); //calls function to update the desire object
+  }
+
+  modifyObj() {
+    //if the name input has been changed and does not match the original
+    if (this.state.nameChange && pet.name === this.state.nameChange) {
+      // update the value for name
+      return pets.name = this.state.nameChange
+    }
+    if (this.state.ageChange && pet.age === this.state.ageChange) {
+      return pets.age = this.state.ageChange
+    }
+    if (this.state.adoptedChange && pet.adopted === this.state.adoptedChange) {
+      return pets.adopted = this.state.ageChange
+    }
+    console.log(pets)
+  }
+
   handleSubmit(event) {
     console.log("submit fired")
     event.preventDefault();
+    const { pets=[] } = this.context
+    pets.findObj();
+    //I have no idea what to do with this.
   }
 
-  // works after submit
   validateId() {
     const id = this.state.id.value.trim();
     if (id.length < 0) {
