@@ -86,6 +86,7 @@ class Update extends React.Component {
     console.log("submit fired")
     event.preventDefault();
     const { pets=[] } = this.context
+    const { id, name, pet_type, sex, age } = this.state;
     pets.findObj();
     //I have no idea what to do with this.
   }
