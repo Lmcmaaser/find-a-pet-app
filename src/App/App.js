@@ -33,6 +33,7 @@ export default class App extends Component {
     })
   }
 
+  // works
   handleAddPet = pet => {
     this.setState({
       pets: this.state.pets.concat(pet)

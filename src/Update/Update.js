@@ -28,50 +28,44 @@ class Update extends React.Component {
     };
   }
 
-  updateId(id) {
-    this.setState({
-      selected: id
-    })
-    console.log(id) //shows correct id info
-  }
-
   updateName(name) {
     this.setState({
-      name: {value: name, touched: true}
+      nameChange: name
     });
     console.log(name)
   }
 
   updateAge(age) {
     this.setState({
-      age: {value: age, touched: true}
+      ageChange: age
     });
     console.log(age)
   }
 
   updateAdopted(adopted) {
     this.setState({
-      adopted: {value: adopted, touched: true}
+      adoptedChange: adopted
     });
     console.log(adopted)
   }
+
+  updateId(id) {
+    this.setState({
+      selectedId: id
+    })
+    console.log(id) //shows correct id info
+    // if the selected id matches an id in the pets array
+    if (this.state.selectedId && pet.id === this.state.selectedId) {
+      //put the selected pet in the obj variable
+      let obj = {pets.map((pet) => pet.id)
+    }
+    console.log(obj)
+  }
+
   // map MODIFIES the data inside that array index with the value that is RETURNED by the callback function.
   handleSubmit(event) {
     console.log("submit fired")
     event.preventDefault();
-    // const { selected, name, age, adopted } = this.state;
-    this.context.updatePet(event)
-    const { pets=[] } = this.context
-    const selectedPet = pets.map((pet) => {
-      if (this.state.selected && pet.id === this.state.selected) {
-        selectedPet.name = this.state.name.value
-        selectedPet.age = this.state.age.value
-        selectedPet.adopted = this.state.adopted.value
-      } else {
-        return "Id not found"
-      }
-    })
-    console.log(selectedPet);
   }
 
   // works after submit
@@ -112,7 +106,6 @@ class Update extends React.Component {
               onChange={event => this.updateName(event.target.value)}
             />
 
-
             <label className="main-label" htmlFor="age">Age *</label>
             <input
                 type="text"
@@ -121,7 +114,6 @@ class Update extends React.Component {
                 placeholder="5"
                 onChange={event => this.updateAge(event.target.value)}
             />
-
 
             <label htmlFor="container">
               <input
