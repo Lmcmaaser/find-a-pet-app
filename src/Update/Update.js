@@ -56,8 +56,8 @@ class Update extends React.Component {
     console.log(id) //shows correct id info
   }
 
-  findObj(pets, selectedId) {
-    const { pets=[] } = this.context
+  /*findObj(pets, selectedId) {
+    // const { pets=[] } = this.context //overwrites pets argument
       // if the selected id matches an id in the pets array
     if (this.state.selectedId && pet.id === this.state.selectedId) {
         //should return desired object
@@ -80,7 +80,7 @@ class Update extends React.Component {
       return pets.adopted = this.state.ageChange
     }
     console.log(pets)
-  }
+  }*/
 
   handleSubmit(event) {
     console.log("submit fired")
@@ -99,31 +99,25 @@ class Update extends React.Component {
   }
 
   render() {
-    // const { pets=[] } = this.context
-    const idError = this.validateId();
+    const { pets=[] } = this.context;
+    console.log(pets)
+    const { pet } = pets.find(pet => pet.id === this.props.match.params.id)
+    // gets from route
+    console.log(pet)
+
     return (
       <form className="update-form" onSubmit={event => this.handleSubmit(event)}>
         <h2>Update an animal's information</h2>
         <fieldset>
           <legend>Update Form</legend>
-            <label  className="main-label" htmlFor="id">Id *</label>
-            <input
-              type="text"
-              name="id"
-              id="id"
-              placeholder="34996177-5809-4d03-a4d1-ce0d4309a84d"
-              onChange={event => this.updateId(event.target.value)}
-            />
-            {this.state.name.touched && (
-              <ValidationError message={idError} />
-            )}
+
 
             <label  className="main-label" htmlFor="name">Name </label>
             <input
               type="text"
               name="name"
               id="name"
-              placeholder="Fluffy"
+              // placeholder= { pet.name }
               aria-label=" input name"
               onChange={event => this.updateName(event.target.value)}
             />
@@ -133,7 +127,7 @@ class Update extends React.Component {
                 type="text"
                 name="age"
                 id="age"
-                placeholder="5"
+                // placeholder= {pet.age}
                 onChange={event => this.updateAge(event.target.value)}
             />
 
@@ -144,6 +138,7 @@ class Update extends React.Component {
                 name="adopted"
                 value="yes"
                 aria-label="select adopted"
+                // {pet.adopted === "yes" ? "checked":;}
                 onChange={event => this.updateAdopted(event.target.value)}
               />
               <span className="checkmark"></span>

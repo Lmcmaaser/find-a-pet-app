@@ -2,6 +2,7 @@ import React from 'react';
 import PetContext from '../PetContext';
 import Store from '../dummy-store';
 import './Search.css';
+import { Link } from 'react-router-dom';
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -243,12 +244,14 @@ export default class Search extends React.Component {
             <ul>List of pets:
               {filteredPets.map((pet) =>
                 <li key={pet.id}>
-                  <div>Id: {pet.id}<br /></div>
                   <div>Name: {pet.name}<br /></div>
                   <div>Type: {pet.pet_type}<br /></div>
                   <div>Sex: {pet.sex}<br /></div>
                   <div>Age: {pet.age}<br /></div>
                   <div>Adopted: {pet.adopted}<br /></div>
+                  <div><Link to={`/update/${pet.id}`}>
+                    Update Pet
+                  </Link></div>
                 </li>
               )}
             </ul>

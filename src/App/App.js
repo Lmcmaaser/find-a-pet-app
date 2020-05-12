@@ -68,7 +68,7 @@ export default class App extends Component {
             <Route exact path='/' component={Home} />
             <Route path='/search' component={Search} />
             <Route path='/add' component={Add} />
-            <Route path='/update' component={Update} />
+            <Route path='/update/:id' component={Update} />
           </main>
         </PetContext.Provider>
         <footer>
