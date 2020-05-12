@@ -17,7 +17,6 @@ class Nav extends React.Component {
         <Link to='/add'>
           Add an Animal
         </Link>
-        
       </Content>
     )
   }

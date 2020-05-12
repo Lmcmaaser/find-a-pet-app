@@ -1,9 +1,15 @@
 import React from 'react'
 import PetContext from '../PetContext'
-import ValidationError from '../ValidationError.js'
+// import ValidationError from '../ValidationError.js'
 import './Update.css';
 
 class Update extends React.Component {
+  state = {
+    pet: {
+      value: ''
+    }
+  }
+
   static contextType = PetContext;
 
   constructor(props) {
@@ -28,6 +34,13 @@ class Update extends React.Component {
     };
   }
 
+  static defaultProps = {
+    match: {
+      params: {}
+    }
+
+  }
+
   updateName(name) {
     this.setState({
       nameChange: name
@@ -49,12 +62,12 @@ class Update extends React.Component {
     console.log(adopted)
   }
 
-  updateId(id) {
+  /*updateId(id) {
     this.setState({
       selectedId: id
     })
     console.log(id) //shows correct id info
-  }
+  }*/
 
   /*findObj(pets, selectedId) {
     // const { pets=[] } = this.context //overwrites pets argument
@@ -82,36 +95,43 @@ class Update extends React.Component {
     console.log(pets)
   }*/
 
+  getPet(pet) {
+    return pet === pet.id
+  }
+
   handleSubmit(event) {
     console.log("submit fired")
     event.preventDefault();
-    const { pets=[] } = this.context
-    const { id, name, pet_type, sex, age } = this.state;
-    pets.findObj();
+    const pet = {
+      name: event.target.name.value,
+      age: event.target.age.value,
+      adopted: event.target.adopted.value
+    }
+    console.log(pet)
+    this.context.updatePet(pet)
     //I have no idea what to do with this.
   }
 
-  validateId() {
-    const id = this.state.id.value.trim();
-    if (id.length < 0) {
-      return "Id is required";
-    }
-  }
 
   render() {
     const { pets=[] } = this.context;
-    console.log(pets)
-    const { pet } = pets.find(pet => pet.id === this.props.match.params.id)
+    // const { pet } = this.props.match.params;
+    // console.log(pets)
+    const pet = pets.find(pet => pet.id === this.props.match.params.id)
     // gets from route
-    console.log(pet)
-
+    console.log(pet) //shows pet
+    let displayArr = Object.values(pet); //shows desired pet
+    //fix format
     return (
       <form className="update-form" onSubmit={event => this.handleSubmit(event)}>
-        <h2>Update an animal's information</h2>
+        <h2>Update a Pets's Information</h2>
         <fieldset>
           <legend>Update Form</legend>
-
-
+            <label className="main-label">Current Information:</label>
+              <div>
+                {displayArr}
+              </div>
+            <h4>Enter Information to Update</h4>
             <label  className="main-label" htmlFor="name">Name </label>
             <input
               type="text"
@@ -158,10 +178,7 @@ class Update extends React.Component {
           <div>
             <button
               type="submit"
-              className="submit-button"
-              disabled={
-              this.validateId()
-            }>
+              className="submit-button">
               Submit
             </button>
           </div>

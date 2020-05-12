@@ -92,7 +92,7 @@ class Add extends React.Component {
         <h2>Add an animal to the database (*  indicates a required field)</h2>
         <fieldset>
           <legend>Add Form</legend>
-          <label className="main-label" htmlFor="pet_type">Select a type for your no * </label>
+          <label className="main-label" htmlFor="pet_type">Select an animal type * </label>
           <select
             name="pet_type"
             aria-label="select pet type"
