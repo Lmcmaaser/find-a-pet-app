@@ -27,9 +27,18 @@ export default class App extends Component {
     }
   };
 
-  handleUpdatePet = pet => {
+  handleUpdatePet = updatedPet => {
+    //update state of the app
+    const updatedPets = this.state.pets.map((pet) => {
+      if (pet.id === updatedPet.id) {
+        for (let key in pet ){
+          pet[key] = updatedPet[key];
+        }
+      }
+      return pet;
+    });
     this.setState({
-      pets: this.state.pets.concat(pet)
+      pets: updatedPets
     })
   }
 

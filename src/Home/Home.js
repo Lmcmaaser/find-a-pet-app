@@ -16,10 +16,7 @@ class Home extends React.Component {
             <li>
               Augue interdum velit euismod in pellentesque.
             </li>
-          </ul>
-          <ul>
             <li>
-              Vestibulum rhoncus est pellentesque elit ullamcorper. Id aliquet risus feugiat in.
             </li>
           </ul>
         </div>

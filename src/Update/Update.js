@@ -4,12 +4,6 @@ import PetContext from '../PetContext'
 import './Update.css';
 
 class Update extends React.Component {
-  state = {
-    pet: {
-      value: ''
-    }
-  }
-
   static contextType = PetContext;
 
   constructor(props) {
@@ -52,26 +46,39 @@ class Update extends React.Component {
     console.log(adopted) //shows input
   }
 
+  //pet original object
   updatePet(pet) {
-    pet.name = this.props.name;
-    pet.age = this.props.age;
-    pet.adopted = this.props.adopted;
+    // value update for keys
+    if (this.state.name.touched){
+      pet.name = this.state.name.value;
+    }
+    if (this.state.age.touched) {
+      pet.age = this.state.age.value;
+    }
+    if (this.state.adopted.touched) {
+      pet.adopted = this.state.adopted.value;
+    }
+    console.log(pet);
     return pet;
-    console.log(pet)
   }
 
-  handleSubmit(event) {
-    console.log("submit fired")
+  handleSubmit(event, pet) {
+    console.log("submit fired");
     event.preventDefault();
-    const pet = {
+    /*const pet = {
       name: event.target.name.value,
       age: event.target.age.value,
       adopted: event.target.adopted.value
-    }
-    console.log(pet)
-    this.context.updatePet(pet)
+    }*/
+    console.log(pet);
+
+    const updatedPet = this.updatePet(pet);
+    //fetch to server patch request, pet obj
+    this.context.updatePet(updatedPet);
+    //redirect to home page, things happened
   }
 
+  //helper componenet
 
   render() {
     const { pets=[] } = this.context;
@@ -82,7 +89,7 @@ class Update extends React.Component {
     console.log(pet) //shows pet
     let displayArr = Object.values(pet); //shows desired pet; FIX FORMAT!
     return (
-      <form className="update-form" onSubmit={event => this.handleSubmit(event)}>
+      <form className="update-form" onSubmit={event => this.handleSubmit(event, pet)}>
         <h2>Update a Pets's Information</h2>
         <fieldset>
           <legend>Update Form</legend>
