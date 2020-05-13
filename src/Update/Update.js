@@ -15,10 +15,6 @@ class Update extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: {
-        value: '',
-        touched: false
-      },
       name: {
         value: '',
         touched: false
@@ -42,61 +38,26 @@ class Update extends React.Component {
   }
 
   updateName(name) {
-    this.setState({
-      nameChange: name
-    });
-    console.log(name)
+    this.setState({name: {value: name, touched: true}});
+    console.log(name) //shows input
   }
 
   updateAge(age) {
-    this.setState({
-      ageChange: age
-    });
-    console.log(age)
+    this.setState({age: {value: age, touched: true}});
+    console.log(age) //shows input
   }
 
   updateAdopted(adopted) {
-    this.setState({
-      adoptedChange: adopted
-    });
-    console.log(adopted)
+    this.setState({adopted: {value: adopted, touched: true}});
+    console.log(adopted) //shows input
   }
 
-  /*updateId(id) {
-    this.setState({
-      selectedId: id
-    })
-    console.log(id) //shows correct id info
-  }*/
-
-  /*findObj(pets, selectedId) {
-    // const { pets=[] } = this.context //overwrites pets argument
-      // if the selected id matches an id in the pets array
-    if (this.state.selectedId && pet.id === this.state.selectedId) {
-        //should return desired object
-        return pets.find(pet => pet.id === selectedId);
-      }
-    console.log(pets)
-    pets.modifyObj(); //calls function to update the desire object
-  }
-
-  modifyObj() {
-    //if the name input has been changed and does not match the original
-    if (this.state.nameChange && pet.name === this.state.nameChange) {
-      // update the value for name
-      return pets.name = this.state.nameChange
-    }
-    if (this.state.ageChange && pet.age === this.state.ageChange) {
-      return pets.age = this.state.ageChange
-    }
-    if (this.state.adoptedChange && pet.adopted === this.state.adoptedChange) {
-      return pets.adopted = this.state.ageChange
-    }
-    console.log(pets)
-  }*/
-
-  getPet(pet) {
-    return pet === pet.id
+  updatePet(pet) {
+    pet.name = this.props.name;
+    pet.age = this.props.age;
+    pet.adopted = this.props.adopted;
+    return pet;
+    console.log(pet)
   }
 
   handleSubmit(event) {
@@ -109,7 +70,6 @@ class Update extends React.Component {
     }
     console.log(pet)
     this.context.updatePet(pet)
-    //I have no idea what to do with this.
   }
 
 
@@ -120,8 +80,7 @@ class Update extends React.Component {
     const pet = pets.find(pet => pet.id === this.props.match.params.id)
     // gets from route
     console.log(pet) //shows pet
-    let displayArr = Object.values(pet); //shows desired pet
-    //fix format
+    let displayArr = Object.values(pet); //shows desired pet; FIX FORMAT!
     return (
       <form className="update-form" onSubmit={event => this.handleSubmit(event)}>
         <h2>Update a Pets's Information</h2>
