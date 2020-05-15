@@ -1,6 +1,6 @@
 import React from 'react'
+import { useAlert } from 'react-alert'
 import PetContext from '../PetContext'
-// import ValidationError from '../ValidationError.js'
 import './Update.css';
 
 class Update extends React.Component {
@@ -65,23 +65,25 @@ class Update extends React.Component {
   handleSubmit(event, pet) {
     console.log("submit fired");
     event.preventDefault();
-    /*const pet = {
-      name: event.target.name.value,
-      age: event.target.age.value,
-      adopted: event.target.adopted.value
-    }*/
     console.log(pet);
-
     const updatedPet = this.updatePet(pet);
     //fetch to server patch request, pet obj
     this.context.updatePet(updatedPet);
-    //redirect to home page, things happened
+    //add code to redirect to home page, things happened
   }
 
-  //helper componenet
+  handleAlert = () => {
+    const alert = useAlert()
+
+     {alert.show(
+      'Oh look, an alert!'
+    }
+  }
+
 
   render() {
     const { pets=[] } = this.context;
+    // const alertMessage = useAlert(alert)
     // const { pet } = this.props.match.params;
     // console.log(pets)
     const pet = pets.find(pet => pet.id === this.props.match.params.id)
@@ -93,7 +95,7 @@ class Update extends React.Component {
         <h2>Update a Pets's Information</h2>
         <fieldset>
           <legend>Update Form</legend>
-            <label className="main-label">Current Information:</label>
+            <label className="main-label">Pet to Update:</label>
               <div>
                 {displayArr}
               </div>
@@ -144,7 +146,8 @@ class Update extends React.Component {
           <div>
             <button
               type="submit"
-              className="submit-button">
+              className="submit-button"
+            >
               Submit
             </button>
           </div>
