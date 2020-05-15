@@ -72,12 +72,12 @@ class Update extends React.Component {
     //add code to redirect to home page, things happened
   }
 
-  handleAlert = () => {
+  handleAlert(event) {
     const alert = useAlert()
-
+    return
      {alert.show(
       'Oh look, an alert!'
-    }
+    )}
   }
 
 
@@ -147,6 +147,7 @@ class Update extends React.Component {
             <button
               type="submit"
               className="submit-button"
+              onClick={event => this.handleAlert(event)}
             >
               Submit
             </button>
