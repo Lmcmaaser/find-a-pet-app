@@ -1,5 +1,6 @@
 import React from 'react'
 import { useAlert } from 'react-alert'
+import AlertButton from '../pets-helpers'
 import PetContext from '../PetContext'
 import './Update.css';
 
@@ -72,14 +73,6 @@ class Update extends React.Component {
     //add code to redirect to home page, things happened
   }
 
-  handleAlert(event) {
-    const alert = useAlert()
-    return
-     {alert.show(
-      'Oh look, an alert!'
-    )}
-  }
-
 
   render() {
     const { pets=[] } = this.context;
@@ -144,13 +137,7 @@ class Update extends React.Component {
               <span className="checkmark"></span>
             Unadopted</label>
           <div>
-            <button
-              type="submit"
-              className="submit-button"
-              onClick={event => this.handleAlert(event)}
-            >
-              Submit
-            </button>
+            <AlertButton />
           </div>
         </fieldset>
       </form>
