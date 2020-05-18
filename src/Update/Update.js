@@ -1,6 +1,5 @@
 import React from 'react'
-import { useAlert } from 'react-alert'
-import AlertButton from '../pets-helpers'
+import AlertButton from '../pets-helpers/pets-helpers'
 import PetContext from '../PetContext'
 import './Update.css';
 
@@ -103,7 +102,7 @@ class Update extends React.Component {
               onChange={event => this.updateName(event.target.value)}
             />
 
-            <label className="main-label" htmlFor="age">Age *</label>
+            <label className="main-label" htmlFor="age">Age </label>
             <input
                 type="text"
                 name="age"
@@ -112,6 +111,9 @@ class Update extends React.Component {
                 onChange={event => this.updateAge(event.target.value)}
             />
 
+            <label className="main-label" htmlFor="adopted">
+              Adopted
+            </label>
             <label htmlFor="container">
               <input
                 type="radio"

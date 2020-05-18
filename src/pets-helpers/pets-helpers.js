@@ -6,11 +6,12 @@ export default function AlertButton() {
 
   return (
     <button
+      className="submit-button"
       onClick={() => {
-        alert.show('Oh look, an alert!')
+        alert.show('Information successfully submitted!')
       }}
     >
-      Show Alert
+      Submit
     </button>
   )
 }

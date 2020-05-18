@@ -117,6 +117,9 @@ export default class Search extends React.Component {
           <h2>Search the Database</h2>
           <fieldset>
             <legend>Search Form</legend>
+              <label className="main-label" htmlFor="pet_type">
+                Pet Type
+              </label>
               <label htmlFor="container">
                 <input
                   type="checkbox"
@@ -153,6 +156,9 @@ export default class Search extends React.Component {
                 <span className="checkmark"></span>
               Bird</label>
 
+              <label className="main-label" htmlFor="sex">
+                Sex
+              </label>
               <label htmlFor="container">
                 <input
                   type="radio"
@@ -176,6 +182,9 @@ export default class Search extends React.Component {
                 <span className="checkmark"></span>
               Female</label>
 
+              <label className="main-label" htmlFor="adopted">
+                Adopted
+              </label>
               <label htmlFor="container">
                 <input
                   type="radio"
@@ -233,7 +242,7 @@ export default class Search extends React.Component {
                 aria-label="reset button"
                 onClick={event => this.refreshPage(event.target.value)}
               >
-                Click to reset the search!
+                Reset Search
               </button>
             </div>
           </fieldset>
@@ -241,7 +250,8 @@ export default class Search extends React.Component {
         <div className="results-section">
           <h4>Search Results:</h4>
           <div className="results-list">
-            <ul>List of pets:
+            <ul>
+              <h5>List of pets:</h5>
               {filteredPets.map((pet) =>
                 <li key={pet.id}>
                   <div>Name: {pet.name}<br /></div>
@@ -251,6 +261,9 @@ export default class Search extends React.Component {
                   <div>Adopted: {pet.adopted}<br /></div>
                   <div><Link to={`/update/${pet.id}`}>
                     Update Pet
+                  </Link></div>
+                  <div><Link to={`/delete/${pet.id}`}>
+                    Delete Pet
                   </Link></div>
                 </li>
               )}

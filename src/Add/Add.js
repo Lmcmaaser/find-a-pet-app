@@ -92,71 +92,104 @@ class Add extends React.Component {
         <h2>Add an animal to the database (*  indicates a required field)</h2>
         <fieldset>
           <legend>Add Form</legend>
-          <label className="main-label" htmlFor="pet_type">Select an animal type * </label>
-          <select
-            name="pet_type"
-            aria-label="select pet type"
-            onChange={event => this.updatePetType(event.target.value)}
-          >
-            {this.context.types.map(type =>
-              <option key={type.pet_type} value={type.pet_type}>{type.pet_type}</option>
-            )}
-          </select>
-          <div className="part">
-            <label  className="main-label" htmlFor="name">Name *</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Fluffy"
-              aria-label="add-name"
-              aria-required="true"
-              aria-invalid={ this.state.name.touched && !!nameError }
-              aria-describedby="nameError"
-              onChange={event => this.updateName(event.target.value)}
-            />
-              {this.state.name.touched && (
-                <ValidationError message={nameError} id="nameError"/>
-              )}
-          </div>
-          <div className="part">
-            <label className="main-label" htmlFor="sex">Sex *</label>
-            <input
-              type="radio"
-              id="male"
-              name="sex"
-              value="male"
-              aria-label="add-male-sex"
-              required
-              onChange={event => this.updateSex(event.target.value)}
-            />
-            <label htmlFor="male">Male</label>
+            <label className="main-label" htmlFor="pet_type">
+              Select an animal type *
+            </label>
+            <label htmlFor="container">
+              <input
+                type="radio"
+                id="dog"
+                name="pet_type"
+                value="dog"
+                aria-label="select pet type"
+                required
+                onChange={event => this.updatePetType(event.target.value)}
+              />
+              <span className="checkmark"></span>
+            Dog</label>
 
-            <input
-              type="radio"
-              id="female"
-              name="sex"
-              value="female"
-              aria-label="add-female-sex"
-              onChange={event => this.updateSex(event.target.value)}
-            />
-            <label htmlFor="female">Female</label>
-          </div>
-          <div className="part">
+            <label htmlFor="container">
+              <input
+                type="radio"
+                id="cat"
+                name="pet_type"
+                value="cat"
+                aria-label="select pet type"
+                onChange={event => this.updatePetType(event.target.value)}
+              />
+              <span className="checkmark"></span>
+            Cat</label>
+
+            <label htmlFor="container">
+              <input
+                type="radio"
+                id="bird"
+                name="pet_type"
+                value="bird"
+                aria-label="select pet type"
+                onClick={event => this.updatePetType(event.target.value)}
+              />
+              <span className="checkmark"></span>
+            Bird</label>
+
+            <label  className="main-label" htmlFor="name">Name *</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Fluffy"
+                aria-label="add-name"
+                aria-required="true"
+                aria-invalid={ this.state.name.touched && !!nameError }
+                aria-describedby="nameError"
+                onChange={event => this.updateName(event.target.value)}
+              />
+                {this.state.name.touched && (
+                  <ValidationError message={nameError} id="nameError"/>
+                )}
+
+            <label className="main-label" htmlFor="sex">
+              Sex *
+            </label>
+            <label htmlFor="container">
+              <input
+                type="radio"
+                id="male"
+                name="sex"
+                value="male"
+                aria-label="add-male-sex"
+                required
+                onChange={event => this.updateSex(event.target.value)}
+              />
+              <span className="checkmark"></span>
+            Male</label>
+
+            <label htmlFor="container">
+              <input
+                type="radio"
+                id="female"
+                name="sex"
+                value="female"
+                aria-label="add-female-sex"
+                onChange={event => this.updateSex(event.target.value)}
+              />
+              <span className="checkmark"></span>
+            Female</label>
+
             <label className="main-label" htmlFor="age">Age *</label>
-            <input
-              type="text"
-              name="age"
-              id="age"
-              required
-              placeholder="5"
-              aria-label="add-age"
-              onChange={event => this.updateAge(event.target.value)}
-            />
-            {this.state.age.touched && (
-              <ValidationError message={ageError} />
-            )}
-          </div>
+              <input
+                type="text"
+                name="age"
+                id="age"
+                required
+                placeholder="5"
+                aria-label="add-age"
+                onChange={event => this.updateAge(event.target.value)}
+              />
+              {this.state.age.touched && (
+                <ValidationError message={ageError} />
+              )}
+
           <div>
             <button
               type="submit"

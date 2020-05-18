@@ -13,8 +13,17 @@ h2 {
 
 h4 {
   text-align: center;
+  font-weight: bold;
+  font-size: 22px;
   color: black;
   margin: 10px;
+}
+
+h5 {
+  font-variant: small-caps;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 5px;
 }
 
 fieldset {
@@ -33,6 +42,12 @@ fieldset {
 
 legend {
   display: none;
+}
+
+.main-label {
+  font-variant: small-caps;
+  font-weight: bold;
+  margin: 5px;
 }
 
 .container {
@@ -87,6 +102,14 @@ legend {
   transform: rotate(45deg);
 }
 
+input[type=radio] {
+  margin: 5px;
+}
+
+input[type=checkbox] {
+  margin: 5px;
+}
+
 input[type=text] {
   margin: 5px;
   padding: 5px;
@@ -94,7 +117,13 @@ input[type=text] {
   height: 35px;
 }
 
-.submit-button {
+label {
+  margin: 2px;
+  font-size: 20px;
+}
+
+
+.reset-button {
   border-radius: 30px;
   border: 2px solid black;
   display: block;
