@@ -6,6 +6,7 @@ const PetContext = React.createContext({
   setPets: () => {},
   addPet: () => {},
   updatePet: () => {},
+  deletePet: () => {}
 });
 
 export default PetContext;

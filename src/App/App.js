@@ -28,17 +28,10 @@ export default class App extends Component {
     }
   };
 
-  handleDelete = deletePet => {
-    const deletePets = this.state.pets.map((pet) => {
-      if (pet.id === deletePet.id) {
-        for (let key in pet ){
-          pet[key] = deletePet[key];
-        }
-      }
-      return ''; //not sure about this
-    });
+  handleDeletePet = deletePet => {
     this.setState({
-      pets: deletePets
+        pets: this.state.pets.filter(pet => pet.id !== deletePet)
+        // filter() method creates an array filled with all array elements that pass a test (provided as a function).
     })
   }
 
@@ -76,7 +69,8 @@ export default class App extends Component {
       types: this.state.types,
       addPet: this.handleAddPet,
       updatePet: this.handleUpdatePet,
-      setPets: this.handleSetPets
+      setPets: this.handleSetPets,
+      deletePet: this.handleDeletePet
     }
     return (
       <div className="App">
