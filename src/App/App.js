@@ -7,6 +7,7 @@ import Home from '../Home/Home';
 import Search from '../Search/Search';
 import Add from '../Add/Add';
 import Update from '../Update/Update';
+import Delete from '../Delete/Delete';
 import './App.css';
 
 export default class App extends Component {
@@ -27,6 +28,20 @@ export default class App extends Component {
     }
   };
 
+  handleDelete = deletePet => {
+    const deletePets = this.state.pets.map((pet) => {
+      if (pet.id === deletePet.id) {
+        for (let key in pet ){
+          pet[key] = deletePet[key];
+        }
+      }
+      return ''; //not sure about this
+    });
+    this.setState({
+      pets: deletePets
+    })
+  }
+
   handleUpdatePet = updatedPet => {
     //update state of the app
     const updatedPets = this.state.pets.map((pet) => {
@@ -42,7 +57,7 @@ export default class App extends Component {
     })
   }
 
-  // works
+
   handleAddPet = pet => {
     this.setState({
       pets: this.state.pets.concat(pet)

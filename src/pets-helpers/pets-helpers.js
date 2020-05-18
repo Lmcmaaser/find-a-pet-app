@@ -8,7 +8,7 @@ export default function AlertButton() {
     <button
       className="submit-button"
       onClick={() => {
-        alert.show('Information successfully submitted!')
+        alert.show('Task complete!')
       }}
     >
       Submit

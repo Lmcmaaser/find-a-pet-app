@@ -28,7 +28,6 @@ class Update extends React.Component {
     match: {
       params: {}
     }
-
   }
 
   updateName(name) {
