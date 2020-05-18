@@ -30,7 +30,7 @@ export default class App extends Component {
 
   handleDeletePet = deletePet => {
     this.setState({
-        pets: this.state.pets.filter(pet => pet.id !== deletePet)
+        pets: this.state.pets.filter(pet => pet.id !== deletePet.id)
         // filter() method creates an array filled with all array elements that pass a test (provided as a function).
     })
   }

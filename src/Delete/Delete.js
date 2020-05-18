@@ -2,9 +2,14 @@ import React from 'react';
 import AlertButton from '../pets-helpers/pets-helpers';
 // import ValidationError from '../ValidationError.js';
 import PetContext from '../PetContext';
+import './Delete.css'
 
-export default class Delete extends React.Componenent {
+class Delete extends React.Component {
   static contextType = PetContext;
+
+  constructor(props){
+    super(props);
+  }
 
   static defaultProps = {
     onDeleteNote: () => {},
@@ -18,15 +23,20 @@ export default class Delete extends React.Componenent {
   updatePet(pet) {
     if (this.state.remove.touched.value === "yes") {
       return pet
-    } else (
+    } else {
+
+    }
       //link back to search page
-    )
+
   }
 
   handleSubmit(event, pet) {
     console.log("submit fired");
     event.preventDefault();
-    const pet = this.props.id
+    // const pet = this.props.id
+    //to do, fetch delete request to server
+    this.context.deletePet(pet);
+    this.props.history.push('/');
   }
 
   render() {
@@ -38,7 +48,6 @@ export default class Delete extends React.Componenent {
           <fieldset>
             <legend>Pet to Delete</legend>
               <ul>
-                {pets.map((pet) =>
                   <li key={pet.id}>
                     <div>Name: {pet.name}<br /></div>
                     <div>Type: {pet.pet_type}<br /></div>
@@ -46,42 +55,33 @@ export default class Delete extends React.Componenent {
                     <div>Age: {pet.age}<br /></div>
                     <div>Adopted: {pet.adopted}<br /></div>
                   </li>
-                )}
               </ul>
           </fieldset>
           <fieldset>
             <legend>Delete Form</legend>
-              <label className="main-label" htmlFor="delete">
-                Delete
-              </label>
-              <label htmlFor="container">
-                <input
-                  type="radio"
-                  id="yes"
-                  name="delete"
-                  value="yes"
-                  aria-label="delete pet"
-                  onChange={event => this.updateStatus(event.target.value)}
-                />
-                <span className="checkmark"></span>
-              Yes</label>
 
-              <label htmlFor="container">
-                <input
-                  type="radio"
-                  id="no"
-                  name="remove"
-                  value="no"
-                  aria-label="do not delete pet"
-                  onChange={event => this.updateStatus(event.target.value)}
-                />
-                <span className="checkmark"></span>
-              No</label>
           <div>
-            <AlertButton />
+            <button
+              className="submit-button"
+              type="submit"
+              onClick={(event) => {this.handleSubmit(event, pet)
+              }}
+            >
+              Delete
+            </button>
+
+            <button
+              className="submit-button"
+              onClick={() => {
+                this.props.history.push('/')
+              }}
+            >
+              Cancel
+            </button>
           </div>
         </fieldset>
       </form>
     )
   }
 }
+export default Delete

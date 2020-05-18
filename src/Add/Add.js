@@ -5,7 +5,7 @@ import ValidationError from '../ValidationError.js';
 import PetContext from '../PetContext';
 import './Add.css';
 
-
+//to do, add an alert
 class Add extends React.Component {
   static contextType = PetContext;
 
@@ -59,13 +59,16 @@ class Add extends React.Component {
     }
     console.log(pet)
     this.context.addPet(pet)
+    this.setState({
+      name: "",
+      age: ""
+    })
   }
 
   // validations work
   validateName() {
     const name = this.state.name.value.trim();
     if (name.length === 0) {
-      // this.name.current.focus();
       return "Name is required";
     } else if (!name.match(/[A-z]/)) {
       this.name.current.focus();
@@ -137,7 +140,8 @@ class Add extends React.Component {
                 type="text"
                 name="name"
                 id="name"
-                placeholder="Fluffy"
+                value={this.state.name.value}
+                // placeholder="Fluffy"
                 aria-label="add-name"
                 aria-required="true"
                 aria-invalid={ this.state.name.touched && !!nameError }
