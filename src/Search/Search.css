@@ -47,7 +47,7 @@ legend {
 .main-label {
   font-variant: small-caps;
   font-weight: bold;
-  margin: 5px;
+  margin: 5px; 
 }
 
 .container {
@@ -123,18 +123,17 @@ label {
 }
 
 
-.reset-button {
-  border-radius: 30px;
+button.reset-button {
+  border-radius: 20px;
   border: 2px solid black;
   display: block;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: bold;
-  height: 60px;
+  height: 70px;
   padding: 8px;
   text-align: center;
-  width: 60px;
-  margin: 10px 20px 10px auto;
-  background-color: white;
+  width: 90px;
+  margin: 20px 20px 20px auto;
 }
 
 .results-section {

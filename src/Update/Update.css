@@ -39,6 +39,7 @@ legend {
 .main-label {
   font-variant: small-caps;
   font-weight: bold;
+  font-size: 20px;
   margin: 5px;
 }
 
@@ -69,9 +70,4 @@ input[type=text] {
   width: 50%;
   height: 35px;
   font-size: 18px;
-}
-
-label {
-  margin: 2px;
-  font-size: 20px;
 }

@@ -198,7 +198,6 @@ class Add extends React.Component {
                 <ValidationError message={ageError} />
               )}
 
-          <div>
             <button
               type="submit"
               className="submit-button"
@@ -210,7 +209,6 @@ class Add extends React.Component {
             >
               Submit
             </button>
-          </div>
         </fieldset>
       </form>
     )

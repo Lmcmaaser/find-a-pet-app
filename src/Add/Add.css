@@ -73,7 +73,7 @@ label {
   font-size: 20px;
 }
 
-.submit-button {
+button.submit-button {
   border-radius: 30px;
   border: 2px solid black;
   display: block;

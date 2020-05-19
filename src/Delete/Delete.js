@@ -49,7 +49,7 @@ class Delete extends React.Component {
                 <div>Adopted: {pet.adopted}<br /></div>
               </div>
             </div>
-            <div className="button-section">
+
               <button
                 className="submit-button"
                 type="submit"
@@ -67,7 +67,7 @@ class Delete extends React.Component {
               >
                 Cancel
               </button>
-            </div>
+          
           </div>
       </div>
     )
