@@ -3,8 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 5px;
-  background-color: white;
-  /* color: white; */
+  background-color: #4A93C2;
 }
 
 h2 {
@@ -12,9 +11,10 @@ h2 {
   color: black;
 }
 
-fieldset {
+.section {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   font-size: 18px;
   padding-top: 0.35em;
   padding-bottom: 0.35em;
@@ -26,10 +26,34 @@ fieldset {
   border-radius: 10px;
 }
 
-/* legend { */
-  /* display: none; */
-/* } */
+.pet-section {
+  justify-content: center;
+  margin: 20px;
+  font-size: 20px;
+  padding-left: 200px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 3px solid #003B61;
+  border-radius: 10px;
+}
 
-li {
-  margin: 5px;
+.button-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 15px;
+  margin: 10px;
+}
+
+.submit-button {
+  border-radius: 20px;
+  border: 2px solid black;
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  height: 70px;
+  padding: 8px;
+  text-align: center;
+  width: 90px;
+  margin: 20px;
 }
