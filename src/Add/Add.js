@@ -59,11 +59,17 @@ class Add extends React.Component {
     }
     console.log(pet)
     this.context.addPet(pet)
+    // this.resetForm();
+  }
+
+  /*resetForm() {
     this.setState({
       name: "",
       age: ""
     })
-  }
+  }*/
+
+
 
   // validations work
   validateName() {
@@ -71,7 +77,7 @@ class Add extends React.Component {
     if (this.state.name.value = {touched:true}) {
       name = this.state.name.value.trim();
     }*/
-    const name = this.state.name.value
+    const name = this.state.name.value.trim();
     if (name.length === 0) {
       return "Name is required";
     } else if (!name.match(/[A-z]/)) {
@@ -145,7 +151,7 @@ class Add extends React.Component {
                 name="name"
                 id="name"
                 value={this.state.name.value}
-                // placeholder="Fluffy"
+                placeholder="Fluffy"
                 aria-label="add-name"
                 aria-required="true"
                 aria-invalid={ this.state.name.touched && !!nameError }
@@ -190,6 +196,7 @@ class Add extends React.Component {
                 name="age"
                 id="age"
                 required
+                value={this.state.age.value}
                 placeholder="5"
                 aria-label="add-age"
                 onChange={event => this.updateAge(event.target.value)}

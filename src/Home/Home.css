@@ -22,3 +22,7 @@ h2 {
   margin: 10px;
   font-size: 18px;
 }
+
+.sub-section {
+  font-weight: bold;
+}
