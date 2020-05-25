@@ -23,16 +23,9 @@ class Delete extends React.Component {
     this.props.history.push('/');
   }
 
-  validateSuccess() {
-    if (this.state.submitted) {
-      return "Success! The pet was added!"
-    }
-  }
-
   render() {
     const { pets=[] } = this.context;
     const pet = pets.find(pet => pet.id === this.props.match.params.id)
-    // const successMessage = this.validateSuccess();
     return (
       <div className="delete-form" >
         <h2>Would you like to delete this pet?</h2>

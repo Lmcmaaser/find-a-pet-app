@@ -23,6 +23,10 @@ h1, h3 {
   color: black;
 }
 
+div.success {
+  margin: 0px auto 10px auto;
+}
+
 
 @media screen and (min-width: 460px) {
   h1, h3 {

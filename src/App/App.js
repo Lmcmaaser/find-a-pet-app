@@ -37,7 +37,7 @@ export default class App extends Component {
   }
   validateSuccess() {
     if (this.state.deletion) {
-      return "Success! The pet was deleted!"
+      return "Success! Change processed!"
     }
   }
 
