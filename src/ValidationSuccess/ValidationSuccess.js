@@ -6,7 +6,7 @@ export default function ValidationSuccess(props) {
   if(props.message) {
     return (
       <div className="success">{props.message}
-        <button onClick={props.removeMessage}>
+        <button className="x-button" onClick={props.removeMessage}>
         X
         </button>
       </div>

@@ -4,21 +4,8 @@
   justify-content: space-between;
   padding: 5px;
   background-color: #4A93C2;
+  border: 10px solid black;
 }
-
-/*div.success {
-  border-radius: 30px;
-  border: 2px solid black;
-  display: block;
-  font-size: 20px;
-  font-weight: bold;
-  height: 60px;
-  padding: 8px;
-  text-align: center;
-  width: 60px;
-  margin: 10px 20px 10px auto;
-}*/
-
 
 h2 {
   text-align: center;

@@ -30,12 +30,9 @@ export default class Search extends React.Component {
           touched: false
         }
       }
-    // preserve the initial state in a new object
-    // this.baseState = this.context
   }
 
   static contextType = PetContext;
-  /*The contextType property on a class can be assigned a Context object created by React.createContext(). This lets you consume the nearest current value of that Context type using this.context*/
 
   componentDidMount() {
     this.context.setPets(Store.pets)
@@ -81,9 +78,6 @@ export default class Search extends React.Component {
     })
   }
 
-  /*a function that takes in an array of pets and returns a filtered array based on the filter values on the state*/
-  // checking for equality
-  //logical operator (&&) returns the boolean value TRUE if both operands are TRUE and returns FALSE otherwise//
   getFilteredPets = (pets) => {
     return pets.filter((pet) => {
         if (
@@ -112,7 +106,7 @@ export default class Search extends React.Component {
     const { pets=[] } = this.context
     let filteredPets = this.getFilteredPets(pets)
     return(
-      <div>
+      <div className="complete-section">
         <form className="search-form" id="search-form" >
           <h2>Search the Database</h2>
           <fieldset>
