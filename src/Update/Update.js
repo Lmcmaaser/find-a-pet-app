@@ -1,5 +1,4 @@
 import React from 'react'
-import AlertButton from '../pets-helpers/pets-helpers'
 import PetContext from '../PetContext'
 import './Update.css';
 
@@ -138,7 +137,11 @@ class Update extends React.Component {
               <span className="checkmark"></span>
             Unadopted</label>
           <div>
-            <AlertButton />
+            <button
+              className="submit-button"
+            >
+              Submit
+            </button>
           </div>
         </fieldset>
       </form>
