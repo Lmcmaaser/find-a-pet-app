@@ -1,7 +1,7 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import ValidationError from '../ValidationError.js';
+import ValidationSuccess from '../ValidationSuccess/ValidationSuccess'
 import PetContext from '../PetContext';
 import './Add.css';
 
@@ -12,6 +12,7 @@ class Add extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      submitted: false,
       name: {
         value: '',
         touched: false
@@ -29,6 +30,12 @@ class Add extends React.Component {
         touched: false
       }
     };
+  }
+
+  removeMessage = () => {
+    this.setState({
+      submitted: false
+    })
   }
 
   updatePetType(pet_type) {
@@ -59,29 +66,44 @@ class Add extends React.Component {
     }
     console.log(pet)
     this.context.addPet(pet)
-    // this.resetForm();
+    this.resetForm();
   }
 
-  /*resetForm() {
+  resetForm() {
     this.setState({
-      name: "",
-      age: ""
+      submitted: true,
+      name: {
+        value: '',
+        touched: false
+      },
+      pet_type: {
+        value: '',
+        touched: false
+      },
+      sex: {
+        value: '',
+        touched: false
+      },
+      age: {
+        value: '',
+        touched: false
+      }
     })
-  }*/
+    document.querySelector('input[name="pet_type"]:checked').checked = false;
+    document.querySelector('input[name="sex"]:checked').checked = false;
+  }
 
+  validateSuccess() {
+    if (this.state.submitted) {
+      return "Success! The pet was added!"
+    }
+  }
 
-
-  // validations work
   validateName() {
-    /*const name;
-    if (this.state.name.value = {touched:true}) {
-      name = this.state.name.value.trim();
-    }*/
     const name = this.state.name.value.trim();
     if (name.length === 0) {
       return "Name is required";
     } else if (!name.match(/[A-z]/)) {
-      this.name.current.focus();
       return "Name must include characters from the modern English alphabet";
     }
   }
@@ -98,12 +120,18 @@ class Add extends React.Component {
   }
 
   render () {
+    const successMessage = this.validateSuccess();
     const nameError = this.validateName();
     const ageError = this.validateAge();
     return (
       <form className="add-form" onSubmit={event => this.handleSubmit(event)}>
         <h2>Add an animal to the database (*  indicates a required field)</h2>
         <fieldset>
+          {this.state.submitted && (
+            <ValidationSuccess message={successMessage}
+              removeMessage={this.removeMessage}
+             className="successMessage"/>
+          )}
           <legend>Add Form</legend>
             <label className="main-label" htmlFor="pet_type">
               Select an animal type *
@@ -113,6 +141,7 @@ class Add extends React.Component {
                 type="radio"
                 id="dog"
                 name="pet_type"
+
                 value="dog"
                 aria-label="select pet type"
                 required
@@ -126,6 +155,7 @@ class Add extends React.Component {
                 type="radio"
                 id="cat"
                 name="pet_type"
+
                 value="cat"
                 aria-label="select pet type"
                 onChange={event => this.updatePetType(event.target.value)}
@@ -138,9 +168,10 @@ class Add extends React.Component {
                 type="radio"
                 id="bird"
                 name="pet_type"
+
                 value="bird"
                 aria-label="select pet type"
-                onClick={event => this.updatePetType(event.target.value)}
+                onChange={event => this.updatePetType(event.target.value)}
               />
               <span className="checkmark"></span>
             Bird</label>
@@ -213,6 +244,7 @@ class Add extends React.Component {
               this.validateName() ||
               this.validateAge()
               }
+
             >
               Submit
             </button>

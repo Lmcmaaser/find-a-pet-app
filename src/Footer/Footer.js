@@ -6,7 +6,7 @@ export default class Footer extends Component {
     return (
       <div className='Footer'>
         <p>Created by: Lauren Maaser</p>
-        <p>Contact information: <a href="mailto:someone@example.com">
+        <p>Contact information: <a href="mailto:lmcmaaser@gmail.com">
           insert contact link here</a></p>
       </div>
     )

@@ -8,6 +8,7 @@ import Search from '../Search/Search';
 import Add from '../Add/Add';
 import Update from '../Update/Update';
 import Delete from '../Delete/Delete';
+import ValidationSuccess from '../ValidationSuccess/ValidationSuccess'
 import './App.css';
 
 export default class App extends Component {
@@ -24,12 +25,25 @@ export default class App extends Component {
     super(props);
     this.state = {
       pets: this.props.data.pets,
-      types: this.props.data.types
+      types: this.props.data.types,
+      deletion: false
     }
   };
 
+  removeMessage = () => {
+    this.setState({
+      deletion: false
+    })
+  }
+  validateSuccess() {
+    if (this.state.deletion) {
+      return "Success! The pet was deleted!"
+    }
+  }
+
   handleDeletePet = deletePet => {
     this.setState({
+        deletion: true,
         pets: this.state.pets.filter(pet => pet.id !== deletePet.id)
         // filter() method creates an array filled with all array elements that pass a test (provided as a function).
     })
@@ -64,13 +78,15 @@ export default class App extends Component {
   }
   // The render method inside App is using the render prop on each Route so that props can be specified on the component instances.
   render () {
+    const successMessage = this.validateSuccess();
     const contextValue = {
       pets: this.state.pets,
       types: this.state.types,
       addPet: this.handleAddPet,
       updatePet: this.handleUpdatePet,
       setPets: this.handleSetPets,
-      deletePet: this.handleDeletePet
+      deletePet: this.handleDeletePet,
+      removeMessage: this.removeMessage
     }
     return (
       <div className="App">
@@ -83,11 +99,17 @@ export default class App extends Component {
             <Nav />
           </nav>
           <main>
-            <Route exact path='/' component={Home} />
+            {this.state.deletion && (
+              <ValidationSuccess message={successMessage}
+                removeMessage={this.removeMessage}
+               className="successMessage"/>
+            )}
+            <Route exact path='/' component={Home}/>
             <Route path='/search' component={Search} />
             <Route path='/add' component={Add} />
             <Route path='/update/:id' component={Update} />
             <Route path='/delete/:id' component={Delete} />
+
           </main>
         </PetContext.Provider>
         <footer>

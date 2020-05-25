@@ -1,27 +1,17 @@
 import React from 'react';
 import PetContext from '../PetContext';
-import './Delete.css'
+import './Delete.css';
 
 class Delete extends React.Component {
   static contextType = PetContext;
 
   static defaultProps = {
-    onDeleteNote: () => {},
+    onDeletePet: () => {},
   }
 
   updateStatus(remove) {
     this.setState({remove: {value: remove, touched: true}});
     console.log(remove) //shows input
-  }
-
-  updatePet(pet) {
-    if (this.state.remove.touched.value === "yes") {
-      return pet
-    } else {
-
-    }
-      //link back to search page
-
   }
 
   handleSubmit(event, pet) {
@@ -33,9 +23,16 @@ class Delete extends React.Component {
     this.props.history.push('/');
   }
 
+  validateSuccess() {
+    if (this.state.submitted) {
+      return "Success! The pet was added!"
+    }
+  }
+
   render() {
     const { pets=[] } = this.context;
     const pet = pets.find(pet => pet.id === this.props.match.params.id)
+    // const successMessage = this.validateSuccess();
     return (
       <div className="delete-form" >
         <h2>Would you like to delete this pet?</h2>
@@ -67,7 +64,6 @@ class Delete extends React.Component {
               >
                 Cancel
               </button>
-          
           </div>
       </div>
     )
