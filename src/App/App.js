@@ -26,24 +26,24 @@ export default class App extends Component {
     this.state = {
       pets: this.props.data.pets,
       types: this.props.data.types,
-      deletion: false
+      changed: false,
     }
   };
 
-  removeMessage = () => {
+  changeMessage = () => {
     this.setState({
-      deletion: false
+      changed: false
     })
   }
   validateSuccess() {
-    if (this.state.deletion) {
-      return "Success! Change processed!"
+    if (this.state.changed) {
+      return "Success! Change was made!"
     }
   }
 
   handleDeletePet = deletePet => {
     this.setState({
-        deletion: true,
+        changed: true,
         pets: this.state.pets.filter(pet => pet.id !== deletePet.id)
         // filter() method creates an array filled with all array elements that pass a test (provided as a function).
     })
@@ -60,6 +60,7 @@ export default class App extends Component {
       return pet;
     });
     this.setState({
+      changed: true,
       pets: updatedPets
     })
   }
@@ -86,7 +87,7 @@ export default class App extends Component {
       updatePet: this.handleUpdatePet,
       setPets: this.handleSetPets,
       deletePet: this.handleDeletePet,
-      removeMessage: this.removeMessage
+      changeMessage: this.changeMessage
     }
     return (
       <div className="App">
@@ -99,9 +100,9 @@ export default class App extends Component {
             <Nav />
           </nav>
           <main>
-            {this.state.deletion && (
+            {this.state.changed && (
               <ValidationSuccess message={successMessage}
-                removeMessage={this.removeMessage}
+                changeMessage={this.changeMessage}
                className="successMessage"/>
             )}
             <Route exact path='/' component={Home}/>

@@ -68,6 +68,7 @@ class Update extends React.Component {
     //fetch to server patch request, pet obj
     this.context.updatePet(updatedPet);
     //add code to redirect to home page, things happened
+    this.props.history.push('/');
   }
 
 

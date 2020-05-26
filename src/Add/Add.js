@@ -32,7 +32,7 @@ class Add extends React.Component {
     };
   }
 
-  removeMessage = () => {
+  changeMessage = () => {
     this.setState({
       submitted: false
     })
@@ -129,7 +129,7 @@ class Add extends React.Component {
         <fieldset>
           {this.state.submitted && (
             <ValidationSuccess message={successMessage}
-              removeMessage={this.removeMessage}
+              changeMessage={this.changeMessage}
              className="successMessage"/>
           )}
           <legend>Add Form</legend>
