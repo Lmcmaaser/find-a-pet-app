@@ -182,7 +182,6 @@ class Add extends React.Component {
                 name="name"
                 id="name"
                 value={this.state.name.value}
-                placeholder="Fluffy"
                 aria-label="add-name"
                 aria-required="true"
                 aria-invalid={ this.state.name.touched && !!nameError }
@@ -228,7 +227,6 @@ class Add extends React.Component {
                 id="age"
                 required
                 value={this.state.age.value}
-                placeholder="5"
                 aria-label="add-age"
                 onChange={event => this.updateAge(event.target.value)}
               />

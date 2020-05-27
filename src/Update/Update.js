@@ -96,7 +96,6 @@ class Update extends React.Component {
               type="text"
               name="name"
               id="name"
-              // placeholder= { pet.name }
               aria-label=" input name"
               onChange={event => this.updateName(event.target.value)}
             />
@@ -106,7 +105,6 @@ class Update extends React.Component {
                 type="text"
                 name="age"
                 id="age"
-                // placeholder= {pet.age}
                 onChange={event => this.updateAge(event.target.value)}
             />
 
@@ -120,7 +118,6 @@ class Update extends React.Component {
                 name="adopted"
                 value="yes"
                 aria-label="select adopted"
-                // {pet.adopted === "yes" ? "checked":;}
                 onChange={event => this.updateAdopted(event.target.value)}
               />
               <span className="checkmark"></span>

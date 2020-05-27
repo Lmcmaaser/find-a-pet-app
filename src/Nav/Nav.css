@@ -12,3 +12,11 @@
   font-size: 18px;
   border: 10px solid black;
 }
+
+@media screen and (max-width: 460px) {
+  .Nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

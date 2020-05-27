@@ -100,6 +100,32 @@ export default class Search extends React.Component {
 
   refreshPage() {
     window.location.reload(false);
+    /*this.setState({
+      submitted: true,
+      name: {
+        value: '',
+        touched: false
+      },
+      pet_type: {
+        value: '',
+        touched: false
+      },
+      sex: {
+        value: '',
+        touched: false
+      },
+      age: {
+        value: '',
+        touched: false
+      },
+      adopted: {
+        value: '',
+        touched: false
+      }
+    })
+    document.querySelector('input[name="pet_type"]:checked').checked = false;
+    document.querySelector('input[name="sex"]:checked').checked = false;
+    document.querySelector('input[name="adopted"]:checked').checked = false;*/
   }
 
   render () {
@@ -208,7 +234,6 @@ export default class Search extends React.Component {
                 type="text"
                 name="name"
                 id="name"
-                placeholder="Fluffy"
                 aria-label=" input name"
                 onChange={event => this.updateName(event.target.value)}
               />
@@ -221,7 +246,6 @@ export default class Search extends React.Component {
                 type="text"
                 name="age"
                 id="age"
-                placeholder="5"
                 aria-label="input age"
                 onChange={event => this.updateAge(event.target.value)}
               />
